@@ -53,6 +53,7 @@
                 <img src="..." class="d-block w-100" alt="...">
             </div> -->
             </div>
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -64,6 +65,18 @@
         </div>
     </div>
 
+    <!-- Highlight Research -->
+    <div class="mt-5 mb-5">
+        <h1 style="text-align: center;">Highlight Research</h1>
+        <ul>
+            @foreach($hlpapers as $hlpaper)
+                <li>
+                    <h3>{{ $hlpaper->paper->paper_name ?? 'null' }}</h3>
+                    <p>{{ $hlpaper->description ?? 'null'}}</p>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
     <!-- Modal -->
 
