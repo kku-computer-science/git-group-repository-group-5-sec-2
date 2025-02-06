@@ -56,7 +56,7 @@ services:
             - mysql
         networks:
             - sail
-            
+
 networks:
     sail:
         driver: bridge
