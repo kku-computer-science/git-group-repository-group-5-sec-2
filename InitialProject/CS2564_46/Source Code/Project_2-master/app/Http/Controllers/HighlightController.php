@@ -8,7 +8,12 @@ use App\Models\Paper;
 
 class HighlightController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:highlight-list');
+    }
     // แสดงรายการ Highlight Papers
+
     public function index()
 {
     $highlight_papers = Highlight_paper::with('paper')

@@ -272,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     @endcan
-                    @can('expertises-list')
+                    @can('highlight-list')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('highlight.index')}}">
                             <i class="menu-icon mdi mdi-buffer"></i>

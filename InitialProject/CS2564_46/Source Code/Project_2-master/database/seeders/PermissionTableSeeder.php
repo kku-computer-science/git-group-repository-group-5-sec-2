@@ -51,10 +51,14 @@ class PermissionTableSeeder extends Seeder
             'departments-create',
             'departments-edit',
             'departments-delete',
+            'highlight-list',
+            'highlight-create',
+            'highlight-delete',
+            'highlight-edit'
         ];
 
         foreach ($data as $permission) {
-             Permission::create(['name' => $permission]);
+             Permission::firstOrCreate(['name' => $permission]);
         }
     }
 }
