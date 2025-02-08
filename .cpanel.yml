@@ -4,8 +4,8 @@ deployment:
     - export DEPLOYPATH=/home2/cs05sec267/public_html/
     - export SOURCEPATH=/home2/cs05sec267/sourcecode/
     - export PROJECTCODEPATH="InitialProject/CS2564_46/Source Code/Project_2-master"
-    - /bin/cp -r $PROJECTCODEPATH/* $SOURCEPATH
-    - /bin/unzip -o $PROJECTCODEPATH/vendor.zip -d $SOURCEPATH
+    - /bin/cp -r "${PROJECTCODEPATH}"/* $SOURCEPATH
+    - /bin/unzip -o "${PROJECTCODEPATH}"/vendor.zip -d $SOURCEPATH
     - /bin/rm -r $SOURCEPATH/vendor.zip
     - /bin/rm -r $SOURCEPATH/public/index.php
     - /bin/rm -r $DEPLOYPATH/assets
