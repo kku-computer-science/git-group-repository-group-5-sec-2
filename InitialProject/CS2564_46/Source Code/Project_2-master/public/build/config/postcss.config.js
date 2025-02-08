@@ -12,6 +12,6 @@ module.exports = {
     }),
     require('autoprefixer')({
       cascade: false
-    })
+    }),
   ]
 }
