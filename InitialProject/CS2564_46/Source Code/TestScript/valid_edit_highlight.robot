@@ -3,8 +3,8 @@ Documentation     This is a test suite for valid editing a highlight
 Resource          resource.robot
 
 *** Variables ***
-${USERNAME}          admin@gmail.com
-${PASSWORD}          12345678
+${USERNAME}          staff@gmail.com
+${PASSWORD}          123456789
 ${TITLE}             Edited
 ${DESCRIPTION}       This is a test for editing a highlight.
 ${PICTURE_PATH}      ${CURDIR}\\highlight2.png

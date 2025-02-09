@@ -3,8 +3,8 @@ Documentation     This is a test suite for deleting a highlight
 Resource          resource.robot
 
 *** Variables ***
-${USERNAME}          admin@gmail.com
-${PASSWORD}          12345678
+${USERNAME}          staff@gmail.com
+${PASSWORD}          123456789
 
 *** Test Cases ***
 Login

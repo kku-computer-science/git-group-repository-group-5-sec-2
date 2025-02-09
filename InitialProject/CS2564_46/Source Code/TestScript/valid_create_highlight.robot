@@ -3,8 +3,8 @@ Documentation     This is a test suite for valid creating a highlight
 Resource          resource.robot
 
 *** Variables ***
-${USERNAME}          admin@gmail.com
-${PASSWORD}          12345678
+${USERNAME}          staff@gmail.com
+${PASSWORD}          123456789
 ${TITLE}             Testing
 ${DESCRIPTION}       This is a test for creating a highlight.
 ${PICTURE_PATH}      ${CURDIR}\\highlight.png
