@@ -17,22 +17,21 @@ Login
     Input Password    ${PASSWORD}
     Submit Credentials
 
-Edit Highlight
+Go To Edit Highlight Page
     Go To Highlight Setting Page
     Click Edit Highlight Button
-Empty Title
-    Fill Highlight Form With Validation    ${EMPTY}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}            
-Empty Description
+Title Can Not Be Null
+    Fill Highlight Form With Validation    ${EMPTY}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
+Description Can Be Null
     Fill Highlight Form With Validation    ${TITLE}    ${EMPTY}    ${PICTURE_PATH}    ${PAPER_ID}
-Empty Picture
+Picture Can Be Null
     Click Edit Highlight Button
-    Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${EMPTY}    ${PAPER_ID}        
-Empty Paper
+    Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${EMPTY}    ${PAPER_ID}      
+Paper Can Not Be Null
     Click Edit Highlight Button
     Fill Highlight Form With Validation    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${EMPTY}        
-Unchecked IsSelected
+IsSelected Can Be Null
     Fill Highlight Form With Validation Without IsSelected    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID} 
-  
 
 *** Keywords ***
 Click Edit Highlight Button

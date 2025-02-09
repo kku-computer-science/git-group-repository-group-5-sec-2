@@ -16,21 +16,21 @@ Login
     Input Username    ${USERNAME}
     Input Password    ${PASSWORD}
     Submit Credentials
-Create Highlight
+Go T o Create Highlight Page
     Go To Highlight Setting Page
     Click Highlight Create Button
 
-Empty Title
+Title Can Not Be Null
     Fill Highlight Form With Validation    ${EMPTY}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}            
-Empty Description
+Description Can Be Null
     Fill Highlight Form With Validation    ${TITLE}    ${EMPTY}    ${PICTURE_PATH}    ${PAPER_ID}
-Empty Picture
+Picture Can Be Null
     Go back to Create Highlight
     Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${EMPTY}    ${PAPER_ID}        
-Empty Paper
+Paper Can Not Be Null
     Go back to Create Highlight
     Fill Highlight Form With Validation    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${EMPTY}        
-Unchecked IsSelected
+IsSelected Can Be Null
     Fill Highlight Form With Validation Without IsSelected    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID} 
   
 *** Keywords ***
