@@ -410,7 +410,7 @@
 						</label>
 					</div>
 					<div class="form-group">
-						<button type="submit" id="login-button">Log In</button>
+						<button type="submit">Log In</button>
 					</div>
 					<div class="form-remember pb-3">
 							<p style="color: red; text-align: right;"> *** หากลืมรหัสผ่าน ให้ติดต่อผู้ดูแลระบบ</p>
