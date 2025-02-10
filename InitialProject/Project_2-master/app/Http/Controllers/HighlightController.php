@@ -76,7 +76,9 @@ public function update(Request $request, $id)
     ]);
 
     $highlight_paper = Highlight_paper::findOrFail($id);
+
     $data = $request->except('_token');
+    $data['isSelected'] = $request->has('isSelected') ? 1 : 0;
 
     // ถ้ามีการอัปโหลดรูปใหม่ ให้ลบรูปเก่าก่อน
     if ($request->hasFile('picture')) {
@@ -107,3 +109,4 @@ public function update(Request $request, $id)
         return redirect()->route('highlight.index')->with('success', 'Highlight Paper deleted successfully.');
     }
 }
+
