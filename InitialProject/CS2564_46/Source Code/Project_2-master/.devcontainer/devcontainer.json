@@ -18,7 +18,7 @@
 			"settings": {}
 		}
 	},
-	"remoteUser": "sail",
+	"remoteUser": "root",
 	"postCreateCommand": "chown -R 1000:1000 /var/www/html"
 	// "forwardPorts": [],
 	// "runServices": [],
