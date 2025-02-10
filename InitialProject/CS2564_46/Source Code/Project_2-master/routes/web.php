@@ -99,7 +99,7 @@ Route::get('/callscopus/{id}', [App\Http\Controllers\ScopuscallController::class
 
 Route::group(['middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], function () {
     //Route::post('change-profile-picture',[ProfileuserController::class,'updatePicture'])->name('adminPictureUpdate');
-    
+
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
@@ -163,3 +163,19 @@ Route::get('files/{file}', [FileUpload::class, 'download'])->name('download');*/
 //Route::post('programs', [DropdownController::class, 'getPrograms']);
 //Route::get('tests', [TestController::class, 'index'])->name('tests.index');
 //Route::get('users/create/{id}',[UserController::class, 'getCategory']);
+
+
+Route::get('/clear-all', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+
+    Artisan::call('optimize');
+    Artisan::call('route:cache');
+    Artisan::call('config:cache');
+
+    return response()->json([
+        'message' => 'All cache cleared'
+    ], 200);
+});
