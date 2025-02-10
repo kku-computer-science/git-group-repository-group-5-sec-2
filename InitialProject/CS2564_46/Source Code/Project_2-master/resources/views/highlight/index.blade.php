@@ -143,10 +143,12 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('highlight.edit', $highlightPapers->id) }}" class="btn btn-warning btn-sm">แก้ไข</a>
-                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ route('highlight.destroy', $highlightPapers->id) }}')">
-                                    ลบ
-                                </button>
+                                <form action="{{ route('highlight.destroy', $highlightPapers->id) }}" method="POST">
+                                    <a href="{{ route('highlight.edit', $highlightPapers->id) }}" class="btn btn-warning">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
