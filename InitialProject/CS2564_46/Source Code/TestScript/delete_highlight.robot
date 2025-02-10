@@ -5,6 +5,7 @@ Resource          resource.robot
 *** Variables ***
 ${USERNAME}          staff@gmail.com
 ${PASSWORD}          123456789
+${row}               1    # row number of the highlight to be deleted    
 
 *** Test Cases ***
 Login
@@ -12,13 +13,15 @@ Login
     Input Username    ${USERNAME}
     Input Password    ${PASSWORD}
     Submit Credentials
+    Title Should Be    Dashboard
 
 Delete Highlight
     Go To Highlight Setting Page
+    Title Should Be    Highlight Papers
     Click Delete Highlight Button
     Sleep    3s
     [Teardown]    Close Browser
 
 *** Keywords ***
 Click Delete Highlight Button
-    Click Button    xpath=//button[text()='Delete']
+    Click Button    xpath=//tbody/tr[${row}]//button[contains(@class, 'btn-danger')]

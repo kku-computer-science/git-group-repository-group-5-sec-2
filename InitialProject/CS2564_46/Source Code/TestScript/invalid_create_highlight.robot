@@ -16,22 +16,30 @@ Login
     Input Username    ${USERNAME}
     Input Password    ${PASSWORD}
     Submit Credentials
-Go T o Create Highlight Page
+    Title Should Be    Dashboard
+Go To Create Highlight Page
     Go To Highlight Setting Page
+    Title Should Be    Highlight Papers
     Click Highlight Create Button
+    Title Should Be    Create Highlight Paper
 
 Title Can Not Be Null
-    Fill Highlight Form With Validation    ${EMPTY}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}            
+    Fill Highlight Form With Validation    ${EMPTY}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
+    Title Should Be    Create Highlight Paper            
 Description Can Be Null
     Fill Highlight Form With Validation    ${TITLE}    ${EMPTY}    ${PICTURE_PATH}    ${PAPER_ID}
+    Title Should Be    Highlight Papers
 Picture Can Be Null
     Go back to Create Highlight
-    Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${EMPTY}    ${PAPER_ID}        
+    Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${EMPTY}    ${PAPER_ID}
+    Title Should Be    Highlight Papers        
 Paper Can Not Be Null
     Go back to Create Highlight
-    Fill Highlight Form With Validation    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${EMPTY}        
+    Fill Highlight Form With Validation    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${EMPTY}
+    Title Should Be    Create Highlight Paper        
 IsSelected Can Be Null
-    Fill Highlight Form With Validation Without IsSelected    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID} 
+    Fill Highlight Form With Validation Without IsSelected    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
+    Title Should Be    Highlight Papers
   
 *** Keywords ***
 Click Highlight Create Button
