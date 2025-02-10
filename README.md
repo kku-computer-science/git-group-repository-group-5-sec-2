@@ -1,10 +1,12 @@
 <!-- [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Bwpk2ByU)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=17427673&assignment_repo_type=AssignmentRepo) -->
-# About 
+# Overview 
 โปรเจคนี้เป็นส่วนหนึ่งในรายวิชา Software Engineer CP353302
 
+**[Visit the Website](https://www.myawesomeapp.com)**
 
-## สมาชิกกลุ่ม 
+
+## Member
 1. 643021223-3    นางสาวณปภัช คุณนิธิภากูร
 2. 653380020-6    นายนราวิชญ์ จังตระกูล 
 3. 653380029-8    นางสาวอรไอลิน อิทธิศาล
@@ -14,5 +16,11 @@
 7. 653380156-1    นางสาวสุภัสสร สุทธิพัฒน์กุล
 8. 653380271-1    นายปานรวัฐ แสนสีมนต์ 
 
+## Release Notes
+### Latest Release: [v1.0.0](https://github.com/your-repo/releases/tag/v1.2.0)
+vgbhj
+nmk
 
-## 
+
+
+## Manual / User Guide
