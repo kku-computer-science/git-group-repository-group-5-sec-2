@@ -68,7 +68,8 @@
         "sort-packages": true,
         "platform": {
             "php": "8.2.12"
-        }
+        },
+        "platform-check": false
     },
     "minimum-stability": "dev",
     "prefer-stable": true
