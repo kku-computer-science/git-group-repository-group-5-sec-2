@@ -60,12 +60,14 @@
 
     .hl-card {
         height: fit-content;
-        max-width: 450px;
+        width: 100%;
+        max-width: 400px;
     }
     
     .hl-image{ 
         height: 150;
         width: 100%;
+        max-width: 400px;
     }
 
     .carousel-indicators {
@@ -88,7 +90,7 @@
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <div class="row px">
                         @foreach($chunk as $hlpaper)
-                            <div class="col-xl-6">
+                            <div class="{{ count($chunk) === 1 ? 'col-xl-12' : 'col-xl-6' }}">
                                 <div class="hl-card card mb-5 h-100">
                                     <div class="p-3">
                                         <a id="sourceHyperLink" href="{{ $hlpaper->paper->paper_url }}" target="_blank" style="text-decoration:none;">
