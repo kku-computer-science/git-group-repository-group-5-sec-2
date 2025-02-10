@@ -12,9 +12,9 @@ class HighlightPaper extends Model
 
     public function getPictureAttribute($value){
         if($value){
-            return asset('images/highlight_images/'.$value);
+            return asset('images/highlight_papers/'.$value);
         }else{
-            return asset('images/highlight_images/no-image.png');
+            return asset('images/highlight_papers/no-image.png');
         }
     }
 

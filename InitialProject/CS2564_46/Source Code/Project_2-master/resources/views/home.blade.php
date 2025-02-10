@@ -59,7 +59,6 @@
     }
 
     .hl-card {
-        background-color: #4ad1e5;
         height: fit-content;
         max-width: 450px;
     }
@@ -72,7 +71,9 @@
     .carousel-indicators {
         top: -11;
         bottom: auto;
+        height: 10;
         justify-content: center;
+        z-index:-10;
     }
     
 
