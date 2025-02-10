@@ -8,6 +8,8 @@ ${SERVER}            127.0.0.1:8000
 ${BROWSER}           Chrome
 ${LOGIN URL}         http://${SERVER}/login
 ${DELAY}             0.1s
+${USERNAME}          staff@gmail.com
+${PASSWORD}          123456789
 
 *** Keywords ***
 Open Browser To Login Page
@@ -26,7 +28,9 @@ Input Password
 
 Submit Credentials
     Click Button    xpath=//button[@type='submit']
+    Title Should Be    Dashboard
 
 Go To Highlight Setting Page
     Scroll Element Into View         xpath=//span[text()='Highlight Setting']
     Click Element                    xpath=//span[text()='Highlight Setting']
+    Title Should Be                  Highlight Papers

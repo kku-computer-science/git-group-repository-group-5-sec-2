@@ -9,6 +9,7 @@ ${TITLE}             Edited
 ${DESCRIPTION}       This is a test for editing a highlight.
 ${PICTURE_PATH}      ${CURDIR}\\highlight2.png
 ${PAPER_ID}          5
+${row}               1    # row number of the highlight to be edit
 
 *** Test Cases ***
 Login
@@ -16,11 +17,9 @@ Login
     Input Username    ${USERNAME}
     Input Password    ${PASSWORD}
     Submit Credentials
-    Title Should Be    Dashboard
 
 Edit Highlight
     Go To Highlight Setting Page
-    Title Should Be    Highlight Papers
     Click Edit Highlight Button
     Title Should Be    Edit Highlight Paper
     Edit Highlight Form
@@ -29,7 +28,7 @@ Edit Highlight
 
 *** Keywords ***
 Click Edit Highlight Button
-    Click Link    xpath=//a[text()='Edit']
+    Click Link         xpath=//tbody/tr[${row}]//a[contains(@class, 'btn-warning')]
     Title Should Be    Edit Highlight Paper
 
 Edit Highlight Form

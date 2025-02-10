@@ -13,7 +13,6 @@ Login
     Input Username    ${USERNAME}
     Input Password    ${PASSWORD}
     Submit Credentials
-    Title Should Be    Dashboard
 
 Delete Highlight
     Go To Highlight Setting Page

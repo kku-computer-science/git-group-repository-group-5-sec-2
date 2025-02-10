@@ -16,7 +16,7 @@ Login
     Input Username    ${USERNAME}
     Input Password    ${PASSWORD}
     Submit Credentials
-    Title Should Be    Dashboard
+
 Go To Create Highlight Page
     Go To Highlight Setting Page
     Title Should Be    Highlight Papers
@@ -45,7 +45,6 @@ IsSelected Can Be Null
 Click Highlight Create Button
     Click Link    xpath=//a[text()='สร้าง highlight']
 
-*** Keywords ***
 Fill Highlight Form With Validation
     [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
     Input Text    xpath=//input[@name='title']             ${TITLE}

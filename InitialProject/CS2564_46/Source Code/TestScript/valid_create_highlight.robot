@@ -16,10 +16,8 @@ Login
     Input Username    ${USERNAME}
     Input Password    ${PASSWORD}
     Submit Credentials
-    Title Should Be    Dashboard
 Create Highlight
     Go To Highlight Setting Page
-    Title Should Be    Highlight Papers
     Click Highlight Create Button
     Title Should Be    Create Highlight Paper
     Fill Highlight Form
