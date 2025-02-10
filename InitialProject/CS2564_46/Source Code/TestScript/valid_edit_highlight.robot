@@ -9,7 +9,7 @@ ${TITLE}             Edited
 ${DESCRIPTION}       This is a test for editing a highlight.
 ${PICTURE_PATH}      ${CURDIR}\\highlight2.png
 ${PAPER_ID}          5
-${row}               1    # row number of the highlight to be edit
+${row}               2    # row number of the highlight to be edit
 
 *** Test Cases ***
 Login
@@ -28,7 +28,7 @@ Edit Highlight
 
 *** Keywords ***
 Click Edit Highlight Button
-    Click Link         xpath=//tbody/tr[${row}]//a[contains(@class, 'btn-warning')]
+    Click Link         xpath=//tbody/tr[${row}]//a[text()='Edit']
     Title Should Be    Edit Highlight Paper
 
 Edit Highlight Form
@@ -36,8 +36,8 @@ Edit Highlight Form
     Input Text    xpath=//textarea[@name='description']    ${DESCRIPTION}
     Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value        xpath=//select[@name='paper_id']    ${PAPER_ID}
-    Scroll Element Into View         xpath=//button[@type='submit']
+    Scroll Element Into View         xpath=//button[@data-bs-target='#confirmEditModal']
     Click Element    xpath=//input[@name='isSelected']
-    Click Button     xpath=//button[@type='submit']
+    Click Button     อัปเดตข้อมูล
+    Click Button     ยืนยัน
     Title Should Be    Highlight Papers
-    

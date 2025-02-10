@@ -24,6 +24,7 @@ Go To Edit Highlight Page
 
 Title Can Not Be Null
     Fill Highlight Form With Validation    ${EMPTY}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
+    Element Should Contain    xpath=//div[@class='alert alert-danger']    The title field is required.
     Title Should Be    Edit Highlight Paper
 Description Can Be Null
     Fill Highlight Form With Validation    ${TITLE}    ${EMPTY}    ${PICTURE_PATH}    ${PAPER_ID}
@@ -35,14 +36,17 @@ Picture Can Be Null
 Paper Can Not Be Null
     Click Edit Highlight Button
     Fill Highlight Form With Validation    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${EMPTY}
+        Element Should Contain    xpath=//div[@class='alert alert-danger']    The paper id field is required.
     Title Should Be    Edit Highlight Paper        
 IsSelected Can Be Null
     Fill Highlight Form With Validation Without IsSelected    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID} 
     Title Should Be    Highlight Papers
+    Sleep    3s
+    [Teardown]    Close Browser
 
 *** Keywords ***
 Click Edit Highlight Button
-    Click Link         xpath=//tbody/tr[${row}]//a[contains(@class, 'btn-warning')]
+    Click Link         xpath=//tbody/tr[${row}]//a[text()='Edit']
     Title Should Be    Edit Highlight Paper
 
 Fill Highlight Form With Validation
@@ -51,9 +55,10 @@ Fill Highlight Form With Validation
     Input Text    xpath=//textarea[@name='description']    ${DESCRIPTION}
     Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
-    Scroll Element Into View         xpath=//button[@type='submit']
+    Scroll Element Into View         xpath=//button[@data-bs-target='#confirmEditModal']
     Click Element    xpath=//input[@name='isSelected']
-    Click Button    xpath=//button[@type='submit']
+    Click Button     อัปเดตข้อมูล
+    Click Button     ยืนยัน
 
 Fill Highlight Form With Validation Without Image
     [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
@@ -61,9 +66,10 @@ Fill Highlight Form With Validation Without Image
     Input Text    xpath=//textarea[@name='description']    ${DESCRIPTION}
     # Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
-    Scroll Element Into View         xpath=//button[@type='submit']
+    Scroll Element Into View         xpath=//button[@data-bs-target='#confirmEditModal']
     Click Element    xpath=//input[@name='isSelected']
-    Click Button    xpath=//button[@type='submit']
+    Click Button     อัปเดตข้อมูล
+    Click Button     ยืนยัน
 
 Fill Highlight Form With Validation Without IsSelected
     [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
@@ -71,6 +77,7 @@ Fill Highlight Form With Validation Without IsSelected
     Input Text    xpath=//textarea[@name='description']    ${DESCRIPTION}
     Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
-    Scroll Element Into View         xpath=//button[@type='submit']
+    Scroll Element Into View         xpath=//button[@data-bs-target='#confirmEditModal']
     # Click Element    xpath=//input[@name='isSelected']
-    Click Button    xpath=//button[@type='submit']
+    Click Button     อัปเดตข้อมูล
+    Click Button     ยืนยัน

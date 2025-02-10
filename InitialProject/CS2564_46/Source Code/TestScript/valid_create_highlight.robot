@@ -26,7 +26,7 @@ Create Highlight
 
 *** Keywords ***
 Click Highlight Create Button
-    Click Link    xpath=//a[text()='สร้าง highlight']
+    Click Link    xpath=//a[text()='+ Create Highlight']
     Title Should Be    Create Highlight Paper
 
 Fill Highlight Form
@@ -35,5 +35,6 @@ Fill Highlight Form
     Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
     Click Element    xpath=//input[@name='isSelected']
-    Click Button    xpath=//button[@type='submit']
+    Click Button    สร้างไฮไลท์
+    Click Button    สร้าง
     Title Should Be    Highlight Papers

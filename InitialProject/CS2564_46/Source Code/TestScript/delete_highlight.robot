@@ -23,4 +23,4 @@ Delete Highlight
 
 *** Keywords ***
 Click Delete Highlight Button
-    Click Button    xpath=//tbody/tr[${row}]//button[contains(@class, 'btn-danger')]
+    Click Button    xpath=//tbody/tr[${row}]//button[text()='Delete']
