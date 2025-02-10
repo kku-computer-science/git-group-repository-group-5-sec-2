@@ -93,6 +93,9 @@
 </head>
 <body>
 
+@extends('dashboards.users.layouts.user-dash-layout')
+
+@section('content')
     <div class="container mt-5">
         <h1 class="text-center">Highlight Papers</h1>
         
@@ -104,13 +107,12 @@
                     กรองข้อมูล
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                    <li><a class="dropdown-item filter-option" data-filter="all" href="#">ทั้งหมด</a></li>
-                    <li><a class="dropdown-item filter-option" data-filter="selected" href="#">เลือกแล้ว</a></li>
-                    <li><a class="dropdown-item filter-option" data-filter="not-selected" href="#">ไม่ได้เลือก</a></li>
+                    <li><button class="dropdown-item filter-option" data-filter="all">ทั้งหมด</button></li>
+                    <li><button class="dropdown-item filter-option" data-filter="selected">เลือกแล้ว</button></li>
+                    <li><button class="dropdown-item filter-option" data-filter="not-selected">ไม่ได้เลือก</button></li>
                 </ul>
             </div>
         </div>
-
 
         <div class="table-responsive mt-4">
             <table class="table table-hover table-bordered">
@@ -125,9 +127,9 @@
                         <th>ปรับแต่ง</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="highlightTableBody">
                     @foreach($highlight_papers as $highlightPapers)
-                        <tr>
+                        <tr class="highlight-item" data-status="{{ $highlightPapers->isSelected ? 'selected' : 'not-selected' }}">
                             <td>{{ $highlightPapers->id }}</td>
                             <td>{{ $highlightPapers->title }}</td>
                             <td>{{ $highlightPapers->description }}</td>
@@ -144,7 +146,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('highlight.edit', $highlightPapers->id) }}" class="btn btn-warning btn-sm">แก้ไข</a>
-                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ route('highlight.destroy', $highlightPapers->id) }}')">
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteUrl('{{ route('highlight.destroy', $highlightPapers->id) }}')">
                                     ลบ
                                 </button>
                             </td>
@@ -155,34 +157,68 @@
         </div>
     </div>
 
+    <!-- Modal สำหรับยืนยันการลบ -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    คุณต้องการลบ Highlight นี้ใช่หรือไม่?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <form id="deleteForm" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">ลบ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-            const filterOptions = document.querySelectorAll(".filter-option");
+       document.addEventListener("DOMContentLoaded", function () {
+        const filterOptions = document.querySelectorAll(".filter-option");
 
-            filterOptions.forEach(option => {
-                option.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const filterValue = this.getAttribute("data-filter");
+        filterOptions.forEach(option => {
+            option.addEventListener("click", function (event) {
+                event.preventDefault();
+                
+                const filterValue = this.getAttribute("data-filter");
 
-                    document.querySelectorAll(".table tbody tr").forEach(row => {
-                        const isSelected = row.querySelector(".badge-success") !== null;
-                        
-                        if (filterValue === "all") {
-                            row.style.display = "";
-                        } else if (filterValue === "selected" && !isSelected) {
-                            row.style.display = "none";
-                        } else if (filterValue === "not-selected" && isSelected) {
-                            row.style.display = "none";
-                        } else {
-                            row.style.display = "";
-                        }
-                    });
+                document.querySelectorAll(".table tbody tr").forEach(row => {
+                    const isSelected = row.querySelector(".badge-success") !== null;
+                    
+                    if (filterValue === "all") {
+                        row.style.display = "";
+                    } else if (filterValue === "selected" && !isSelected) {
+                        row.style.display = "none";
+                    } else if (filterValue === "not-selected" && isSelected) {
+                        row.style.display = "none";
+                    } else {
+                        row.style.display = ""; 
+                    }
                 });
             });
         });
+    });
+
+
+        function setDeleteUrl(url) {
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = url;
+        }
     </script>
+@endsection
+
 
 </body>
 </html>
