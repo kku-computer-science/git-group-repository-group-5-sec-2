@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Highlight Papers</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -93,24 +92,29 @@
 </head>
 <body>
 
+@extends('dashboards.users.layouts.user-dash-layout')
+
+@section('content')
     <div class="container mt-5">
         <h1 class="text-center">Highlight Papers</h1>
         
         <div class="d-flex justify-content-between align-items-center">
             <a class="fw-bold btn btn-primary" href="{{ route('highlight.create') }}">+ Create Highlight</a>
             
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    กรองข้อมูล
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                    <li><a class="dropdown-item filter-option" data-filter="all" href="#">ทั้งหมด</a></li>
-                    <li><a class="dropdown-item filter-option" data-filter="selected" href="#">เลือกแล้ว</a></li>
-                    <li><a class="dropdown-item filter-option" data-filter="not-selected" href="#">ไม่ได้เลือก</a></li>
-                </ul>
-            </div>
+            <form method="GET" class="d-inline">
+                <div class="dropdown">
+                    สถานะ 
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        {{ request()->filter == 'selected' ? 'เลือกแล้ว' : (request()->filter == 'not-selected' ? 'ไม่ได้เลือก' : 'กรองข้อมูล') }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button type="submit" name="filter" value="" class="dropdown-item">ทั้งหมด</button></li>
+                        <li><button type="submit" name="filter" value="selected" class="dropdown-item">เลือกแล้ว</button></li>
+                        <li><button type="submit" name="filter" value="not-selected" class="dropdown-item">ไม่ได้เลือก</button></li>
+                    </ul>
+                </div>
+            </form>
         </div>
-
 
         <div class="table-responsive mt-4">
             <table class="table table-hover table-bordered">
@@ -125,9 +129,9 @@
                         <th>ปรับแต่ง</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="">
                     @foreach($highlight_papers as $highlightPapers)
-                        <tr>
+                        <tr class="highlight-item">
                             <td>{{ $highlightPapers->id }}</td>
                             <td>{{ $highlightPapers->title }}</td>
                             <td>{{ $highlightPapers->description }}</td>
@@ -137,54 +141,56 @@
                             <td>{{ $highlightPapers->paper->paper_name }}</td>
                             <td>
                                 @if($highlightPapers->isSelected)
-                                    <span class="badge-success">เลือกแล้ว</span>
+                                    <span class="badge-success text-light">เลือกแล้ว</span>
                                 @else
-                                    <span class="badge-danger">ไม่ได้เลือก</span>
+                                    <span class="badge-danger test-light">ไม่ได้เลือก</span>
                                 @endif
                             </td>
                             <td>
-                                <form action="{{ route('highlight.destroy', $highlightPapers->id) }}" method="POST">
-                                    <a href="{{ route('highlight.edit', $highlightPapers->id) }}" class="btn btn-warning">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <a href="{{ route('highlight.edit', $highlightPapers->id) }}" class="btn btn-warning btn-sm">แก้ไข</a>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $highlightPapers->id }}">
+                                    ลบ
+                                </button>
+
+                                <!-- Modal for each item -->
+                                <div class="modal fade" id="deleteModal-{{ $highlightPapers->id }}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Are you sure?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                คุณต้องการลบ Highlight นี้ใช่หรือไม่?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                                <form method="POST" action="{{ route('highlight.destroy', $highlightPapers->id) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="filter" value="{{ request()->filter }}">
+                                                    <button type="submit" class="btn btn-danger">ลบ</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="d-flex mt-3 justify-content-end">
+                {!! $highlight_papers->appends(request()->query())->links() !!}
+            </div>
         </div>
     </div>
+@endsection
 
+@section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-            const filterOptions = document.querySelectorAll(".filter-option");
-
-            filterOptions.forEach(option => {
-                option.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const filterValue = this.getAttribute("data-filter");
-
-                    document.querySelectorAll(".table tbody tr").forEach(row => {
-                        const isSelected = row.querySelector(".badge-success") !== null;
-                        
-                        if (filterValue === "all") {
-                            row.style.display = "";
-                        } else if (filterValue === "selected" && !isSelected) {
-                            row.style.display = "none";
-                        } else if (filterValue === "not-selected" && isSelected) {
-                            row.style.display = "none";
-                        } else {
-                            row.style.display = "";
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+@endsection
 
 </body>
 </html>

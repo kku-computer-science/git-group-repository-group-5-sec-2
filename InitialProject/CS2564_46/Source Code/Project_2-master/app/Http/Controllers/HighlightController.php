@@ -14,11 +14,23 @@ class HighlightController extends Controller
     }
     // แสดงรายการ Highlight Papers
 
-    public function index()
+    public function index(Request $request)
 {
-    $highlight_papers = Highlight_paper::with('paper')
-        ->orderBy('id', 'asc')
-        ->paginate(10);
+    $query = Highlight_paper::with('paper');
+    
+    // เพิ่มการ filter
+    if ($request->has('filter')) {
+        switch($request->filter) {
+            case 'selected':
+                $query->where('isSelected', true);
+                break;
+            case 'not-selected':
+                $query->where('isSelected', false);
+                break;
+        }
+    }
+    
+    $highlight_papers = $query->orderBy('id', 'asc')->paginate(10);
     return view('highlight.index', compact('highlight_papers'));
 }
 
@@ -102,11 +114,19 @@ public function update(Request $request, $id)
 
     // ลบข้อมูล Highlight Paper
     public function destroy($id)
-    {
-        $highlight_paper = Highlight_paper::findOrFail($id);
-        $highlight_paper->delete();
-
-        return redirect()->route('highlight.index')->with('success', 'Highlight Paper deleted successfully.');
+{
+    $highlight_paper = Highlight_paper::findOrFail($id);
+    
+    // ลบไฟล์รูปภาพถ้ามี
+    if ($highlight_paper->picture && file_exists(public_path($highlight_paper->picture))) {
+        unlink(public_path($highlight_paper->picture));
     }
+    
+    $highlight_paper->delete();
+    
+    // เพิ่ม filter parameter กลับไปยังหน้า index
+    return redirect()->route('highlight.index', request()->query())
+        ->with('success', 'Highlight Paper deleted successfully.');
+}
 }
 
