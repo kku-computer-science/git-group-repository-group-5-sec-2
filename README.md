@@ -4,7 +4,7 @@
 # Research Documents Management System 
 
 <!-- ## Overview  -->
-โปรเจกต์นี้เป็นส่วนหนึ่งในรายวิชา software engineering CP353302 (2/2567) โดยได้นำ
+โปรเจกต์นี้เป็นส่วนหนึ่งในรายวิชา software engineering CP353302 (2/2567)
 
 ## Visit the Website
 เว็บไซต์สามารถเข้าถึงได้ผ่าน [https://cs05sec267.cpkkuhost.com/](https://cs05sec267.cpkkuhost.com/) โดยเข้าผ่าน VPN หรือใช้งานในเครือข่ายของมหาวิทยาลัยขอนแก่น 
