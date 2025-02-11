@@ -17,7 +17,7 @@
 - 653380156-1    นางสาวสุภัสสร สุทธิพัฒน์กุล
 - 653380271-1    นายปานรวัฐ แสนสีมนต์ 
 
-## Release Notes
+## Release Notes 
 
 ### Version 1.0.0 - Initial Release
 - Repository initialized with core project structure.
@@ -33,13 +33,18 @@
 
 
 
-### Version 2.0.0 - Display Highlight Publication
+### Version 2.0.0 - Display Highlight Publication 🚩
 - Added a menu in the sidebar on the dashboard page for staff to configure highlight information display.
 - Enhanced the user interface to better highlight important information about the college.
 - Enhanced security features to protect sensitive data.
 
 
-## Manual / User guide  
-### Accessing the Application
-1. Open your web browser.
-2. Visit **[https://cs05sec267.cpkkuhost.com/](https://cs05sec267.cpkkuhost.com/)**.
+## Manual / User guide   📖
+<!-- ### Accessing the Application -->
+1. Open your preferred web browser.
+2. Navigate to the application by visiting https://cs05sec267.cpkkuhost.com/.
+3. Click on the Log In button and enter your account credentials. Upon successful login, you will be redirected to the Dashboard page.
+4. From the Dashboard, select the Highlight Settings menu in the navigation panel.
+5. Use the Add New Highlight feature to:
+    - Input relevant information about the highlight.
+    - Upload an image to display alongside the highlight. 
