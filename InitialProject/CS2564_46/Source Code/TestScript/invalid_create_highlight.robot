@@ -5,8 +5,8 @@ Resource          resource.robot
 *** Variables ***
 ${USERNAME}          staff@gmail.com
 ${PASSWORD}          123456789
-${TITLE}             Testing
-${DESCRIPTION}       This is a test for creating a highlight.
+${TITLE}             งานวิจัยดีเด่น
+${DESCRIPTION}       วิทยาลัยการคอมพิวเตอร์ มข. ขอแสดงความยินดีกับ นายภูมินทร์ ดวนขันธ์ ในโอกาสได้รับรางวัล วิทยานิพนธ์ดีเด่น ประจำปี 2567
 ${PICTURE_PATH}      ${CURDIR}\\highlight.png
 ${PAPER_ID}          1
 
@@ -55,9 +55,9 @@ Fill Highlight Form With Validation
     Input Text    xpath=//textarea[@name='description']    ${DESCRIPTION}
     Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
-    Click Element    xpath=//input[@name='isSelected']
-    Click Button    สร้างไฮไลท์
-    Click Button    สร้าง
+    Click Element    xpath=//input[@name='isSelected']            # click the isSelected checkbox
+    Click Button     xpath=//button[@class='btn btn-primary']     # click the create highlight button
+    Click Button     xpath=//button[@id='confirmCreateBtn']       # confirm the creation of the highlight
 
 Fill Highlight Form With Validation Without Image
     [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
@@ -66,8 +66,8 @@ Fill Highlight Form With Validation Without Image
     # Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
     Click Element    xpath=//input[@name='isSelected']
-    Click Button    สร้างไฮไลท์
-    Click Button    สร้าง
+    Click Button     xpath=//button[@class='btn btn-primary']
+    Click Button     xpath=//button[@id='confirmCreateBtn']
 
 Fill Highlight Form With Validation Without IsSelected
     [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
@@ -76,8 +76,8 @@ Fill Highlight Form With Validation Without IsSelected
     Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
     # Click Element    xpath=//input[@name='isSelected']
-    Click Button    สร้างไฮไลท์
-    Click Button    สร้าง
+    Click Button     xpath=//button[@class='btn btn-primary']
+    Click Button     xpath=//button[@id='confirmCreateBtn']
 
 Go back to Create Highlight
     Click Link    xpath=//a[text()='+ Create Highlight']

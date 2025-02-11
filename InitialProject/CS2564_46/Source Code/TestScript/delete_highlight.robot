@@ -5,7 +5,7 @@ Resource          resource.robot
 *** Variables ***
 ${USERNAME}          staff@gmail.com
 ${PASSWORD}          123456789
-${row}               1    # row number of the highlight to be deleted    
+${row}               4    # row number of the highlight to be deleted    
 
 *** Test Cases ***
 Login
@@ -23,4 +23,7 @@ Delete Highlight
 
 *** Keywords ***
 Click Delete Highlight Button
-    Click Button    xpath=//tbody/tr[${row}]//button[text()='Delete']
+    Scroll Element Into View    xpath=//tbody/tr[${row}]//button[@class='btn btn-danger btn-sm']    
+    Click Button                xpath=//tbody/tr[${row}]//button[@class='btn btn-danger btn-sm']    # find the delete button of the highlight for the row we want to delete
+    ${ID}=                      Get Text    xpath=//table/tbody/tr[${row}]/td[1]    # td[1] is the ID column
+    Click Button                xpath=//*[@id="deleteModal-${ID}"]/div/div/div[3]/form/button    # delete highlight using the ID
