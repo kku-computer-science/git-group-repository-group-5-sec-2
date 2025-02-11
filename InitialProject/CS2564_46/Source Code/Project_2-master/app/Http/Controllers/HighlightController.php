@@ -45,7 +45,6 @@ class HighlightController extends Controller
 
     public function create()
     {
-        // $researchers = User::select('id', 'fname_th', 'lname_th')->get();
         $researchers = User::role(['teacher', 'student'])->select('id', 'fname_th', 'lname_th')->get();
 
         // ดึงงานวิจัยทั้งหมด
@@ -100,7 +99,7 @@ class HighlightController extends Controller
     public function edit($id)
     {
         $highlight_paper = Highlight_paper::findOrFail($id);
-        $researchers = User::select('id', 'fname_th', 'lname_th')->get();
+        $researchers = User::role(['teacher', 'student'])->select('id', 'fname_th', 'lname_th')->get();
 
         // ดึงงานวิจัยทั้งหมด
         $allPapers = Paper::select('id', 'paper_name')->get();
@@ -146,7 +145,7 @@ class HighlightController extends Controller
         $highlight_paper = Highlight_paper::findOrFail($id);
 
         $data = $request->except('_token');
-        $data['isSelected'] = $request->input('isSelected', 0); 
+        $data['isSelected'] = $request->input('isSelected', 0);
 
 
         // ถ้ามีการอัปโหลดรูปใหม่ ให้ลบรูปเก่าก่อน
