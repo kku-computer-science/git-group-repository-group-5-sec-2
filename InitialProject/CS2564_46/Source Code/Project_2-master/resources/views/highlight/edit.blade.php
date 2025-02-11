@@ -23,8 +23,7 @@
             padding: 25px;
         }
 
-        h1 {
-            color: #03A9F4; /* ฟ้า */
+        h2 {
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
@@ -52,29 +51,7 @@
         }
 
         /* Form Styling */
-        .form-label {
-            color:rgb(0, 0, 0);
-        }
-
-        .form-control {
-            background-color:rgb(241, 241, 241);
-            border: 1px solid #444;
-            color:rgb(0, 0, 0);
-        }
-
-        .form-control:focus {
-            border-color: #03A9F4;
-            box-shadow: 0 0 5px rgba(3, 169, 244, 0.5);
-        }
-
-        .form-check-input {
-            background-color: #03A9F4;
-            border-color: #03A9F4;
-        }
-
-        .form-check-label {
-            color:rgb(0, 0, 0);
-        }
+        
 
         .alert-danger {
             background-color: #F44336;
@@ -84,120 +61,176 @@
 </head>
 <body>
 
-    <div class="container mt-5">
-        <h1>Edit Highlight Paper</h1>
+    @extends('dashboards.users.layouts.user-dash-layout')
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+@section('content')
+<div class="container">
+    <h2>แก้ไขงานวิจัยยอดนิยม</h2>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form id="editForm" action="{{ route('highlight.update', $highlight_paper->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
+
+        <div class="mb-3">
+            <label class="form-label">ชื่อ</label>
+            <input type="text" name="title" class="form-control" value="{{ $highlight_paper->title }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">รายละเอียด</label>
+            {{-- <textarea name="description" class="form-control">{{ $highlight_paper->description }}</textarea> --}}
+            <input type="text" name="description" class="form-control" value="{{ $highlight_paper->description }}" >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">รูปปัจจุบัน</label><br>
+            @if($highlight_paper->picture)
+                <img src="{{ asset($highlight_paper->picture) }}" alt="Current Image" width="150" class="mb-2">
+            @else
+                <p>No Image Available</p>
+            @endif
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">อัปโหลดรูปใหม่</label>
+            <input type="file" name="picture" class="form-control" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">เลือกนักวิจัย</label>
+            <select id="researcherSelect" class="form-select" required>
+                <option value="">-- เลือกนักวิจัย --</option>
+                @foreach($researchers as $researcher)
+                    <option value="{{ $researcher->id }}" 
+                        {{ $selectedResearcher == $researcher->id ? 'selected' : '' }}>
+                        {{ $researcher->fname_th }} {{ $researcher->lname_th }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">เลือกงานวิจัย</label> 
+            <select name="paper_id" id="paperSelect" class="form-select" required>
+                <option value="">-- เลือกงานวิจัย --</option>
+                @foreach($allPapers as $paper)
+                    <option value="{{ $paper->id }}" 
+                        {{ $highlight_paper->paper_id == $paper->id ? 'selected' : '' }}>
+                        {{ $paper->paper_name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">เลือกสถานะการแสดงผล</label>
+            <select name="isSelected" class="form-select">
+                <option value="1" {{ $highlight_paper->isSelected ? 'selected' : '' }}>เลือกให้แสดง</option>
+                <option value="0" {{ !$highlight_paper->isSelected ? 'selected' : '' }}>ไม่เลือกให้แสดง</option>
+            </select>
+        </div>
+        
+        
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmEditModal">
+            อัปเดตข้อมูล
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#confirmCancelModal">
+            ยกเลิก
+        </button>
+    </form>
+</div>
+
+<!-- Modal for Edit Confirmation -->
+<div class="modal fade" id="confirmEditModal" tabindex="-1" aria-labelledby="confirmEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmEditModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        @endif
-
-        <form id="editForm" action="{{ route('highlight.update', $highlight_paper->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PATCH')
-
-            <div class="mb-3">
-                <label class="form-label">ชื่อ</label>
-                <input type="text" name="title" class="form-control" value="{{ $highlight_paper->title }}" required>
+            <div class="modal-body">
+                ท่านต้องการอัปเดต Highlight Paper นี้หรือไม่?
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">รายละเอียด</label>
-                <textarea name="description" class="form-control">{{ $highlight_paper->description }}</textarea>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">รูปปัจจุบัน</label><br>
-                @if($highlight_paper->picture)
-                    <img src="{{ asset($highlight_paper->picture) }}" alt="Current Image" width="150" class="mb-2">
-                @else
-                    <p>No Image Available</p>
-                @endif
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">อัปโหลดรูปใหม่</label>
-                <input type="file" name="picture" class="form-control" accept="image/*">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">เลือกงานวิจัย</label>
-                <select name="paper_id" class="form-select" required>
-                    <option value="">-- เลือกงานวิจัย --</option>
-                    @foreach($papers as $paper)
-                        <option value="{{ $paper->id }}" {{ $highlight_paper->paper_id == $paper->id ? 'selected' : '' }}>
-                            {{ $paper->paper_name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="mb-3 form-check">
-                <input type="checkbox" name="isSelected" class="form-check-input" value="1" {{ $highlight_paper->isSelected ? 'checked' : '' }}>
-                <label class="form-check-label">เลือกให้แสดง</label>
-            </div>
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmEditModal">
-                อัปเดตข้อมูล
-            </button>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#confirmCancelModal">
-                ยกเลิก
-            </button>
-        </form>
-    </div>
-
-    <!-- Modal for Edit Confirmation -->
-    <div class="modal fade" id="confirmEditModal" tabindex="-1" aria-labelledby="confirmEditModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmEditModalLabel">Are you sure?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ท่านต้องกาที่จะอัปเดต Highlight Paper นี้หรือไม่?
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="confirmEditBtn">ยืนยัน</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    
-                </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="confirmEditBtn">ยืนยัน</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal for Cancel Confirmation -->
-    <div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmCancelModalLabel">Are you sure?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ท่านแน่ใจหรือไม่ว่าต้องการยกเลิก?
-                </div>
-                <div class="modal-footer">
-                    <a href="{{ route('highlight.index') }}" class="btn btn-danger">ใช่</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ไม่</button>
-                    
-                </div>
+<!-- Modal for Cancel Confirmation -->
+<div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmCancelModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ท่านแน่ใจหรือไม่ว่าต้องการยกเลิก?
+            </div>
+            <div class="modal-footer">
+                <a href="{{ route('highlight.index') }}" class="btn btn-danger">ใช่</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ไม่</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('confirmEditBtn').addEventListener('click', function() {
+        document.getElementById('editForm').submit();
+    });
 
-    <script>
-        document.getElementById('confirmEditBtn').addEventListener('click', function() {
-            document.getElementById('editForm').submit();
+    document.addEventListener("DOMContentLoaded", function() {
+        let researcherSelect = document.getElementById("researcherSelect");
+        let paperSelect = document.getElementById("paperSelect");
+
+        let papersByResearcher = @json($papersByResearcher);
+        let allPapers = @json($allPapers);
+        let selectedPaperId = {{ $highlight_paper->paper_id }};
+
+        function updatePapers(researcherId) {
+            paperSelect.innerHTML = '<option value="">-- เลือกงานวิจัย --</option>'; // เคลียร์ค่าเก่า
+
+            let papers = researcherId && papersByResearcher[researcherId] 
+                ? papersByResearcher[researcherId] // ✅ ถ้ามี researcher ให้ใช้เฉพาะงานวิจัยของ researcher นั้น
+                : allPapers; // ✅ ถ้าไม่ได้เลือก researcher ให้แสดงงานวิจัยทั้งหมด
+
+            papers.forEach(paper => {
+                let option = document.createElement("option");
+                option.value = paper.id;
+                option.textContent = paper.paper_name;
+                if (paper.id == selectedPaperId) {
+                    option.selected = true;
+                }
+                paperSelect.appendChild(option);
+            });
+        }
+
+        researcherSelect.addEventListener("change", function() {
+            updatePapers(this.value);
         });
-    </script>
+
+        // โหลดค่าเริ่มต้น (ถ้ามี)
+        updatePapers(researcherSelect.value);
+    });
+</script>
+
+@endsection
+
 
 </body>
 
