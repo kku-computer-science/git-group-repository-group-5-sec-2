@@ -41,16 +41,18 @@
     }
 
     .title {
-        font-size: 12px;
+        font-size: 13px;
         overflow: auto;
-        max-height: 100px;
+        max-height: 80px;
     }
 
-    .type {font-size: 9px;}
-    .author-name {font-size: 10px}
+    .paper-type {font-size: 9px;}
+    .teacher-name {font-weight: 600;}
+    .author-name {font-size: 11px}
     .description {
-        font-size: 10px;
+        font-size: 11px;
         height: 50; 
+        opacity: 90%;
     }
 
     .hl-section{
@@ -59,32 +61,46 @@
     }
 
     .hl-card {
-        background-color: #4ad1e5;
         height: fit-content;
-        max-width: 450px;
+        width: 100%;
+        max-width: 400px;
     }
     
     .hl-image{ 
         height: 150;
         width: 100%;
+        max-width: 400px;
     }
+
+    .carousel-indicators {
+        top: -11;
+        bottom: auto;
+        height: 10;
+        justify-content: center;
+        z-index:-10;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
     
 
 </style>
 @section('content')
 <div class="container home ">
 
-    <div class="hl-section container d-sm-flex justify-content-center overflow-auto mt-3 w-100">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isDeleted != 1)->chunk(2) as $index => $chunk)
+    <div class="hl-section container d-sm-flex justify-content-center overflow-auto mt-4 w-100">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner mt-1">
+            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isSelected == 1)->chunk(2) as $index => $chunk)
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <div class="row px">
                         @foreach($chunk as $hlpaper)
-                            <div class="col-xl-6">
-                                <div class="hl-card card mb-5 h-100">
+                            <div class="{{ count($chunk) === 1 ? 'col-xl-12' : 'col-xl-6' }}">
+                                <div class="hl-card card mb-5 h-100 shadow border border-2">
                                     <div class="p-3">
-                                        <a href="{{ $hlpaper->paper->paper_url }}" target="_blank" style="text-decoration:none;">
+                                        <a id="sourceHyperLink" href="{{ $hlpaper->paper->paper_url }}" target="_blank">
                                             <img src="{{$hlpaper->picture}}" class="hl-image d-block" alt="Highlight Picture">
                                             <h6 class="title">
                                                 @if(!empty($hlpaper->title))
@@ -95,16 +111,16 @@
                                             </h6>
                                         </a>
                                         
-                                        <p class="type border border-2 p-1 d-inline-block">{{ $hlpaper->paper->paper_type ?? 'null' }}</p>
+                                        <p class="paper-type border border-2 p-1 d-inline-block">{{ $hlpaper->paper->paper_type ?? 'null' }}</p>
                                         <p class="description overflow-auto">{{ $hlpaper->description ?? 'No description' }}</p>
                                             @if(!empty($hlpaper->paper->teacher))
                                                 @foreach($hlpaper->paper->teacher as $teacher)
-                                                    <a class="author-name" href="{{ route('detail', Crypt::encrypt($teacher['id'])) }}" target="_blank">{{ $teacher->fname_en }} {{ $teacher->lname_en }}</a><i>,</i>
+                                                    <a id="teacherProfileHyperLink" class="teacher-name author-name" href="{{ route('detail', Crypt::encrypt($teacher['id'])) }}" target="_blank">{{ $teacher->fname_en }} {{ $teacher->lname_en }}</a><i>,</i>
                                                 @endforeach
                                             @endif
                                             @if(!empty($hlpaper->paper->author))
                                                 @foreach($hlpaper->paper->author as $author)
-                                                    <i class="author-name">{{ $author->author_fname }} {{ $author->author_lname }}</i><i>,</i>
+                                                    <i id="nonTeacherName" class="author-name">{{ $author->author_fname }} {{ $author->author_lname }}</i><i>,</i>
                                                 @endforeach
                                             @endif
                                     </div>
@@ -116,7 +132,7 @@
             @endforeach
         </div>
         <div class="carousel-indicators">
-            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isDeleted != 1)->chunk(2) as $index => $chunk)
+            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isSelected == 1)->chunk(2) as $index => $chunk)
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
             @endforeach
         </div>
