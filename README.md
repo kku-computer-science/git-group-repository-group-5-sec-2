@@ -5,17 +5,19 @@
 
 ## Overview ✨
 โปรเจคนี้เป็นส่วนหนึ่งในรายวิชา software engineering CP353302/2567
-**[Visit the Website](https://cs05sec267.cpkkuhost.com/)**
+
+# Visit the Website
+### [https://cs05sec267.cpkkuhost.com/](https://cs05sec267.cpkkuhost.com/)
 
 ### Member
-- 643021223-3    นางสาวณปภัช คุณนิธิภากูร
-- 653380020-6    นายนราวิชญ์ จังตระกูล 
-- 653380029-8    นางสาวอรไอลิน อิทธิศาล
-- 653380121-0    นายคณิศร ร้อยศรี  
-- 653380132-5    นายนพรุจ อินพิกุล 
-- 653380153-7    นายสิปปภาส หลักคำ 
+- 643021223-3    นางสาวณปภัช คุณนิธิภากูร [@Napapat_2233](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Napapat_2233)
+- 653380020-6    นายนราวิชญ์ จังตระกูล [@narawith_0206](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Napapat_2233)
+- 653380029-8    นางสาวอรไอลิน อิทธิศาล [@Onailin_0298](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Napapat_2233)
+- 653380121-0    นายคณิศร ร้อยศรี  [@Kanisorn_1210](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Kanisorn_1210)
+- 653380132-5    นายนพรุจ อินพิกุล [@Nopparuj_1325](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Kanisorn_1210)
+- 653380153-7    นายสิปปภาส หลักคำ [@Sippapad_1537](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Kanisorn_1210)
 - 653380156-1    นางสาวสุภัสสร สุทธิพัฒน์กุล [@Supatsorn_1561](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Supatsorn_1561)
-- 653380271-1    นายปานรวัฐ แสนสีมนต์ 
+- 653380271-1    นายปานรวัฐ แสนสีมนต์ [@panrawat_2711](https://github.com/kku-computer-science/git-group-repository-group-5-sec-2/tree/Kanisorn_1210)
 
 <!-- ## Release Notes 
 
