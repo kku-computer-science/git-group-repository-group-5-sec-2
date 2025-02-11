@@ -27,7 +27,7 @@ Input Password
     Input Text    id:password    ${password}
 
 Submit Credentials
-    Click Button    xpath=//button[@type='submit']
+    Click Button    xpath=//button[@type='submit']    # click the login button
     Title Should Be    Dashboard
 
 Go To Highlight Setting Page

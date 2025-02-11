@@ -26,7 +26,7 @@ Create Highlight
 
 *** Keywords ***
 Click Highlight Create Button
-    Click Link    xpath=//a[text()='+ Create Highlight'] 
+    Click Link    xpath=//a[@class='fw-bold btn btn-primary']  # click the create highlight button
     Title Should Be    Create Highlight Paper
 
 Fill Highlight Form

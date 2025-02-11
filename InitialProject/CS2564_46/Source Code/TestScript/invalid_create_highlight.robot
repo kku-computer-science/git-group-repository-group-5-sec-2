@@ -32,7 +32,7 @@ Description Can Be Null
     Title Should Be    Highlight Papers
 Picture Can Be Null
     Go back to Create Highlight
-    Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${EMPTY}    ${PAPER_ID}
+    Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${PAPER_ID}
     Title Should Be    Highlight Papers        
 Paper Can Not Be Null
     Go back to Create Highlight
@@ -47,7 +47,7 @@ IsSelected Can Be Null
 
 *** Keywords ***
 Click Highlight Create Button
-    Click Link    xpath=//a[text()='+ Create Highlight']
+    Click Link    xpath=//a[@class='fw-bold btn btn-primary']  # click the create highlight button
 
 Fill Highlight Form With Validation
     [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
@@ -60,10 +60,9 @@ Fill Highlight Form With Validation
     Click Button     xpath=//button[@id='confirmCreateBtn']       # confirm the creation of the highlight
 
 Fill Highlight Form With Validation Without Image
-    [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${PAPER_ID}
+    [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PAPER_ID}
     Input Text    xpath=//input[@name='title']             ${TITLE}
     Input Text    xpath=//textarea[@name='description']    ${DESCRIPTION}
-    # Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
     Click Element    xpath=//input[@name='isSelected']
     Click Button     xpath=//button[@class='btn btn-primary']
@@ -75,9 +74,8 @@ Fill Highlight Form With Validation Without IsSelected
     Input Text    xpath=//textarea[@name='description']    ${DESCRIPTION}
     Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
     Select From List By Value    xpath=//select[@name='paper_id']    ${PAPER_ID}
-    # Click Element    xpath=//input[@name='isSelected']
     Click Button     xpath=//button[@class='btn btn-primary']
     Click Button     xpath=//button[@id='confirmCreateBtn']
 
 Go back to Create Highlight
-    Click Link    xpath=//a[text()='+ Create Highlight']
+    Click Link    xpath=//a[@class='fw-bold btn btn-primary']  # click the create highlight button
