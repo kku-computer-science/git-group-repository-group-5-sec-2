@@ -1,4 +1,4 @@
-# Changelog
+# Changelog อันนี้แค่ตัวอย่างนะ
 
 All notable changes to this project will be documented in this file.
 
