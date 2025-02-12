@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${BROWSER}    Chrome
-${URL}    http://127.0.0.1:8000/
+${URL}    https://cs05sec267.cpkkuhost.com/
 ${ACTIVE_CAROUSEL}    xpath=//div[contains(@class, 'carousel-item active')]
 ${NEXT_BUTTON}    xpath=//button[@class='carousel-control-next']
 ${PREV_BUTTON}    xpath=//button[@class='carousel-control-prev']

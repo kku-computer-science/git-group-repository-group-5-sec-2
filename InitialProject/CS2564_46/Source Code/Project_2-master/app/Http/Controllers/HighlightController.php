@@ -88,7 +88,8 @@ class HighlightController extends Controller
             $image = $request->file('picture');
             $imageName = time() . '.' . $image->getClientOriginalExtension(); // ตั้งชื่อไฟล์ใหม่กันซ้ำ
             $image->move(public_path('images/highlight_papers'), $imageName); // ✅ เก็บที่ public/images/highlight_papers/
-            $data['picture'] = 'images/highlight_papers/' . $imageName; // ✅ เก็บ path ในฐานข้อมูล
+            //$data['picture'] = 'images/highlight_papers/' . $imageName; // ✅ เก็บ path ในฐานข้อมูล
+            $data['picture'] = '' . $imageName; // ไม่จำเป็นต้องเก็บ path ในฐานข้อมูล
         }
 
         Highlight_paper::create($data);
