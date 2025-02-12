@@ -3,8 +3,8 @@ Documentation    A resource file for testing "Setting Highlight" page.
 Library           SeleniumLibrary
 
 *** Variables ***
-${SERVER}            127.0.0.1:8000
-# ${SERVER}            cs05sec267.cpkkuhost.com
+# ${SERVER}            127.0.0.1:8000
+${SERVER}            cs05sec267.cpkkuhost.com
 ${BROWSER}           Chrome
 ${LOGIN URL}         http://${SERVER}/login
 ${DELAY}             0.1s
