@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-12T12:57:56.511732" rpa="false" schemaversion="5">
+<suite id="s1" name="Invalid Highlight Test" source="C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_view\invalid_highlight_test.robot">
+<test id="s1-t1" name="Test Invalid Highlight Paper Image Click" line="6">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:57:56.983289" level="INFO">Opening browser 'Chrome' to base url 'https://cs05sec267.cpkkuhost.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-12T12:57:56.982785" elapsed="5.756695"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-12T12:58:02.739894" elapsed="0.038294"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-12T12:58:04.778908" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-12T12:58:02.778415" elapsed="2.000657"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${IMAGE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-12T12:58:04.779394" elapsed="0.019172"/>
+</kw>
+<status status="PASS" start="2025-02-12T12:57:56.981716" elapsed="7.817000"/>
+</kw>
+<kw name="Click Invalid Highlight Paper Image" owner="resource">
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:04.806568" level="INFO">${current_url} = https://cs05sec267.cpkkuhost.com/</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-12T12:58:04.799563" elapsed="0.007057"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:04.807236" level="INFO">Clicking element '//img[contains(@class, 'hl-image')]'.</msg>
+<arg>${IMAGE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-12T12:58:04.806859" elapsed="0.169334"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-12T12:58:06.977523" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-12T12:58:04.976756" elapsed="2.000897"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:06.986932" level="INFO">${new_url} = https://cs05sec267.cpkkuhost.com/</msg>
+<var>${new_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-12T12:58:06.977898" elapsed="0.009074"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${current_url}</arg>
+<arg>${new_url}</arg>
+<arg>Error: Image click should not change URL</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-02-12T12:58:06.987124" elapsed="0.000238"/>
+</kw>
+<status status="PASS" start="2025-02-12T12:58:04.799131" elapsed="2.188319"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-12T12:58:06.987883" elapsed="2.216754"/>
+</kw>
+<status status="PASS" start="2025-02-12T12:57:56.980530" elapsed="12.225136"/>
+</test>
+<test id="s1-t2" name="Test Invalid Author Name Click" line="11">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:09.211351" level="INFO">Opening browser 'Chrome' to base url 'https://cs05sec267.cpkkuhost.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-12T12:58:09.210603" elapsed="5.947302"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-12T12:58:15.158227" elapsed="0.040116"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-12T12:58:17.199261" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-12T12:58:15.198599" elapsed="2.000764"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${IMAGE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-12T12:58:17.199530" elapsed="0.017725"/>
+</kw>
+<status status="PASS" start="2025-02-12T12:58:09.209677" elapsed="8.007703"/>
+</kw>
+<kw name="Click Invalid Author Name" owner="resource">
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:17.225897" level="INFO">${current_url} = https://cs05sec267.cpkkuhost.com/</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-12T12:58:17.218086" elapsed="0.007853"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:17.226676" level="FAIL">Variable '${NON_CLICKABLE_AUTHOR}' not found.</msg>
+<arg>${NON_CLICKABLE_AUTHOR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2025-02-12T12:58:17.226102" elapsed="0.000624">Variable '${NON_CLICKABLE_AUTHOR}' not found.</status>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-02-12T12:58:17.226859" elapsed="0.000032"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<var>${new_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="NOT RUN" start="2025-02-12T12:58:17.226992" elapsed="0.000027"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${current_url}</arg>
+<arg>${new_url}</arg>
+<arg>Error: Author name click should not change URL</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" start="2025-02-12T12:58:17.227114" elapsed="0.000026"/>
+</kw>
+<status status="FAIL" start="2025-02-12T12:58:17.217762" elapsed="0.009502">Variable '${NON_CLICKABLE_AUTHOR}' not found.</status>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" start="2025-02-12T12:58:17.227562" elapsed="0.000034"/>
+</kw>
+<status status="FAIL" start="2025-02-12T12:58:09.207937" elapsed="8.019968">Variable '${NON_CLICKABLE_AUTHOR}' not found.</status>
+</test>
+<test id="s1-t3" name="Test Invalid Next Button Click" line="16">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:17.229854" level="INFO">Opening browser 'Chrome' to base url 'https://cs05sec267.cpkkuhost.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-12T12:58:17.229644" elapsed="6.067569"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-12T12:58:23.297423" elapsed="0.042034"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-12T12:58:25.340108" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-12T12:58:23.339639" elapsed="2.000742"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${IMAGE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-12T12:58:25.340843" elapsed="0.047707"/>
+</kw>
+<status status="PASS" start="2025-02-12T12:58:17.229390" elapsed="8.159352"/>
+</kw>
+<kw name="Click Invalid Next Button" owner="resource">
+<kw name="Get WebElement" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:25.408504" level="INFO">${current_active} = &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.44")&gt;</msg>
+<var>${current_active}</var>
+<arg>${ACTIVE_CAROUSEL}</arg>
+<doc>Returns the first WebElement matching the given ``locator``.</doc>
+<status status="PASS" start="2025-02-12T12:58:25.390090" elapsed="0.018471"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:25.409014" level="INFO">Clicking button 'xpath=//button[@class='carousel-control-next']'.</msg>
+<arg>${NEXT_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-12T12:58:25.408736" elapsed="0.128793"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-12T12:58:27.538482" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-12T12:58:25.537787" elapsed="2.000868"/>
+</kw>
+<kw name="Get WebElement" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:27.579863" level="INFO">${new_active} = &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.46")&gt;</msg>
+<var>${new_active}</var>
+<arg>${ACTIVE_CAROUSEL}</arg>
+<doc>Returns the first WebElement matching the given ``locator``.</doc>
+<status status="PASS" start="2025-02-12T12:58:27.538915" elapsed="0.041042"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<msg time="2025-02-12T12:58:27.580790" level="FAIL">Error: Next button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.46")&gt;</msg>
+<arg>${current_active}</arg>
+<arg>${new_active}</arg>
+<arg>Error: Next button should not change the slide!</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="FAIL" start="2025-02-12T12:58:27.580254" elapsed="0.000830">Error: Next button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.46")&gt;</status>
+</kw>
+<status status="FAIL" start="2025-02-12T12:58:25.389360" elapsed="2.191996">Error: Next button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.46")&gt;</status>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" start="2025-02-12T12:58:27.581779" elapsed="0.000064"/>
+</kw>
+<status status="FAIL" start="2025-02-12T12:58:17.228916" elapsed="10.353476">Error: Next button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="6b09f3c84b7e57338cc5ec8311d04687", element="f.1A514309E95FDE02B7D992CEC553CCA9.d.046A93AA26D36AEAF6B6D504AC54F761.e.46")&gt;</status>
+</test>
+<test id="s1-t4" name="Test Invalid Prev Button Click" line="21">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:27.585413" level="INFO">Opening browser 'Chrome' to base url 'https://cs05sec267.cpkkuhost.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-12T12:58:27.584995" elapsed="6.065773"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-12T12:58:33.650980" elapsed="0.045934"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-12T12:58:35.697846" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-12T12:58:33.697114" elapsed="2.001104"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${IMAGE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-12T12:58:35.698725" elapsed="0.060050"/>
+</kw>
+<status status="PASS" start="2025-02-12T12:58:27.584102" elapsed="8.176288"/>
+</kw>
+<kw name="Click Invalid Prev Button" owner="resource">
+<kw name="Get WebElement" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:35.809051" level="INFO">${current_active} = &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.44")&gt;</msg>
+<var>${current_active}</var>
+<arg>${ACTIVE_CAROUSEL}</arg>
+<doc>Returns the first WebElement matching the given ``locator``.</doc>
+<status status="PASS" start="2025-02-12T12:58:35.764384" elapsed="0.044746"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:35.809859" level="INFO">Clicking button 'xpath=//button[@class='carousel-control-prev']'.</msg>
+<arg>${PREV_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-12T12:58:35.809449" elapsed="0.160049"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-12T12:58:37.970182" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-12T12:58:35.969746" elapsed="2.000625"/>
+</kw>
+<kw name="Get WebElement" owner="SeleniumLibrary">
+<msg time="2025-02-12T12:58:37.983155" level="INFO">${new_active} = &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.46")&gt;</msg>
+<var>${new_active}</var>
+<arg>${ACTIVE_CAROUSEL}</arg>
+<doc>Returns the first WebElement matching the given ``locator``.</doc>
+<status status="PASS" start="2025-02-12T12:58:37.970542" elapsed="0.012656"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<msg time="2025-02-12T12:58:37.983656" level="FAIL">Error: Prev button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.46")&gt;</msg>
+<arg>${current_active}</arg>
+<arg>${new_active}</arg>
+<arg>Error: Prev button should not change the slide!</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="FAIL" start="2025-02-12T12:58:37.983349" elapsed="0.000400">Error: Prev button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.46")&gt;</status>
+</kw>
+<status status="FAIL" start="2025-02-12T12:58:35.761802" elapsed="2.222189">Error: Prev button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.46")&gt;</status>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" start="2025-02-12T12:58:37.984389" elapsed="0.000056"/>
+</kw>
+<status status="FAIL" start="2025-02-12T12:58:27.583370" elapsed="10.401465">Error: Prev button should not change the slide!: &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.44")&gt; != &lt;selenium.webdriver.remote.webelement.WebElement (session="b4104e750c8a70153ec9219e22697d8c", element="f.5CD6F1A47803661BCBDD2D828962C10E.d.2F250219ED71195D5A7A8203B454F711.e.46")&gt;</status>
+</test>
+<status status="FAIL" start="2025-02-12T12:57:56.514534" elapsed="41.471979"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="3" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="3" skip="0" id="s1" name="Invalid Highlight Test">Invalid Highlight Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

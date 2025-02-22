@@ -47,7 +47,7 @@ services:
             timeout: 5s
     phpmyadmin:
         image: phpmyadmin
-        restart: always
+        restart: on-failure
         ports:
             - '8080:80'
         environment:
