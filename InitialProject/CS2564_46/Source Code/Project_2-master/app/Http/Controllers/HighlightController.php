@@ -21,8 +21,8 @@ class HighlightController extends Controller
 
     public function index()
     {
-        $highlights = Highlight::all();
-        $tags = Tags::all(); // ✅ ดึง Tags ทั้งหมดจาก DB
+        $highlights = Highlight::paginate(10);
+        $tags = Tags::paginate(10); // ✅ ดึง Tags ทั้งหมดจาก DB
         return view('highlight.index', compact('tags', 'highlights')); // ✅ ส่งตัวแปร $tags ไปยัง View
     }
 
@@ -207,5 +207,26 @@ class HighlightController extends Controller
 
         return redirect()->route('highlight.index')->with('success', 'Highlight ถูกลบเรียบร้อยแล้ว!');
     }
+
+    public function toggleActive(Request $request, $id)
+    {
+        // นับจำนวน Highlight ที่ active อยู่
+        $activeCount = Highlight::where('active', true)->count();
+    
+        // ตรวจสอบว่าถ้าเปิดเกิน 5 ให้ return กลับไป
+        if ($activeCount >= 5 && $request->input('active') == 1) {
+            return redirect()->route('highlight.index')->with('error', '❌ ไม่สามารถเปิด Active เกิน 5 รายการได้!');
+        }
+    
+        $highlight = Highlight::findOrFail($id);
+        $highlight->active = $request->input('active', 0);
+        $highlight->save();
+    
+        return redirect()->route('highlight.index')->with('success', '✅ อัปเดตสถานะสำเร็จ');
+    }
+    
+
+    
+
 
 }

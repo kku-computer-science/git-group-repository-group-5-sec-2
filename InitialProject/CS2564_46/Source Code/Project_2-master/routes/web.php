@@ -147,6 +147,8 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::delete('/highlight/image/delete/{id}', [HighlightController::class, 'deleteImage'])->name('highlight.image.delete');
     Route::post('/highlight/{id}/toggle-active', [HighlightController::class, 'toggleActive'])->name('highlight.toggleActive');
 
+
+
 });
 
 
