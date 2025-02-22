@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Highlight extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'title',
-        'description',
-        'picture',
-        'isSelected',
-        'paper_id'
-    ];
-    public function paper()
-    {
-        return $this->belongsTo(Paper::class);
+
+    protected $table = 'highlight';
+    
+    public function getImageAttribute($value){
+        if($value){
+            return asset('images/highlight/'.$value);
+        }else{
+            return asset('images/highlight/no-image.png');
+        }
     }
 }

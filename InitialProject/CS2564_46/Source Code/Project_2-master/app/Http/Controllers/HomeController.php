@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paper;
-use App\Models\HighlightPaper;
+use App\Models\Highlight;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Bibtex;
@@ -182,7 +182,7 @@ class HomeController extends Controller
         //return response()->json($bb);
 
         //-------------------------------[Hightlight]----------------------------
-        $hlpapers = HighlightPaper::all();
+        $highlights = Highlight::all();
         //-------------------------------[Hightlight]----------------------------
 
         return view('home', compact('papers'))->with('year', json_encode($year, JSON_NUMERIC_CHECK))
@@ -192,7 +192,7 @@ class HomeController extends Controller
             ->with('paper_tci_numall', json_encode($paper_tci_numall, JSON_NUMERIC_CHECK))
             ->with('paper_scopus_numall', json_encode($paper_scopus_numall, JSON_NUMERIC_CHECK))
             ->with('paper_wos_numall', json_encode($paper_wos_numall, JSON_NUMERIC_CHECK))
-            ->with('hlpapers', $hlpapers);
+            ->with('highlights', $highlights);
             
 
 
