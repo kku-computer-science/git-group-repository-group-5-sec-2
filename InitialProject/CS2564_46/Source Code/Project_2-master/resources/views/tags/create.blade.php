@@ -50,6 +50,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">สร้าง</button>
+            <a href="{{ route('highlight.index') }}" class="btn btn-secondary">ย้อนกลับ</a>
         </form>
     </div>
     @endsection

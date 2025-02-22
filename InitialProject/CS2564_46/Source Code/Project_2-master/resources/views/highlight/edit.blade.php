@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>edit Highlight</title>
 
@@ -52,9 +53,10 @@
 
         <!-- Cover Image -->
         <div class="mb-3">
-            <label class="form-label">Cover Image</label>
+            <label class="form-label">Cover Image ปัจจุบัน</label>
+            <img src="{{ asset($highlight->cover_image) }}" class="img-fluid mt-2 col-md-12" >
+            <label class="form-label mt-3">Cover Image ใหม่</label>
             <input type="file" class="form-control" name="cover_image">
-            <img src="{{ asset($highlight->cover_image) }}" class="img-fluid mt-2" style="max-width: 200px;">
         </div>
 
         <!-- Images ที่อัปโหลดไปแล้ว -->
@@ -62,7 +64,7 @@
             <label class="form-label">Images ที่อัปโหลดแล้ว</label>
             <div class="d-flex flex-wrap">
                 @foreach ($highlight->images as $image)
-                    <div class="position-relative m-2">
+                    <div id="image-{{ $image->id }}" class="position-relative m-2">
                         <img src="{{ asset($image->image_path) }}" class="img-thumbnail" style="max-width: 100px;">
                         <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0"
                             onclick="deleteImage({{ $image->id }})">
@@ -72,6 +74,7 @@
                 @endforeach
             </div>
         </div>
+
 
         <!-- อัปโหลด Images ใหม่ -->
         <div class="mb-3">
@@ -93,6 +96,16 @@
             </div>
         </div>
 
+        <!-- Active Status -->
+        <div class="mb-3">
+            <label class="form-label">สถานะการแสดงผล</label>
+            <select class="form-select" name="active">
+                <option value="1" {{ $highlight->active == 1 ? 'selected' : '' }}>แสดง</option>
+                <option value="0" {{ $highlight->active == 0 ? 'selected' : '' }}>ไม่แสดง</option>
+            </select>
+        </div>
+
+
         <!-- ปุ่มอัปเดต และ ย้อนกลับ -->
         <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary">อัปเดต</button>
@@ -104,28 +117,36 @@
 
     
 
-    @section('scripts')
+    @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function deleteImage(imageId) {
-            if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
-                fetch(`/highlight/image/delete/${imageId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        alert('เกิดข้อผิดพลาดในการลบรูปภาพ');
-                    }
-                });
-            }
+            if (!confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) return;
+    
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
+            fetch(`/highlight/image/delete/${imageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`image-${imageId}`).remove();
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์');
+                console.error('Error:', error);
+            });
         }
-        </script>
+    </script>
+    
     @endsection
 
 </body>

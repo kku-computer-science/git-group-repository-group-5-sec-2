@@ -7,6 +7,7 @@ use App\Models\Highlight;
 use App\Models\images;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use App\Models\Tags;
 
 class HighlightController extends Controller
@@ -106,67 +107,78 @@ class HighlightController extends Controller
     // ✅ ฟังก์ชันอัปเดต Highlight
     // ✅ ฟังก์ชันอัปเดต Highlight
     public function update(Request $request, $id)
-    {
-        $highlight = Highlight::findOrFail($id);
+{
+    $highlight = Highlight::findOrFail($id);
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'detail' => 'required',
-            'cover_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tags' => 'required'
-        ]);
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'detail' => 'required',
+        'cover_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'tags' => 'required',
+        'active' => 'required|boolean'  // ✅ เพิ่มการตรวจสอบค่า active
+    ]);
 
-        $highlight->title = $request->title;
-        $highlight->detail = $request->detail;
+    $highlight->title = $request->title;
+    $highlight->detail = $request->detail;
+    $highlight->active = $request->active; // ✅ อัปเดต Active Status
 
-        // ✅ อัปเดต Cover Image ถ้ามีการเปลี่ยนแปลง
-        if ($request->hasFile('cover_image')) {
-            if (File::exists(public_path($highlight->cover_image))) {
-                File::delete(public_path($highlight->cover_image));
-            }
-            $coverImage = $request->file('cover_image');
-            $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
-            $coverImage->move(public_path('images/coverimg'), $coverImageName);
-            $highlight->cover_image = 'images/coverimg/' . $coverImageName;
+    // ✅ อัปเดต Cover Image ถ้ามีการเปลี่ยนแปลง
+    if ($request->hasFile('cover_image')) {
+        if (File::exists(public_path($highlight->cover_image))) {
+            File::delete(public_path($highlight->cover_image));
         }
-
-        $highlight->save();
-
-        // ✅ อัปโหลดรูปใหม่ถ้ามี
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $image->move(public_path('images/albumimg'), $imageName);
-                $imagePath = 'images/albumimg/' . $imageName;
-
-                images::create([
-                    'highlight_id' => $highlight->id,
-                    'image_path' => $imagePath
-                ]);
-            }
-        }
-
-        // ✅ อัปเดต Tags
-        $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
-        $highlight->tags()->sync($selectedTags);
-
-        return redirect()->route('highlight.index')->with('success', 'Highlight ถูกอัปเดตเรียบร้อยแล้ว!');
+        $coverImage = $request->file('cover_image');
+        $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
+        $coverImage->move(public_path('images/coverimg'), $coverImageName);
+        $highlight->cover_image = 'images/coverimg/' . $coverImageName;
     }
+
+    $highlight->save();
+
+    // ✅ อัปโหลดรูปใหม่ถ้ามี
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images/albumimg'), $imageName);
+            $imagePath = 'images/albumimg/' . $imageName;
+
+            images::create([
+                'highlight_id' => $highlight->id,
+                'image_path' => $imagePath
+            ]);
+        }
+    }
+
+    // ✅ อัปเดต Tags
+    $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
+    $highlight->tags()->sync($selectedTags);
+
+    return redirect()->route('highlight.index')->with('success', 'Highlight ถูกอัปเดตเรียบร้อยแล้ว!');
+}
+
 
     // ✅ ฟังก์ชันลบรูปภาพ
-    public function deleteImage($imageId)
-    {
-        $image = images::findOrFail($imageId);
+    public function deleteImage($id)
+{
+    $image = images::where('id', $id)->first();
 
-        if (File::exists(public_path($image->image_path))) {
-            File::delete(public_path($image->image_path));
-        }
-
-        $image->delete();
-
-        return response()->json(['success' => true]);
+    if (!$image) {
+        return response()->json(['success' => false, 'message' => 'ไม่พบรูปภาพที่ต้องการลบ!']);
     }
+
+    // ลบไฟล์ออกจากโฟลเดอร์
+    if (File::exists(public_path($image->image_path))) {
+        File::delete(public_path($image->image_path));
+    }
+
+    // ลบออกจากฐานข้อมูล
+    $image->delete();
+
+    return response()->json(['success' => true, 'message' => 'ลบรูปภาพเรียบร้อยแล้ว!']);
+}
+
+
 
 
     // ✅ ฟังก์ชันลบ Highlight
@@ -195,4 +207,5 @@ class HighlightController extends Controller
 
         return redirect()->route('highlight.index')->with('success', 'Highlight ถูกลบเรียบร้อยแล้ว!');
     }
+
 }

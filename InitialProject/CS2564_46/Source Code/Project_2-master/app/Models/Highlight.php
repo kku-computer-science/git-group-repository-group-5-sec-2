@@ -12,7 +12,13 @@ class Highlight extends Model
     protected $table = 'highlights';
 
     // ✅ เพิ่มฟิลด์ที่อนุญาตให้บันทึกได้
-    protected $fillable = ['title', 'detail', 'cover_image', 'creator', 'active'];
+    protected $fillable = [
+        'title',
+        'detail',
+        'cover_image',
+        'creator',
+        'active'  // ต้องมี active ด้วย
+    ];
 
      /**
      * ความสัมพันธ์ Many-to-Many กับ Tags
@@ -24,6 +30,6 @@ class Highlight extends Model
 
     public function images()
     {
-        return $this->hasMany(Images::class, 'highlight_id');
+        return $this->hasMany(images::class, 'highlight_id');
     }
 }
