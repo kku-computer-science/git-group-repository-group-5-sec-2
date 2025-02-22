@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Highlight Papers</title>
+    <title>Highlight</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,6 +34,45 @@
     <div class="container mt-5">
         <h2>รายการ Highlight Papers</h2>
 
+        {{-- Highlight Lists --}}
+        <a href="{{ route('highlight.create') }}" class="btn btn-primary mb-3">+ สร้าง Highlight ใหม่</a>
+
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Cover Image</th>
+                    <th>Title</th>
+                    <th>Creator</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($highlights as $highlight)
+                <tr>
+                    <td>{{ $highlight->id }}</td>
+                    <td>
+                        <img src="{{ asset($highlight->cover_image) }}" alt="Cover Image" class="img-thumbnail" style="max-width: 100px;">
+                    </td>
+                    <td>{{ $highlight->title }}</td>
+                    <td>{{ $highlight->creator }}</td>
+                    <td>
+                        <a href="{{ route('highlight.edit', $highlight->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('highlight.destroy', $highlight->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบ Highlight นี้?');">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        {{-- Tags Lists --}}
         <div class="mt-4">
             <h4>Tags ทั้งหมด</h4>
             
