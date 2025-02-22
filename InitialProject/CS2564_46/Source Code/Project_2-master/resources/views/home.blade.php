@@ -31,44 +31,126 @@
         display: table;
         color: #4ad1e5;
     }
+
+
+    .carousel-icon-brightness { filter: brightness(0.1); }
+
+    .px {
+        padding-left: 100;
+        padding-right: 100;
+    }
+
+    .title {
+        font-size: 13px;
+        overflow: auto;
+        max-height: 80px;
+    }
+
+    .paper-type {font-size: 9px;}
+    .teacher-name {font-weight: 600;}
+    .author-name {font-size: 11px}
+    .description {
+        font-size: 11px;
+        height: 50; 
+        opacity: 90%;
+    }
+
+    .hl-section{
+        max-width: 2000px !important; 
+        height: 450;
+    }
+
+    .hl-card {
+        height: fit-content;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .hl-image{ 
+        height: 150;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .carousel-indicators {
+        top: -11;
+        bottom: auto;
+        height: 10;
+        justify-content: center;
+        z-index:-10;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    
+
 </style>
 @section('content')
-<div class="container home">
-    <div class="container d-sm-flex justify-content-center mt-5">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button> -->
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{asset('img/Banner1.png')}}" class="d-block w-100" alt="...">
+<div class="container home ">
+
+    <div class="hl-section container d-sm-flex justify-content-center overflow-auto mt-4 w-100">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner mt-1">
+            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isSelected == 1)->chunk(2) as $index => $chunk)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="row px">
+                        @foreach($chunk as $hlpaper)
+                            <div class="{{ count($chunk) === 1 ? 'col-xl-12' : 'col-xl-6' }}">
+                                <div class="hl-card card mb-5 h-100 shadow border border-2">
+                                    <div class="p-3">
+                                        <a id="sourceHyperLink" href="{{ $hlpaper->paper->paper_url }}" target="_blank">
+                                            <img src="{{$hlpaper->picture}}" class="hl-image d-block" alt="Highlight Picture">
+                                            <h6 class="title">
+                                                @if(!empty($hlpaper->title))
+                                                    {{ $hlpaper->title ?? 'null' }}
+                                                @else
+                                                    {{ $hlpaper->paper->paper_name ?? 'null' }}
+                                                @endif
+                                            </h6>
+                                        </a>
+                                        
+                                        <p class="paper-type border border-2 p-1 d-inline-block">{{ $hlpaper->paper->paper_type ?? 'null' }}</p>
+                                        <p class="description overflow-auto">{{ $hlpaper->description ?? 'No description' }}</p>
+                                            @if(!empty($hlpaper->paper->teacher))
+                                                @foreach($hlpaper->paper->teacher as $teacher)
+                                                    <a id="teacherProfileHyperLink" class="teacher-name author-name" href="{{ route('detail', Crypt::encrypt($teacher['id'])) }}" target="_blank">{{ $teacher->fname_en }} {{ $teacher->lname_en }}</a><i>,</i>
+                                                @endforeach
+                                            @endif
+                                            @if(!empty($hlpaper->paper->author))
+                                                @foreach($hlpaper->paper->author as $author)
+                                                    <i id="nonTeacherName" class="author-name">{{ $author->author_fname }} {{ $author->author_lname }}</i><i>,</i>
+                                                @endforeach
+                                            @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="{{asset('img/Banner2.png')}}" class="d-block w-100" alt="...">
-                </div>
-                <!-- <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div> -->
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            @endforeach
         </div>
+        <div class="carousel-indicators">
+            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isSelected == 1)->chunk(2) as $index => $chunk)
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
+            @endforeach
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="max-width:100;">
+            <span class="carousel-control-prev-icon carousel-icon-brightness" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="max-width:100;">
+            <span class="carousel-control-next-icon carousel-icon-brightness" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
     </div>
 
 
     <!-- Modal -->
-
-
-
     <div class="container card-cart d-sm-flex justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card">
