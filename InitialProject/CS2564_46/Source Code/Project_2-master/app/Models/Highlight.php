@@ -32,12 +32,4 @@ class Highlight extends Model
     {
         return $this->hasMany(images::class, 'highlight_id');
     }
-
-    public function getImageAttribute($value){
-        if($value){
-            return asset('images/highlight/'.$value);
-        }else{
-            return asset('images/highlight/no-image.png');
-        }
-    }
 }

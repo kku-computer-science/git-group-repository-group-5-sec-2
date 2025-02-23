@@ -58,7 +58,7 @@
     }
 
     .hl-title {
-        font-size: 32px;
+        font-size: 18px;
         position: absolute;
         bottom: 35px;
         left: 50%;
@@ -86,15 +86,15 @@
     <div class="hl-banner container d-sm-flex justify-content-center mt-5">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                @foreach($highlights->filter(fn($hl) => $hl->isSelected == 1)->values() as $index => $hl)
+                @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
                 @endforeach
             </div>
             <div class="carousel-inner">
-                @foreach($highlights->filter(fn($hl) => $hl->isSelected == 1)->values() as $index => $hl)
+                @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                         <a href="highlightdetail/{{$hl->id}}">
-                            <img src="{{$hl->image}}" class="d-block w-100 h-100" alt="highlight image">
+                            <img src="{{$hl->cover_image}}" class="d-block w-100 h-100" alt="highlight image">
                             <h1 class="hl-title">{{$hl->title}}</h1>
                         </a>
                     </div>
