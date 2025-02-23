@@ -19,4 +19,10 @@ return [
 'article_stat' => 'Statistics of total article published (5 years)',
 'cite_stat' => 'Statistics of total article citations (5 years)',
 
+//highlight detail
+'tags' => 'Tags',
+'publish' => 'Publish',
+'by' => 'by',
+
+
 ];

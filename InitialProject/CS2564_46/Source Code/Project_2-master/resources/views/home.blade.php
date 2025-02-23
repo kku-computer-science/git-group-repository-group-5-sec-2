@@ -68,7 +68,7 @@
         padding: 3px 6px;
         border-radius: 0px;
         text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
-        background-color: rgba(10, 10, 10, 0.23);
+        background-color: rgba(10, 10, 10, 0.6);
         backdrop-filter: blur(1px);
         width: 100%;
     }
@@ -93,7 +93,7 @@
             <div class="carousel-inner">
                 @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <a href="highlightdetail/{{$hl->id}}">
+                        <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
                             <img src="{{$hl->cover_image}}" class="d-block w-100 h-100" alt="highlight image">
                             <h1 class="hl-title">{{$hl->title}}</h1>
                         </a>
