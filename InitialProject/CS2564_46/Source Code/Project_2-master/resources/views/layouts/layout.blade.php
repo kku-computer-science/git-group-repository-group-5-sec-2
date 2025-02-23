@@ -67,6 +67,9 @@
                     <li class="nav-item {{ request()->is('/') ? 'active' : ''}} ">
                         <a class="nav-link" href="/">{{ trans('message.Home') }}</a>
                     </li>
+                    <li class="nav-item {{ request()->is('highlights') ? 'active' : ''}}">
+                        <a class="nav-link" href="/highlights">{{ trans('message.Highlights') }}</a>
+                    </li>
                     <li
                         class="nav-item dropdown {{ Request::routeIs('researchers') ? 'active' : '' }} {{ request()->is('detail*') ? 'active' : ''}} ">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"

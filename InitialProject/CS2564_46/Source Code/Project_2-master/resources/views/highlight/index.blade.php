@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Highlight Papers</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Highlight</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,94 +23,87 @@
             padding: 25px;
         }
 
-        h1 {
-            color: #111;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
+        .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
 
-        .btn-primary {
-            background: linear-gradient(45deg, #03A9F4, #0277BD);
-            border: none;
-            transition: 0.3s;
-        }
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
-        .btn-primary:hover {
-            background: linear-gradient(45deg, #0288D1, #01579B);
-        }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
 
-        .table {
-            border-radius: 10px;
-            overflow: hidden;
-        }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
 
-        .table thead {
-            background-color: #03A9F4 !important;
-            color: white;
-        }
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
 
-        .table tbody tr:nth-child(odd) {
-            background-color: #f9f9f9;
-        }
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
 
-        .table tbody tr:nth-child(even) {
-            background-color: #e0e0e0;
-        }
+    .status-label {
+        margin-left: 70px;
+        line-height: 34px;
+    }        
 
-        .table tbody tr:hover {
-            background-color: #c0c0c0;
-            transition: background-color 0.3s ease;
-        }
+    /* กำหนดความกว้างของแต่ละคอลัมน์ */
+.table th:nth-child(1), /* ID column */
+.table td:nth-child(1) {
+    width: 5%;
+}
 
-        .table td,
-        .table th {
-            text-align: center;
-            vertical-align: middle;
-            max-width: 200px;
-            /* กำหนดค่าความกว้างสูงสุดของแต่ละคอลัมน์ */
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+.table th:nth-child(2), /* Title column */
+.table td:nth-child(2) {
+    width: 40%;
+}
 
-        .table td:nth-child(2),
-        /* คอลัมน์ "ชื่อ" */
-        .table td:nth-child(3),
-        /* คอลัมน์ "รายละเอียด" */
-        .table td:nth-child(4) {
-            /* คอลัมน์ "งานวิจัย" */
-            max-width: 250px;
-            /* กำหนดความกว้างสูงสุดที่ต่างกันตามต้องการ */
-        }
+.table th:nth-child(3), /* Creator column */
+.table td:nth-child(3) {
+    width: 20%;
+}
 
+.table th:nth-child(4), /* Active column */
+.table td:nth-child(4) {
+    width: 15%;
+}
 
-        .btn-warning,
-        .btn-danger {
-            margin: 0 5px;
-        }
-
-        .badge-success {
-            background-color: #4CAF50;
-            padding: 5px 10px;
-            border-radius: 20px;
-            color: white;
-        }
-
-        .badge-danger {
-            background-color: #F44336;
-            padding: 5px 10px;
-            border-radius: 20px;
-            color: white;
-        }
-
-        .pagination .page-link {
-            color: #03A9F4;
-        }
-
-        .pagination .page-item.active .page-link {
-            background-color: #03A9F4;
-            border-color: #03A9F4;
-        }
+.table th:nth-child(5), /* Actions column */
+.table td:nth-child(5) {
+    width: 20%;
+}
+.table td:nth-child(2) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 0; /* จำเป็นสำหรับ text-overflow ใน table */
+}
     </style>
 </head>
 
@@ -119,108 +113,140 @@
 
     @section('content')
     <div class="container mt-5">
-        <h2 class="text-center">รายชื่อรายงานวิจัยยอดนิยม</h2>
+        <h2>รายการ Highlight Papers</h2>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <a class="fw-bold btn btn-primary" href="{{ route('highlight.create') }}">สร้างงานวิจัยที่ยอดนิยม +</a>
+        {{-- Highlight Lists --}}
+        <a href="{{ route('highlight.create') }}" class="btn btn-primary mb-3">+ สร้าง Highlight ใหม่</a>
 
-            <form method="GET" class="d-inline">
-                <div class="dropdown">
-                    สถานะ
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        {{ request()->filter == 'selected' ? 'เลือกแล้ว' : (request()->filter == 'not-selected' ? 'ไม่ได้เลือก' : 'กรองข้อมูล') }}
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><button type="submit" name="filter" value="" class="dropdown-item">ทั้งหมด</button></li>
-                        <li><button type="submit" name="filter" value="selected" class="dropdown-item">เลือกแล้ว</button></li>
-                        <li><button type="submit" name="filter" value="not-selected" class="dropdown-item">ไม่ได้เลือก</button></li>
-                    </ul>
-                </div>
-            </form>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Creator</th>
+                    <th>Active</th> <!-- ✅ ใช้ Toggle Switch -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($highlights as $highlight)
+                <tr>
+                    <td>{{ $highlight->id }}</td>
+                    <td class="text-truncate" style="max-width: 150px;">{{ $highlight->title }}</td>
+                    <td>{{ $highlight->creator }}</td>
+        
+                    <!-- ✅ ใช้ Toggle Switch สำหรับ Active -->
+                    <td class="text-center">
+                        <form action="{{ route('highlight.toggleActive', $highlight->id) }}" method="POST" class="toggle-form">
+                            @csrf
+                            <input type="hidden" name="active" value="{{ $highlight->active }}">
+                            <label class="toggle-switch">
+                                <input type="checkbox" class="toggle-active"
+                                       data-id="{{ $highlight->id }}"
+                                       {{ $highlight->active ? 'checked' : '' }}>
+                                <span class="slider"></span>
+                            </label>
+                        </form>
+                    </td>
+                    
+                    
+        
+                    <td>
+                        <a href="{{ route('highlight.edit', $highlight->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('highlight.destroy', $highlight->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบ Highlight นี้?');">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        
+        <div class="d-flex justify-content-center mt-3">
+            {{ $highlights->links() }} 
         </div>
 
-        <div class="table-responsive mt-4">
-            <table class="table table-hover table-bordered">
-                <thead>
+        {{-- Tags Lists --}}
+        <div class="mt-4">
+            <h4>Tags ทั้งหมด</h4>
+            
+            <!-- ✅ ปุ่มสำหรับไปที่หน้าเพิ่ม Tag -->
+            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ สร้าง Tag ใหม่</a>
+        
+            <table class="table table-bordered">
+                <thead class="table-dark">
                     <tr>
-                        <th class="text-light">ID</th>
-                        <th class="text-light">ชื่อ</th>
-                        <th class="text-light">รายละเอียด</th>
-                        <!-- <th>รูปภาพ</th> -->
-                        <th class="text-light">งานวิจัย</th>
-                        <th class="text-light">แสดงผล</th>
-                        <th class="text-light">ปรับแต่ง</th>
+                        <th>ID</th>
+                        <th>Tag Name</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="">
-                    @foreach($highlight_papers as $highlightPapers)
-                    <tr class="highlight-item">
-                        <td>{{ $highlightPapers->id }}</td>
+                <tbody>
+                    @foreach ($tags as $tag)
+                    <tr>
+                        <td>{{ $tag->id }}</td>
+                        <td>{{ $tag->name }}</td>
                         <td>
-                            <span title="{{ $highlightPapers->title }}">{{ $highlightPapers->title }}</span>
-                        </td>
-                        <td>
-                            <span title="{{ $highlightPapers->description }}">{{ $highlightPapers->description }}</span>
-                        </td>
-                        <!-- <td>
-                                <img src="{{ asset($highlightPapers->picture) }}" alt="Highlight Image" width="80" class="rounded">
-                            </td> -->
-                        <td>
-                            <span title="{{ $highlightPapers->paper->paper_name }}">{{ $highlightPapers->paper->paper_name }}</span>
-                        </td>
-                        <td>
-                            @if($highlightPapers->isSelected)
-                            <span class="badge-success text-light">เลือกแล้ว</span>
-                            @else
-                            <span class="badge-danger text-light">ไม่ได้เลือก</span>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('highlight.edit', $highlightPapers->id) }}" class="btn btn-warning btn-sm">แก้ไข</a>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $highlightPapers->id }}">
-                                ลบ
-                            </button>
-
-                            <!-- Modal for each item -->
-                            <div class="modal fade" id="deleteModal-{{ $highlightPapers->id }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Are you sure?</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            คุณต้องการลบ Highlight นี้ใช่หรือไม่?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                            <form method="POST" action="{{ route('highlight.destroy', $highlightPapers->id) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input type="hidden" name="filter" value="{{ request()->filter }}">
-                                                <button type="submit" class="btn btn-danger">ลบ</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('tags.destroy', $tag->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบแท็กนี้?');">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
 
-            <div class="d-flex mt-3 justify-content-end">
-                {!! $highlight_papers->appends(request()->query())->links() !!}
+            <div class="d-flex justify-content-center mt-3">
+                {{ $tags->links() }} 
             </div>
         </div>
+        
     </div>
     @endsection
 
-    @section('scripts')
+    @section('javascript')
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("✅ JavaScript Loaded");
+            
+            document.querySelectorAll(".toggle-active").forEach(function (toggle) {
+                toggle.addEventListener("change", function (event) {
+                    let form = this.closest(".toggle-form"); // หา `<form>` ที่ใกล้ที่สุด
+                    let input = form.querySelector("input[name='active']");
+                    let activeCount = document.querySelectorAll(".toggle-active:checked").length; // นับจำนวน Active
+
+                    // ✅ เช็คว่ามี Active เกิน 5 อันหรือไม่
+                    if (activeCount > 5 && this.checked) {
+                        alert("❌ ไม่สามารถเปิด Active เกิน 5 รายการได้!"); // แสดง Alert แจ้งเตือน
+                        event.preventDefault(); // ป้องกันการเปลี่ยนค่า
+                        this.checked = false;  // ปิด Toggle กลับไป
+                        return;
+                    }
+
+                    // ✅ อัปเดตค่า hidden input ก่อน submit form
+                    input.value = this.checked ? 1 : 0;
+                    form.submit();
+                });
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @endsection
 
+
+    
 </body>
 
 </html>

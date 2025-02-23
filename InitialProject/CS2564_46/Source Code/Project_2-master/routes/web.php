@@ -39,7 +39,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TcicallController;
 use App\Http\Controllers\HighlightController;
+
+use App\Http\Controllers\HighlightDetailController;
 use App\Models\Highlight_paper;
+use App\Http\Controllers\TagsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +79,7 @@ Route::middleware(['middleware' => 'PreventBackHistory'])->group(function () {
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('highlightdetail/{id}', [HighlightDetailController::class, 'show'])->name('highlightdetail');
 //Route::get('/researchers',[ResearcherController::class,'index'])->name('researchers');
 Route::get('researchers/{id}', [ResearcherController::class, 'request'])->name('researchers');
 Route::get('researchers/{id}/search', [ResearcherController::class, 'search'])->name('searchresearchers');
@@ -142,6 +146,12 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
     Route::resource('highlight',HighlightController::class);
+    Route::resource('tags',TagsController::class);
+    Route::delete('/highlight/image/delete/{id}', [HighlightController::class, 'deleteImage'])->name('highlight.image.delete');
+    Route::post('/highlight/{id}/toggle-active', [HighlightController::class, 'toggleActive'])->name('highlight.toggleActive');
+
+
+
 });
 
 
