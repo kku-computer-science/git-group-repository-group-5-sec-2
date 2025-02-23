@@ -1,18 +1,24 @@
 *** Settings ***
 Documentation     This is a test suite for invalid editing a highlight
-Resource          resource.robot
+Resource          resource_setting_highlight.robot
 
 *** Variables ***
-${USERNAME}          staff@gmail.com
-${PASSWORD}          123456789
-${TITLE}             บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ
-${DESCRIPTION}       วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ ศ. ดร.จักรชัย โสอินทร์ อ. ดร.ญานิกา คงโสรส อ. ดร.เพชร อิ่มทองคำ และ Mr.Chenset Kim เนื่องในโอกาสที่บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ จำนวน 1 บทความวิจัย
-${PICTURE_PATH}      ${CURDIR}\\highlight2.png
-${Researcher_ID}     3
-${PAPER_INDEX}       1
-${PAPER_NOT_SELECT}  0
-${IS_SELECTED}       1
-${row}               1    # row number of the highlight to be edit
+${USERNAME}                staff@gmail.com
+${PASSWORD}                123456789
+${OLD_TITLE}               งานวิจัยดีเด่น
+${NEW_TITLE}               บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ
+${NEW_DETAIL}              วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ ศ. ดร.จักรชัย โสอินทร์ อ. ดร.ญานิกา คงโสรส อ. ดร.เพชร อิ่มทองคำ และ Mr.Chenset Kim เนื่องในโอกาสที่บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ จำนวน 1 บทความวิจัย
+${NEW_COVER_IMAGE_PATH}    ${CURDIR}\\highlight2.png
+${NOT_IMAGE_FILE}          ${CURDIR}\\delete_highlight.robot
+${IMAGE_PATH3}             ${CURDIR}\\image3.png
+${IMAGE_PATH4}             ${CURDIR}\\image4.png
+${IMAGE_PATH5}             ${CURDIR}\\image5.png
+${IMAGE_PATH6}             ${CURDIR}\\image6.png
+${TAG1}                    cp
+${TAG2}                    Khamron
+${TAG3}                    Chakchai
+${TAG4}                    Yanika
+${TAG5}                    Phet
 
 *** Test Cases ***
 Login
@@ -23,70 +29,59 @@ Login
 
 Go To Edit Highlight Page
     Go To Highlight Setting Page
-    Click Edit Highlight Button
 
 Title Can Not Be Null
-    Fill Highlight Form With Validation    ${EMPTY}    ${DESCRIPTION}    ${PICTURE_PATH}    ${Researcher_ID}   ${PAPER_INDEX}    ${IS_SELECTED}
-    Element Should Contain    xpath=//div[@class='alert alert-danger']    The title field is required.
-    Title Should Be    Edit Highlight Paper
-Description Can Be Null
-    Fill Highlight Form With Validation    ${TITLE}    ${EMPTY}    ${PICTURE_PATH}    ${Researcher_ID}   ${PAPER_INDEX}    ${IS_SELECTED}
-    Title Should Be    Highlight Papers
-Picture Can Be Null
     Click Edit Highlight Button
-    Fill Highlight Form With Validation Without Image    ${TITLE}    ${DESCRIPTION}    ${Researcher_ID}   ${PAPER_INDEX}    ${IS_SELECTED}
-    Title Should Be    Highlight Papers  
-Researcher Can Not Be Null
+    Input Title          ${EMPTY}
+    Scroll To Bottom of Page
+    Sleep    1s
+    Submit Highlight Form
+    Title Should Be    edit Highlight
+    Scroll To Bottom of Page
+    Sleep    1s
+    Cancel Highlight Form
+
+Detail Can Not Be Null
     Click Edit Highlight Button
-    Fill Highlight Form With Validation    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${EMPTY}   ${PAPER_INDEX}    ${IS_SELECTED}
-    Title Should Be    Highlight Papers   
-Paper Can Be Null
+    Input Detail     ${EMPTY}
+    Scroll To Bottom of Page
+    Sleep    1s
+    Submit Highlight Form
+    Title Should Be    edit Highlight
+    Scroll To Bottom of Page
+    Sleep    1s
+    Cancel Highlight Form
+
+Cover Image Can Be Only Image File
     Click Edit Highlight Button
-    Fill Highlight Form With Validation    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${Researcher_ID}   ${PAPER_NOT_SELECT}    ${IS_SELECTED}
-    Element Should Contain    xpath=//div[@class='alert alert-danger']    The paper id field is required.
-    Title Should Be    Edit Highlight Paper        
-IsSelected Can Be Null
-    Fill Highlight Form With Validation Without IsSelected    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${Researcher_ID}   ${PAPER_INDEX}
-    Title Should Be    Highlight Papers
-    Sleep    3s
+    Input Cover Image    ${NOT_IMAGE_FILE}
+    Scroll To Bottom of Page
+    Sleep    1s
+    Submit Highlight Form
+    Title Should Be    edit Highlight
+    Scroll To Bottom of Page
+    Sleep    1s
+    Cancel Highlight Form
+
+Image Can Be Null
+    Click Edit Highlight Button
+    Scroll To Bottom of Page
+    Delete All images
+    Submit Highlight Form
+
+Tag Can Not Be Null
+    Click Edit Highlight Button
+    Scroll To Bottom of Page
+    Sleep    1s
+    Select Tags          ${TAG1}    ${TAG2}
+    Submit Highlight Form
+    Title Should Be    edit Highlight
+    Scroll To Bottom of Page
+    Sleep    1s
+    Cancel Highlight Form
     [Teardown]    Close Browser
 
 *** Keywords ***
 Click Edit Highlight Button
-    Scroll Element Into View    xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']
-    Click Link         xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']
-    Title Should Be    Edit Highlight Paper
-
-Fill Highlight Form With Validation
-    [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${Researcher_ID}   ${PAPER_INDEX}    ${IS_SELECTED}
-    Input Text    xpath=//input[@name='title']             ${TITLE}
-    Input Text    xpath=//input[@name='description']    ${DESCRIPTION}
-    Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
-    Select From List By Value    xpath=//select[@id='researcherSelect']    ${RESEARCHER_ID}
-    Select From List By Index    xpath=//select[@id='paperSelect']    ${PAPER_INDEX}    # select the first paper
-    Scroll Element Into View     xpath=//button[@class='btn btn-primary']
-    Select From List By Value    xpath=//select[@name='isSelected']    ${IS_SELECTED}      # click for display highlight at the home page
-    Click Button                 xpath=//button[@class='btn btn-primary']    # click the create highlight button
-    Click Button                 xpath=//button[@id='confirmEditBtn']      # confirm the creation of the highlight
-
-Fill Highlight Form With Validation Without Image
-    [Arguments]    ${TITLE}    ${DESCRIPTION}    ${Researcher_ID}   ${PAPER_INDEX}    ${IS_SELECTED}
-    Input Text    xpath=//input[@name='title']             ${TITLE}
-    Input Text    xpath=//input[@name='description']    ${DESCRIPTION}
-    Select From List By Value    xpath=//select[@id='researcherSelect']    ${RESEARCHER_ID}
-    Select From List By Index    xpath=//select[@id='paperSelect']    ${PAPER_INDEX}    # select the first paper
-    Scroll Element Into View     xpath=//button[@class='btn btn-primary']
-    Select From List By Value    xpath=//select[@name='isSelected']    ${IS_SELECTED}      # click for display highlight at the home page
-    Click Button                 xpath=//button[@class='btn btn-primary']    # click the create highlight button
-    Click Button                 xpath=//button[@id='confirmEditBtn']      # confirm the creation of the highlight
-
-Fill Highlight Form With Validation Without IsSelected
-    [Arguments]    ${TITLE}    ${DESCRIPTION}    ${PICTURE_PATH}    ${Researcher_ID}   ${PAPER_INDEX}
-    Input Text    xpath=//input[@name='title']             ${TITLE}
-    Input Text    xpath=//input[@name='description']    ${DESCRIPTION}
-    Choose File   xpath=//input[@name='picture']           ${PICTURE_PATH}
-    Select From List By Value    xpath=//select[@id='researcherSelect']    ${RESEARCHER_ID}
-    Select From List By Index    xpath=//select[@id='paperSelect']    ${PAPER_INDEX}    # select the first paper
-    Scroll Element Into View     xpath=//button[@class='btn btn-primary']
-    Click Button                 xpath=//button[@class='btn btn-primary']    # click the create highlight button
-    Click Button                 xpath=//button[@id='confirmEditBtn']      # confirm the creation of the highlight
+    Scroll Element Into View    //td[text()='${OLD_TITLE}']
+    Click Element               //td[text()='${OLD_TITLE}']/following-sibling::td//a[@class='btn btn-warning btn-sm']  # click the edit button of the highlight we want to edit
