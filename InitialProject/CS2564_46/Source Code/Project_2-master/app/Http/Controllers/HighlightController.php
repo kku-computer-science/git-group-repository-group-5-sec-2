@@ -227,15 +227,5 @@ class HighlightController extends Controller
         return redirect()->route('highlight.index')->with('success', '✅ อัปเดตสถานะสำเร็จ');
     }
 
-    public function show($id)
-    {
-        $highlight = Highlight::with('images', 'tags')->findOrFail($id);
-        return view('highlightdetail', compact('highlight'));
-    }
-
-
-
-
-
 
 }

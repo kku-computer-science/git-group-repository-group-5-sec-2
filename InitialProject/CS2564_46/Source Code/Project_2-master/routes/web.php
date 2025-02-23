@@ -77,7 +77,6 @@ Route::middleware(['middleware' => 'PreventBackHistory'])->group(function () {
 
 
 Route::get('/allhighlights', [AllHighlightController::class, 'index'])->name('allhighlights');
-Route::get('/highlightdetail/{id}', [HighlightController::class, 'show'])->name('highlight.detail');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/researchers',[ResearcherController::class,'index'])->name('researchers');
 Route::get('researchers/{id}', [ResearcherController::class, 'request'])->name('researchers');
