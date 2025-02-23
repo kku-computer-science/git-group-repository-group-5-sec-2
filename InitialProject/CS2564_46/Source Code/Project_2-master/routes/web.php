@@ -76,7 +76,7 @@ Route::middleware(['middleware' => 'PreventBackHistory'])->group(function () {
 });
 
 
-
+Route::get('/allhighlights', [AllHighlightController::class, 'index'])->name('allhighlights');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/researchers',[ResearcherController::class,'index'])->name('researchers');
 Route::get('researchers/{id}', [ResearcherController::class, 'request'])->name('researchers');
@@ -143,11 +143,13 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('/ajax-get-subcat', [UserController::class, 'getCategory']);
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
-    Route::resource('highlight',HighlightController::class);
-    Route::resource('tags',TagsController::class);
+    Route::resource('highlight', HighlightController::class);
+    Route::resource('tags', TagsController::class);
     Route::delete('/highlight/image/delete/{id}', [HighlightController::class, 'deleteImage'])->name('highlight.image.delete');
     Route::post('/highlight/{id}/toggle-active', [HighlightController::class, 'toggleActive'])->name('highlight.toggleActive');
-    Route::get('/allhighlights', [AllHighlightController::class, 'index'])->name('allhighlights');
+    
+
+
 
 });
 

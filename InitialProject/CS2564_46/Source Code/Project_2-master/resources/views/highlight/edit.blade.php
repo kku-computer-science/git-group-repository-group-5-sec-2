@@ -99,11 +99,13 @@
         <!-- Active Status -->
         <div class="mb-3">
             <label class="form-label">สถานะการแสดงผล</label>
-            <select class="form-select" name="active">
+            <select class="form-select" disabled>
                 <option value="1" {{ $highlight->active == 1 ? 'selected' : '' }}>แสดง</option>
                 <option value="0" {{ $highlight->active == 0 ? 'selected' : '' }}>ไม่แสดง</option>
             </select>
+            <input type="hidden" name="active" value="{{ $highlight->active }}">
         </div>
+
 
 
         <!-- ปุ่มอัปเดต และ ย้อนกลับ -->

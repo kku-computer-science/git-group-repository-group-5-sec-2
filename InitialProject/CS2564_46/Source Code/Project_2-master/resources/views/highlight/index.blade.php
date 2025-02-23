@@ -122,10 +122,9 @@
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    {{-- <th>Cover Image</th> --}}
                     <th>Title</th>
                     <th>Creator</th>
-                    <th>Active</th> <!-- ✅ เพิ่มคอลัมน์แสดงสถานะ -->
+                    <th>Active</th> <!-- ✅ ใช้ Toggle Switch -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -133,20 +132,24 @@
                 @foreach ($highlights as $highlight)
                 <tr>
                     <td>{{ $highlight->id }}</td>
-                    {{-- <td>
-                        <img src="{{ asset($highlight->cover_image) }}" alt="Cover Image" class="img-thumbnail" style="max-width: 100px;">
-                    </td> --}}
                     <td class="text-truncate" style="max-width: 150px;">{{ $highlight->title }}</td>
                     <td>{{ $highlight->creator }}</td>
         
-                    <!-- ✅ เพิ่มการแสดงสถานะ Active -->
+                    <!-- ✅ ใช้ Toggle Switch สำหรับ Active -->
                     <td class="text-center">
-                        @if($highlight->active)
-                            <span class="badge bg-success">กำลังแสดงข้อมูล</span>
-                        @else
-                            <span class="badge bg-danger">ไม่แสดงข้อมูล</span>
-                        @endif
+                        <form action="{{ route('highlight.toggleActive', $highlight->id) }}" method="POST" class="toggle-form">
+                            @csrf
+                            <input type="hidden" name="active" value="{{ $highlight->active }}">
+                            <label class="toggle-switch">
+                                <input type="checkbox" class="toggle-active"
+                                       data-id="{{ $highlight->id }}"
+                                       {{ $highlight->active ? 'checked' : '' }}>
+                                <span class="slider"></span>
+                            </label>
+                        </form>
                     </td>
+                    
+                    
         
                     <td>
                         <a href="{{ route('highlight.edit', $highlight->id) }}" class="btn btn-warning btn-sm">Edit</a>
@@ -164,6 +167,9 @@
             </tbody>
         </table>
         
+        <div class="d-flex justify-content-center mt-3">
+            {{ $highlights->links() }} 
+        </div>
 
         {{-- Tags Lists --}}
         <div class="mt-4">
@@ -200,14 +206,42 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="d-flex justify-content-center mt-3">
+                {{ $tags->links() }} 
+            </div>
         </div>
         
     </div>
     @endsection
 
-    @section('scripts')
-    
-    
+    @section('javascript')
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("✅ JavaScript Loaded");
+            
+            document.querySelectorAll(".toggle-active").forEach(function (toggle) {
+                toggle.addEventListener("change", function (event) {
+                    let form = this.closest(".toggle-form"); // หา `<form>` ที่ใกล้ที่สุด
+                    let input = form.querySelector("input[name='active']");
+                    let activeCount = document.querySelectorAll(".toggle-active:checked").length; // นับจำนวน Active
+
+                    // ✅ เช็คว่ามี Active เกิน 5 อันหรือไม่
+                    if (activeCount > 5 && this.checked) {
+                        alert("❌ ไม่สามารถเปิด Active เกิน 5 รายการได้!"); // แสดง Alert แจ้งเตือน
+                        event.preventDefault(); // ป้องกันการเปลี่ยนค่า
+                        this.checked = false;  // ปิด Toggle กลับไป
+                        return;
+                    }
+
+                    // ✅ อัปเดตค่า hidden input ก่อน submit form
+                    input.value = this.checked ? 1 : 0;
+                    form.submit();
+                });
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @endsection
 
