@@ -53,24 +53,26 @@
         }
     </style>
 
-    <body>
-        <div class="container py-5">
-            {{-- Debug เช็คค่า cover_image
-            @foreach($highlights as $highlight)
-            <p>{{ $highlight->cover_image }}</p>
-            @endforeach --}}
+<body>
+    <div class="container py-5">
+        {{-- Debug เช็คค่า cover_image --}}
+        {{-- @foreach($highlights as $highlight)
+        <p>{{ $highlight->cover_image }}</p>
+        @endforeach --}}
 
-            <h1 class="text-center fw-bold mb-4 ">Highlights</h1>
-            <div class="row g-4">
-                @foreach($highlights as $highlight)
-                    <div class="col-lg-4 col-md-6 col-12">
+        <h1 class="text-center fw-bold mb-4 ">Highlights</h1>
+        <div class="row g-4">
+            @foreach($highlights as $highlight)
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a href="{{ route('highlight.detail', ['id' => $highlight->id]) }}" class="text-decoration-none">
                         <div class="highlight-item">
                             <img src="{{ asset($highlight->cover_image) }}" class="img-fluid rounded">
                             <div class="hover-title">{{ $highlight->title }}</div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
-    </body>
+    </div>
+</body>
 @endsection
