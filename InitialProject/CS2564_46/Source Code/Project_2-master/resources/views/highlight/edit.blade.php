@@ -23,7 +23,7 @@
             padding: 25px;
         }
 
-        
+
     </style>
 </head>
 
@@ -88,9 +88,9 @@
             <div class="ms-4 d-flex flex-wrap gap-2">
                 @foreach ($tags as $tag)
                     <div class="col-md-1">
-                        <input type="checkbox" class="form-check-input" name="tags[]" value="{{ $tag->id }}"
+                        <input type="checkbox" class="form-check-input" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}"
                             {{ in_array($tag->id, $highlight->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
-                        <label class="form-check-label">{{ $tag->name }}</label>
+                        <label for="tag{{ $tag->id }}" class="form-check-label">{{ $tag->name }}</label>
                     </div>
                 @endforeach
             </div>
@@ -117,16 +117,16 @@
 </div>
 @endsection
 
-    
+
 
     @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function deleteImage(imageId) {
             if (!confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) return;
-    
+
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    
+
             fetch(`/highlight/image/delete/${imageId}`, {
                 method: 'DELETE',
                 headers: {
@@ -148,7 +148,7 @@
             });
         }
     </script>
-    
+
     @endsection
 
 </body>
