@@ -8,6 +8,7 @@
     <style>
         body {
             font-family: "Noto Sans Thai";
+            
         }
 
         .title {
@@ -52,7 +53,7 @@
         }
 
         .cover-image {
-            width: 100vw;
+            width: 100%;
             height: 40vw;
             object-fit: cover;
         }
