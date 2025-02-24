@@ -39,7 +39,7 @@
         
         <!-- Title -->
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label">หัวเรื่อง</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required>
             @error('title')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -48,7 +48,7 @@
 
         <!-- Detail -->
         <div class="mb-3">
-            <label for="detail" class="form-label">Detail</label>
+            <label for="detail" class="form-label">รายละเอียด</label>
             <textarea class="form-control @error('detail') is-invalid @enderror" id="detail" name="detail" 
                 rows="8" style="height: 200px; resize: vertical;" required></textarea>
             @error('detail')
@@ -58,7 +58,7 @@
 
         <!-- Cover Image Upload -->
         <div class="mb-3">
-            <label for="cover_image" class="form-label">Cover Image</label>
+            <label for="cover_image" class="form-label">อัปโหลดภาพปก (ขนาดแนะนำ 1600 x 900)</label>
             <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" required>
             <img id="coverPreview" src="#" alt="Cover Preview" class="img-fluid mt-2 d-none" style="max-width: 200px;">
             @error('cover_image')
@@ -68,7 +68,7 @@
 
         <!-- Multiple Images Upload -->
         <div class="mb-3">
-            <label for="images" class="form-label">Upload Images</label>
+            <label for="images" class="form-label">อัปโหลดอัลบั้มภาพ</label>
             <input type="file" class="form-control @error('images') is-invalid @enderror" id="images" name="images[]" multiple>
             <div id="imagePreviewContainer" class="mt-2"></div>
             @error('images')
