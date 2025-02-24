@@ -151,6 +151,7 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
 
 
 
+
 // Route::get('/example/pdf', 'ExampleController@pdf_index');
 /*use App\Http\Controllers\FileUpload;
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
