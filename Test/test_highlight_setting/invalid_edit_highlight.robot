@@ -69,16 +69,15 @@ Image Can Be Null
     Delete All images
     Submit Highlight Form
 
-Tag Can Not Be Null
+Tag Can Be Null
     Click Edit Highlight Button
     Scroll To Bottom of Page
     Sleep    1s
     Select Tags          ${TAG1}    ${TAG2}
     Submit Highlight Form
-    Title Should Be    edit Highlight
-    Scroll To Bottom of Page
+    Title Should Be    Highlight
+    Scroll Down
     Sleep    1s
-    Cancel Highlight Form
     [Teardown]    Close Browser
 
 *** Keywords ***

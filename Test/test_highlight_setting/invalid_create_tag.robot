@@ -5,7 +5,7 @@ Resource          resource_setting_highlight.robot
 *** Variables ***
 ${USERNAME}          staff@gmail.com
 ${PASSWORD}          123456789
-${OLD_TAG_NAME}      Khamron
+${OLD_TAG_NAME}      cp
 
 *** Test Cases ***
 Login

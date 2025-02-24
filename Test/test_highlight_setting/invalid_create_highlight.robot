@@ -70,7 +70,7 @@ Images Can Be Null
     Submit Highlight Form
     Title Should Be    Highlight
 
-Tag Can Not Be Null
+Tag Can Be Null
     Click Highlight Create Button
     Input Title          ${TITLE}
     Input Detail         ${DETAIL}
@@ -78,7 +78,8 @@ Tag Can Not Be Null
     Input Images         ${IMAGE_PATH1}    ${IMAGE_PATH2}
     Scroll To Bottom of Page
     Submit Highlight Form
-    Title Should Be    create Highlight
+    Title Should Be    Highlight
+    Scroll Down
     Sleep    1s 
     [Teardown]    Close Browser         
 
