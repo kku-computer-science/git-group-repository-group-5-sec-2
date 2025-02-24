@@ -14,15 +14,15 @@ class HighlightController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:highlight-list');
+        //$this->middleware('permission:highlight-list');
     }
 
     // แสดงรายการ Highlight Papers
 
     public function index()
     {
-        $highlights = Highlight::all();
-        $tags = Tags::all(); // ✅ ดึง Tags ทั้งหมดจาก DB
+        $highlights = Highlight::paginate(10);
+        $tags = Tags::paginate(10); // ✅ ดึง Tags ทั้งหมดจาก DB
         return view('highlight.index', compact('tags', 'highlights')); // ✅ ส่งตัวแปร $tags ไปยัง View
     }
 
@@ -53,8 +53,10 @@ class HighlightController extends Controller
         $coverFolder = public_path('images/coverimg');
         $albumFolder = public_path('images/albumimg');
 
-        if (!File::exists($coverFolder)) File::makeDirectory($coverFolder, 0777, true, true);
-        if (!File::exists($albumFolder)) File::makeDirectory($albumFolder, 0777, true, true);
+        if (!File::exists($coverFolder))
+            File::makeDirectory($coverFolder, 0777, true, true);
+        if (!File::exists($albumFolder))
+            File::makeDirectory($albumFolder, 0777, true, true);
 
         // ✅ อัปโหลด Cover Image
         $coverImage = $request->file('cover_image');
@@ -107,76 +109,76 @@ class HighlightController extends Controller
     // ✅ ฟังก์ชันอัปเดต Highlight
     // ✅ ฟังก์ชันอัปเดต Highlight
     public function update(Request $request, $id)
-{
-    $highlight = Highlight::findOrFail($id);
+    {
+        $highlight = Highlight::findOrFail($id);
 
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'detail' => 'required',
-        'cover_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        'tags' => 'required',
-        'active' => 'required|boolean'  // ✅ เพิ่มการตรวจสอบค่า active
-    ]);
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'detail' => 'required',
+            'cover_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tags' => 'required',
+            'active' => 'required|boolean'  // ✅ เพิ่มการตรวจสอบค่า active
+        ]);
 
-    $highlight->title = $request->title;
-    $highlight->detail = $request->detail;
-    $highlight->active = $request->active; // ✅ อัปเดต Active Status
+        $highlight->title = $request->title;
+        $highlight->detail = $request->detail;
+        $highlight->active = $request->active; // ✅ อัปเดต Active Status
 
-    // ✅ อัปเดต Cover Image ถ้ามีการเปลี่ยนแปลง
-    if ($request->hasFile('cover_image')) {
-        if (File::exists(public_path($highlight->cover_image))) {
-            File::delete(public_path($highlight->cover_image));
+        // ✅ อัปเดต Cover Image ถ้ามีการเปลี่ยนแปลง
+        if ($request->hasFile('cover_image')) {
+            if (File::exists(public_path($highlight->cover_image))) {
+                File::delete(public_path($highlight->cover_image));
+            }
+            $coverImage = $request->file('cover_image');
+            $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
+            $coverImage->move(public_path('images/coverimg'), $coverImageName);
+            $highlight->cover_image = 'images/coverimg/' . $coverImageName;
         }
-        $coverImage = $request->file('cover_image');
-        $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
-        $coverImage->move(public_path('images/coverimg'), $coverImageName);
-        $highlight->cover_image = 'images/coverimg/' . $coverImageName;
-    }
 
-    $highlight->save();
+        $highlight->save();
 
-    // ✅ อัปโหลดรูปใหม่ถ้ามี
-    if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $image) {
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('images/albumimg'), $imageName);
-            $imagePath = 'images/albumimg/' . $imageName;
+        // ✅ อัปโหลดรูปใหม่ถ้ามี
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images/albumimg'), $imageName);
+                $imagePath = 'images/albumimg/' . $imageName;
 
-            images::create([
-                'highlight_id' => $highlight->id,
-                'image_path' => $imagePath
-            ]);
+                images::create([
+                    'highlight_id' => $highlight->id,
+                    'image_path' => $imagePath
+                ]);
+            }
         }
+
+        // ✅ อัปเดต Tags
+        $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
+        $highlight->tags()->sync($selectedTags);
+
+        return redirect()->route('highlight.index')->with('success', 'Highlight ถูกอัปเดตเรียบร้อยแล้ว!');
     }
-
-    // ✅ อัปเดต Tags
-    $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
-    $highlight->tags()->sync($selectedTags);
-
-    return redirect()->route('highlight.index')->with('success', 'Highlight ถูกอัปเดตเรียบร้อยแล้ว!');
-}
 
 
     // ✅ ฟังก์ชันลบรูปภาพ
     public function deleteImage($id)
-{
-    $image = images::where('id', $id)->first();
+    {
+        $image = images::where('id', $id)->first();
 
-    if (!$image) {
-        return response()->json(['success' => false, 'message' => 'ไม่พบรูปภาพที่ต้องการลบ!']);
+        if (!$image) {
+            return response()->json(['success' => false, 'message' => 'ไม่พบรูปภาพที่ต้องการลบ!']);
+        }
+
+        // ลบไฟล์ออกจากโฟลเดอร์
+        if (File::exists(public_path($image->image_path))) {
+            File::delete(public_path($image->image_path));
+        }
+
+        // ลบออกจากฐานข้อมูล
+        $image->delete();
+
+        return response()->json(['success' => true, 'message' => 'ลบรูปภาพเรียบร้อยแล้ว!']);
     }
-
-    // ลบไฟล์ออกจากโฟลเดอร์
-    if (File::exists(public_path($image->image_path))) {
-        File::delete(public_path($image->image_path));
-    }
-
-    // ลบออกจากฐานข้อมูล
-    $image->delete();
-
-    return response()->json(['success' => true, 'message' => 'ลบรูปภาพเรียบร้อยแล้ว!']);
-}
 
 
 
@@ -207,5 +209,29 @@ class HighlightController extends Controller
 
         return redirect()->route('highlight.index')->with('success', 'Highlight ถูกลบเรียบร้อยแล้ว!');
     }
+
+    public function toggleActive(Request $request, $id)
+    {
+        // นับจำนวน Highlight ที่ active อยู่
+        $activeCount = Highlight::where('active', true)->count();
+
+        // ตรวจสอบว่าถ้าเปิดเกิน 5 ให้ return กลับไป
+        if ($activeCount >= 5 && $request->input('active') == 1) {
+            return redirect()->route('highlight.index')->with('error', '❌ ไม่สามารถเปิด Active เกิน 5 รายการได้!');
+        }
+
+        $highlight = Highlight::findOrFail($id);
+        $highlight->active = $request->input('active', 0);
+        $highlight->save();
+
+        return redirect()->route('highlight.index')->with('success', '✅ อัปเดตสถานะสำเร็จ');
+    }
+
+    public function show($id)
+    {
+        $highlight = Highlight::with('images', 'tags')->findOrFail($id);
+        return view('highlightdetail', compact('highlight'));
+    }
+
 
 }

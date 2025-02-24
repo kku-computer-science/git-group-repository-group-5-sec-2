@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Highlight extends Model
 {
     use HasFactory;
-
+    
     protected $table = 'highlights';
 
     // ✅ เพิ่มฟิลด์ที่อนุญาตให้บันทึกได้
