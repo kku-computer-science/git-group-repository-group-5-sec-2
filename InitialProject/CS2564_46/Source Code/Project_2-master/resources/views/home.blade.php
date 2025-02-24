@@ -35,118 +35,80 @@
 
     .carousel-icon-brightness { filter: brightness(0.1); }
 
-    .px {
-        padding-left: 100;
-        padding-right: 100;
-    }
-
     .title {
         font-size: 13px;
         overflow: auto;
         max-height: 80px;
     }
 
-    .paper-type {font-size: 9px;}
-    .teacher-name {font-weight: 600;}
-    .author-name {font-size: 11px}
-    .description {
-        font-size: 11px;
-        height: 50; 
-        opacity: 90%;
-    }
-
-    .hl-section{
-        max-width: 2000px !important; 
-        height: 450;
-    }
-
-    .hl-card {
-        height: fit-content;
+    .hl-banner {
         width: 100%;
-        max-width: 400px;
+        max-width: 1200px;
+        height: 400px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
-    .hl-image{ 
-        height: 150;
+    .hl-image{
         width: 100%;
-        max-width: 400px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hl-title {
+        font-size: 18px;
+        position: absolute;
+        bottom: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: #fff;
+        padding: 3px 6px;
+        border-radius: 0px;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+        background-color: rgba(10, 10, 10, 0.6);
+        backdrop-filter: blur(1px);
+        width: 100%;
     }
 
     .carousel-indicators {
-        top: -11;
-        bottom: auto;
         height: 10;
         justify-content: center;
         z-index:-10;
     }
 
-    a {
-        text-decoration: none !important;
-    }
-
-    
-
 </style>
 @section('content')
 <div class="container home ">
 
-    <div class="hl-section container d-sm-flex justify-content-center overflow-auto mt-4 w-100">
-    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner mt-1">
-            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isSelected == 1)->chunk(2) as $index => $chunk)
-                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <div class="row px">
-                        @foreach($chunk as $hlpaper)
-                            <div class="{{ count($chunk) === 1 ? 'col-xl-12' : 'col-xl-6' }}">
-                                <div class="hl-card card mb-5 h-100 shadow border border-2">
-                                    <div class="p-3">
-                                        <a id="sourceHyperLink" href="{{ $hlpaper->paper->paper_url }}" target="_blank">
-                                            <img src="{{$hlpaper->picture}}" class="hl-image d-block" alt="Highlight Picture">
-                                            <h6 class="title">
-                                                @if(!empty($hlpaper->title))
-                                                    {{ $hlpaper->title ?? 'null' }}
-                                                @else
-                                                    {{ $hlpaper->paper->paper_name ?? 'null' }}
-                                                @endif
-                                            </h6>
-                                        </a>
-                                        
-                                        <p class="paper-type border border-2 p-1 d-inline-block">{{ $hlpaper->paper->paper_type ?? 'null' }}</p>
-                                        <p class="description overflow-auto">{{ $hlpaper->description ?? 'No description' }}</p>
-                                            @if(!empty($hlpaper->paper->teacher))
-                                                @foreach($hlpaper->paper->teacher as $teacher)
-                                                    <a id="teacherProfileHyperLink" class="teacher-name author-name" href="{{ route('detail', Crypt::encrypt($teacher['id'])) }}" target="_blank">{{ $teacher->fname_en }} {{ $teacher->lname_en }}</a><i>,</i>
-                                                @endforeach
-                                            @endif
-                                            @if(!empty($hlpaper->paper->author))
-                                                @foreach($hlpaper->paper->author as $author)
-                                                    <i id="nonTeacherName" class="author-name">{{ $author->author_fname }} {{ $author->author_lname }}</i><i>,</i>
-                                                @endforeach
-                                            @endif
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+    <div class="hl-banner container d-sm-flex justify-content-center mt-5">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
+                @endforeach
+            </div>
+            <div class="carousel-inner">
+                @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
+                            <img src="{{$hl->cover_image}}" class="d-block w-100 h-100" alt="highlight image">
+                            <h1 class="hl-title">{{$hl->title}}</h1>
+                        </a>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="carousel-indicators">
-            @foreach($hlpapers->filter(fn($hlpaper) => $hlpaper->isSelected == 1)->chunk(2) as $index => $chunk)
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
-            @endforeach
-        </div>
-
-        <!-- Navigation Buttons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="max-width:100;">
-            <span class="carousel-control-prev-icon carousel-icon-brightness" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="max-width:100;">
-            <span class="carousel-control-next-icon carousel-icon-brightness" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
     </div>
 
 
@@ -360,7 +322,7 @@
 
         title: {
             display: true,
-            text: 'Report the total number of articles ( 5 years : cumulative)',
+            text: '{{ trans('message.total_article_graph') }}',
             fontSize: 20
         }
 
