@@ -11,7 +11,9 @@
         }
 
         .title {
-            font-size: 28px;
+            font-size: 32px;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
 
         .img-container {
@@ -74,20 +76,10 @@
             font-family: "Noto Sans Thai", "Kanit", sans-serif !important;
         }
 
-        .tag-capsule {
-            display: inline-block;
-            padding: 2px 10px;
-            margin: 5px;
-            background-color: #007bff; /* Adjust the background color */
-            color: white;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .tag-capsule:hover {
-            background-color: #0056b3; /* Adjust hover color */
+        .detail {
+            font-size: 18px;
+            white-space: pre-wrap;
+            font-family: "Noto Sans Thai", "Kanit", sans-serif !important;
         }
 
     </style>
@@ -99,10 +91,11 @@
         <div class="container mt-3 px">
             <div>
 
-                <div class="card-header">
+                <div>
                     <h1 class="title">{{ $highlight->title }}</h1>
                 </div>
-                <div class="mt-2">
+                <hr>
+                <div class="my-4">
                     <p class="info" id="creationInfo">{{trans('message.publish')}} :
                         {{$highlight->created_at->format('Y-m-d H:i')}} {{trans('message.by')}} {{$highlight->creator}}
                     </p>
@@ -113,8 +106,9 @@
                             </a>
                         @endforeach
                     </p>
-                    <p>{!! $highlight->detail !!}</p>
+                    <pre class="detail">{!! $highlight->detail !!}</pre>
                 </div>
+                <hr>
                 <i> Gallery </i>
                 <div class="py-2 col-12">
                     <div class="px-2 container-fluid">
