@@ -50,7 +50,12 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        h2 {
+            font-family: 'Prompt', sans-serif;
+        }
     </style>
+
 <div class="container home ">
 <head>
     <meta charset="UTF-8">
@@ -66,7 +71,10 @@
         @endforeach --}}
 
         <h1 class="text-center fw-bold mb-4 ">Highlight</h1>
-        <h2 class="text-center fw-bold mb-4 ">Tag: <span class="text-primary">{{ $tagName }}</span></h2>
+        <h2 class="text-center fw-bold mb-4 ">
+            {{ trans('message.search_result') }}:
+            <span class="text-primary">{{ $tagName }}</span>
+        </h2>
         <div class="row g-4">
             @foreach($highlights as $highlight)
                 <div class="col-lg-4 col-md-6 col-12">
