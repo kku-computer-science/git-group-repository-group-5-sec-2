@@ -3,6 +3,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Thai:wght@100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         body {
@@ -72,6 +73,23 @@
         p {
             font-family: "Noto Sans Thai", "Kanit", sans-serif !important;
         }
+
+        .tag-capsule {
+            display: inline-block;
+            padding: 2px 10px;
+            margin: 5px;
+            background-color: #007bff; /* Adjust the background color */
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .tag-capsule:hover {
+            background-color: #0056b3; /* Adjust hover color */
+        }
+
     </style>
 
     <body>
@@ -90,7 +108,9 @@
                     </p>
                     <p class="info" id="tagsInfo">{{trans('message.tags')}} :
                         @foreach($highlight->tags as $tag)
-                            <a href="highlights/tag/{{$tag->name}}" id="tagLink-{{$tag->name}}">{{$tag->name}}</a>
+                            <a href="highlights/tag/{{$tag->name}}" id="tagLink-{{$tag->name}}">
+                                <i class="fas fa-tag"></i> {{$tag->name}}
+                            </a>
                         @endforeach
                     </p>
                     <p>{!! $highlight->detail !!}</p>
