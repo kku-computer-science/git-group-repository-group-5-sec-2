@@ -43,8 +43,8 @@
 
     .hl-banner {
         width: 100%;
-        max-width: 1200px;
-        height: 400px;
+        /*max-width: 1200px;*/
+        /*height: 400px;*/
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -95,7 +95,7 @@
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                         <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
                             <img src="{{$hl->cover_image}}" class="d-block w-100 h-100" alt="highlight image">
-                            <h1 class="hl-title">{{$hl->title}}</h1>
+                            <!--<h1 class="hl-title">{{$hl->title}}</h1>-->
                         </a>
                     </div>
                 @endforeach
