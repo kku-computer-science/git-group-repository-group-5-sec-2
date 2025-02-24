@@ -3,6 +3,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Thai:wght@100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         body {
@@ -10,7 +11,9 @@
         }
 
         .title {
-            font-size: 28px;
+            font-size: 32px;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
 
         .img-container {
@@ -72,6 +75,13 @@
         p {
             font-family: "Noto Sans Thai", "Kanit", sans-serif !important;
         }
+
+        .detail {
+            font-size: 18px;
+            white-space: pre-wrap;
+            font-family: "Noto Sans Thai", "Kanit", sans-serif !important;
+        }
+
     </style>
 
     <body>
@@ -81,20 +91,24 @@
         <div class="container mt-3 px">
             <div>
 
-                <div class="card-header">
+                <div>
                     <h1 class="title">{{ $highlight->title }}</h1>
                 </div>
-                <div class="mt-2">
+                <hr>
+                <div class="my-4">
                     <p class="info" id="creationInfo">{{trans('message.publish')}} :
                         {{$highlight->created_at->format('Y-m-d H:i')}} {{trans('message.by')}} {{$highlight->creator}}
                     </p>
                     <p class="info" id="tagsInfo">{{trans('message.tags')}} :
                         @foreach($highlight->tags as $tag)
-                            <a href="highlights/tag/{{$tag->name}}" id="tagLink-{{$tag->name}}">{{$tag->name}}</a>
+                            <a href="highlights/tag/{{$tag->name}}" id="tagLink-{{$tag->name}}">
+                                <i class="fas fa-tag"></i> {{$tag->name}}
+                            </a>
                         @endforeach
                     </p>
-                    <p>{!! $highlight->detail !!}</p>
+                    <pre class="detail">{!! $highlight->detail !!}</pre>
                 </div>
+                <hr>
                 <i> Gallery </i>
                 <div class="py-2 col-12">
                     <div class="px-2 container-fluid">
