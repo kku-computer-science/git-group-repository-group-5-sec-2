@@ -41,27 +41,35 @@
 
         <!-- Title -->
         <div class="mb-3">
-            <label class="form-label">Title</label>
+            <label class="form-label">หัวเรื่อง</label>
             <input type="text" class="form-control" name="title" value="{{ $highlight->title }}" required>
         </div>
 
         <!-- Detail -->
         <div class="mb-3">
-            <label class="form-label">Detail</label>
+            <label class="form-label">รายละเอียด</label>
             <textarea class="form-control" name="detail" rows="8" style="height: 200px; resize: vertical;" required>{{ $highlight->detail }}</textarea>
         </div>
 
         <!-- Cover Image -->
         <div class="mb-3">
-            <label class="form-label">Cover Image ปัจจุบัน</label>
+            <label class="form-label">ภาพปัจจุบัน</label>
             <img src="{{ asset($highlight->cover_image) }}" class="img-fluid mt-2 col-md-12" >
-            <label class="form-label mt-3">Cover Image ใหม่</label>
+            <label class="form-label mt-3">อัปโหลดภาพปกใหม่ (ขนาดแนะนำ 1600 x 900)</label>
             <input type="file" class="form-control" name="cover_image">
         </div>
 
+        
+        
+        <!-- อัปโหลด Images ใหม่ -->
+        <div class="mb-3">
+            <label class="form-label">เพิ่มอัลบั้มใหม่</label>
+            <input type="file" class="form-control" name="images[]" multiple>
+        </div>
+        
         <!-- Images ที่อัปโหลดไปแล้ว -->
         <div class="mb-3">
-            <label class="form-label">Images ที่อัปโหลดแล้ว</label>
+            <label class="form-label">อัลบั้มภาพที่อัปโหลดแล้ว</label>
             <div class="d-flex flex-wrap">
                 @foreach ($highlight->images as $image)
                     <div id="image-{{ $image->id }}" class="position-relative m-2">
@@ -73,13 +81,6 @@
                     </div>
                 @endforeach
             </div>
-        </div>
-
-
-        <!-- อัปโหลด Images ใหม่ -->
-        <div class="mb-3">
-            <label class="form-label">เพิ่ม Images ใหม่</label>
-            <input type="file" class="form-control" name="images[]" multiple>
         </div>
 
         <!-- Tags -->
