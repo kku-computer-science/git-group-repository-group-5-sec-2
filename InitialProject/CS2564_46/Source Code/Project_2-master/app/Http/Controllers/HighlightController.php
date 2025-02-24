@@ -40,16 +40,15 @@ class HighlightController extends Controller
      */
     public function store(Request $request)
     {
-        // ✅ ตรวจสอบข้อมูลที่รับมา
+        // ตรวจสอบข้อมูลที่รับมา
         $request->validate([
             'title' => 'required|string|max:255',
             'detail' => 'required',
-            'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tags' => 'required' // ✅ แก้จาก `string` เป็น `required` อย่างเดียว
+            'cover_image' => 'required|image',
+            'images.*' => 'image'
         ]);
 
-        // ✅ ตรวจสอบและสร้างโฟลเดอร์
+        // ตรวจสอบและสร้างโฟลเดอร์
         $coverFolder = public_path('images/coverimg');
         $albumFolder = public_path('images/albumimg');
 
@@ -58,17 +57,17 @@ class HighlightController extends Controller
         if (!File::exists($albumFolder))
             File::makeDirectory($albumFolder, 0777, true, true);
 
-        // ✅ อัปโหลด Cover Image
+        // อัปโหลด Cover Image
         $coverImage = $request->file('cover_image');
         $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
         $coverImage->move($coverFolder, $coverImageName);
         $coverPath = 'images/coverimg/' . $coverImageName;
 
-        // ✅ ดึงชื่อผู้ใช้จาก Auth
+        // ดึงชื่อผู้ใช้จาก Auth
         $user = Auth::user();
-        $creatorName = $user->fname_th;
+        $creatorName = $user->fname_th . ' ' . $user->lname_th;  // เพิ่มนามสกุล
 
-        // ✅ สร้าง Highlight ใหม่
+        // สร้าง Highlight ใหม่
         $highlight = Highlight::create([
             'title' => $request->title,
             'detail' => $request->detail,
@@ -77,7 +76,7 @@ class HighlightController extends Controller
             'active' => false
         ]);
 
-        // ✅ อัปโหลดหลายรูปไปยัง `public/images/albumimg`
+        // อัปโหลดหลายรูป
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
@@ -91,12 +90,15 @@ class HighlightController extends Controller
             }
         }
 
-        // ✅ แปลง Tags ให้อยู่ในรูปแบบ Array แล้วบันทึก
-        $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
-        $highlight->tags()->sync($selectedTags);
+        // บันทึก Tags
+        if ($request->has('tags')) {
+            $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
+            $highlight->tags()->sync($selectedTags);
+        }
 
         return redirect()->route('highlight.index')->with('success', 'Highlight ถูกสร้างเรียบร้อยแล้ว!');
     }
+
 
     // ✅ ฟังก์ชันแก้ไข Highlight
     public function edit($id)
@@ -115,17 +117,15 @@ class HighlightController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'detail' => 'required',
-            'cover_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tags' => 'required',
-            'active' => 'required|boolean'  // ✅ เพิ่มการตรวจสอบค่า active
+            'cover_image' => 'image',
+            'images.*' => 'image',
+            'active' => 'required|boolean'
         ]);
 
         $highlight->title = $request->title;
         $highlight->detail = $request->detail;
-        $highlight->active = $request->active; // ✅ อัปเดต Active Status
+        $highlight->active = $request->active;
 
-        // ✅ อัปเดต Cover Image ถ้ามีการเปลี่ยนแปลง
         if ($request->hasFile('cover_image')) {
             if (File::exists(public_path($highlight->cover_image))) {
                 File::delete(public_path($highlight->cover_image));
@@ -138,7 +138,6 @@ class HighlightController extends Controller
 
         $highlight->save();
 
-        // ✅ อัปโหลดรูปใหม่ถ้ามี
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
@@ -152,9 +151,13 @@ class HighlightController extends Controller
             }
         }
 
-        // ✅ อัปเดต Tags
-        $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
-        $highlight->tags()->sync($selectedTags);
+        // อัปเดต Tags
+        if ($request->has('tags')) {
+            $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
+            $highlight->tags()->sync($selectedTags);
+        } else {
+            $highlight->tags()->sync([]); // ถ้าไม่มี tags ให้ล้าง tags ทั้งหมด
+        }
 
         return redirect()->route('highlight.index')->with('success', 'Highlight ถูกอัปเดตเรียบร้อยแล้ว!');
     }
