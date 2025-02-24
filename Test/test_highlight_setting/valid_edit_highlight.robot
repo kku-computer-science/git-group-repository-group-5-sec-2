@@ -32,6 +32,7 @@ Edit Highlight
     Input Detail       ${NEW_DETAIL}
     Scroll To Bottom of Page
     Input Cover Image  ${NEW_COVER_IMAGE_PATH}
+    Delete All images
     Input Images       ${IMAGE_PATH3}    ${IMAGE_PATH4}    ${IMAGE_PATH5}    ${IMAGE_PATH6}
     Select Tags        ${TAG3}    ${TAG4}    ${TAG5}
     Submit Highlight Form
