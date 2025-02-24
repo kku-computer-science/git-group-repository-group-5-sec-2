@@ -24,4 +24,19 @@ return [
 'publish' => 'เผยแพร่',
 'by' => 'โดย',
 
+//researchproject
+'academicproject' => 'โครงการบริการวิชาการ/ โครงการวิจัย',
+'fund_project_duration' => 'ระยะเวลาโครงการ',
+'fund_type' => 'ประเภททุนวิจัย',
+'fund_agency' => 'หน่วยงานที่สนันสนุนทุน',
+'fund_responsible_agency' => 'หน่วยงานที่รับผิดชอบ',
+'fund_alloc' => 'งบประมาณที่ได้รับจัดสรร',
+
+'order' => 'ลำดับ',
+'year' => 'ปี',
+'project_name' => 'ชื่อโครงการ',
+'detail' => 'รายละเอียด',
+'project_manager' => 'ผู้รับผิดชอบโครงการ',
+'status' => 'สถานะ',
+
 ];
