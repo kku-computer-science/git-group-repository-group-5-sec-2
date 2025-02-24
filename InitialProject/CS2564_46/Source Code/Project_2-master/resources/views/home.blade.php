@@ -36,15 +36,15 @@
     .carousel-icon-brightness { filter: brightness(0.1); }
 
     .title {
-        font-size: 13px;
+        font-size: 15px;
         overflow: auto;
         max-height: 80px;
     }
 
     .hl-banner {
         width: 100%;
-        max-width: 1200px;
-        height: 400px;
+        /* max-width: 1200px; */
+        /* height: 400px; */
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -58,6 +58,7 @@
     }
 
     .hl-title {
+        font-family: "Noto Sans Thai", "Kanit", sans-serif !important;
         font-size: 18px;
         position: absolute;
         bottom: 35px;
@@ -83,7 +84,7 @@
 @section('content')
 <div class="container home ">
 
-    <div class="hl-banner container d-sm-flex justify-content-center mt-5">
+    <div class="hl-banner container justify-content-center mt-5">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
