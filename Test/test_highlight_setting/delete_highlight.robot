@@ -1,11 +1,11 @@
 *** Settings ***
 Documentation     This is a test suite for deleting a highlight
-Resource          resource.robot
+Resource          resource_setting_highlight.robot
 
 *** Variables ***
 ${USERNAME}          staff@gmail.com
 ${PASSWORD}          123456789
-${row}               4    # row number of the highlight to be deleted    
+${TITLE}             งานวิจัยดีเด่น
 
 *** Test Cases ***
 Login
@@ -16,14 +16,14 @@ Login
 
 Delete Highlight
     Go To Highlight Setting Page
-    Title Should Be    Highlight Papers
+    Title Should Be    Highlight
     Click Delete Highlight Button
-    Sleep    3s
+    Handle Alert       accept
+    Scroll Down
+    Sleep    2s
     [Teardown]    Close Browser
 
 *** Keywords ***
 Click Delete Highlight Button
-    Scroll Element Into View    xpath=//tbody/tr[${row}]//button[@class='btn btn-danger btn-sm']    
-    Click Button                xpath=//tbody/tr[${row}]//button[@class='btn btn-danger btn-sm']    # find the delete button of the highlight for the row we want to delete
-    ${ID}=                      Get Text    xpath=//table/tbody/tr[${row}]/td[1]    # td[1] is the ID column
-    Click Button                xpath=//*[@id="deleteModal-${ID}"]/div/div/div[3]/form/button    # delete highlight using the ID
+    Scroll Element Into View    //td[text()='${TITLE}']
+    Click Element               //td[text()='${TITLE}']/following-sibling::td//button[@class='btn btn-danger btn-sm']  # click the edit button of the highlight we want to edit

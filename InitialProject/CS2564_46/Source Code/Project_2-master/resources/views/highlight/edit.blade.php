@@ -129,21 +129,19 @@
                     <input type="file" class="form-control" name="images[]" multiple>
                 </div>
 
-                <!-- Tags -->
-                <div class="mb-3">
-                    <label class="form-label">เลือก Tags</label>
-                    <div class="d-flex flex-wrap gap-3">
-                        @foreach ($tags as $tag)
-                            <div class="col-md-1">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}"
-                                        id="tag{{ $tag->id }}" {{ in_array($tag->id, $highlight->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                    <label for="tag{{ $tag->id }}">{{ $tag->name }}</label>
-                                </div>
-                            </div>
-                        @endforeach
+        <!-- Tags -->
+        <div class="mb-3">
+            <label class="form-label">เลือก Tags</label>
+            <div class="ms-4 d-flex flex-wrap gap-2">
+                @foreach ($tags as $tag)
+                    <div class="col-md-1">
+                        <input type="checkbox" class="form-check-input" name="tags[]" value="{{ $tag->id }}"
+                            {{ in_array($tag->id, $highlight->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
+                        <label class="form-check-label">{{ $tag->name }}</label>
                     </div>
-                </div>
+                @endforeach
+            </div>
+        </div>
 
                 <!-- Active Status -->
                 <div class="mb-3">
@@ -154,6 +152,8 @@
                     </select>
                     <input type="hidden" name="active" value="{{ $highlight->active }}">
                 </div>
+
+
 
                 <!-- ปุ่มอัปเดต และ ย้อนกลับ -->
                 <div class="d-flex gap-2">
