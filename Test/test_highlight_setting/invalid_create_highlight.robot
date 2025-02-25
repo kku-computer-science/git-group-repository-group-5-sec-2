@@ -34,6 +34,7 @@ Title Can Not Be Null
     Submit Highlight Form
     Title Should Be    create Highlight
     Sleep    1s
+    Scroll To Bottom of Page
     Cancel Highlight Form
 
 Detail Can Not Be Null
@@ -46,6 +47,7 @@ Detail Can Not Be Null
     Submit Highlight Form
     Title Should Be    create Highlight
     Sleep    1s
+    Scroll To Bottom of Page
     Cancel Highlight Form
 
 Cover Image Can Not Be Null
@@ -58,6 +60,7 @@ Cover Image Can Not Be Null
     Submit Highlight Form
     Title Should Be    create Highlight
     Sleep    1s  
+    Scroll To Bottom of Page
     Cancel Highlight Form
 
 Images Can Be Null
