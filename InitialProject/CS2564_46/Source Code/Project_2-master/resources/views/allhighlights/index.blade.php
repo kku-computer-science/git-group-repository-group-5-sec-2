@@ -61,7 +61,7 @@
         <p>{{ $highlight->cover_image }}</p>
         @endforeach --}}
 
-        <h1 class="text-center fw-bold mb-4 ">Highlights</h1>
+        <h1 class="text-center fw-bold mb-4 ">{{trans('message.Highlights')}}</h1>
         <div class="row g-4">
             @foreach($highlights as $highlight)
                 <div class="col-lg-4 col-md-6 col-12">

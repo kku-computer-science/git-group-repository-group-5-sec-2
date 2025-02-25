@@ -99,6 +99,7 @@ class HighlightController extends Controller
         return redirect()->route('highlight.index')->with('success', 'Highlight ถูกสร้างเรียบร้อยแล้ว!');
     }
 
+
     // ✅ ฟังก์ชันแก้ไข Highlight
     public function edit($id)
     {
