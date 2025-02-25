@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------------------------------------
 -Highlight
  run sequence
-    1. valid_create_tag.robot 	# before run this test, tag "Khamron" should be created 
+    1. valid_create_tag.robot 	# before run this test, tag "Khamron" should be created. Or run valid_create_tag.robot
     2. invalid_create_tag.robot
     3. valid_edit_tag.robot     # before run this test, tag "Chakchai", "Yanika" and "Phet"  should be created 
     4. invalid_edit_tag.robot
