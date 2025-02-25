@@ -42,19 +42,21 @@
     }
 
     .hl-banner {
-        width: 100%;
-        /* max-width: 1200px; */
-        /* height: 400px; */
+        width: 100vw;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0px;
+        margin: 0px;
     }
     
     .hl-image{
         width: 100%;
         height: 100%;
+        min-height: 100vh;
         object-fit: cover;
+        margin: 0;
     }
 
     .hl-title {
@@ -75,42 +77,46 @@
     }
 
     .carousel-indicators {
-        height: 10;
+        height: 15;
+        scale: 1.5;
         justify-content: center;
         z-index:-10;
     }
 
 </style>
 @section('content')
+
+<div class="hl-banner justify-content-center mt-0 shadow">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
+            @endforeach
+        </div>
+        <div class="carousel-inner">
+            @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
+                    <img src="{{ $hl->cover_image ? $hl->cover_image : images/imag_user/no-image.png }}" class="hl-image" alt="highlight image">
+                        <!-- <h1 class="hl-title">{{$hl->title}}</h1> -->
+                    </a>
+                </div>
+            @endforeach
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
 <div class="container home ">
 
-    <div class="hl-banner container justify-content-center mt-5">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
-                @endforeach
-            </div>
-            <div class="carousel-inner">
-                @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
-                            <img src="{{$hl->cover_image}}" class="d-block w-100 h-100" alt="highlight image">
-                            <h1 class="hl-title">{{$hl->title}}</h1>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
+    
 
 
     <!-- Modal -->

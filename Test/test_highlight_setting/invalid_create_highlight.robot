@@ -34,6 +34,7 @@ Title Can Not Be Null
     Submit Highlight Form
     Title Should Be    create Highlight
     Sleep    1s
+    Scroll To Bottom of Page
     Cancel Highlight Form
 
 Detail Can Not Be Null
@@ -46,6 +47,7 @@ Detail Can Not Be Null
     Submit Highlight Form
     Title Should Be    create Highlight
     Sleep    1s
+    Scroll To Bottom of Page
     Cancel Highlight Form
 
 Cover Image Can Not Be Null
@@ -58,6 +60,7 @@ Cover Image Can Not Be Null
     Submit Highlight Form
     Title Should Be    create Highlight
     Sleep    1s  
+    Scroll To Bottom of Page
     Cancel Highlight Form
 
 Images Can Be Null
@@ -82,7 +85,3 @@ Tag Can Be Null
     Scroll Down
     Sleep    1s 
     [Teardown]    Close Browser         
-
-*** Keywords ***
-Click Highlight Create Button
-    Click Link         //div[contains(@class, 'container mt-5')]//a[contains(@class, 'btn btn-primary mb-3')]  # click the create highlight button

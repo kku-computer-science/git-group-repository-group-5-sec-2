@@ -117,7 +117,7 @@
 
     @section('content')
     <div class="container mt-5">
-        <h2 class="title">รายการ Highlight Papers</h2>
+        <h2>รายการ Highlights</h2>
 
         {{-- Highlight Lists --}}
         <a href="{{ route('highlight.create') }}" class="btn btn-primary my-3">+ สร้าง Highlight ใหม่</a>

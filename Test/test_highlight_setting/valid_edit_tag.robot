@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation     This is a test suite for valid editing a tag
 Resource          resource_setting_highlight.robot
-Resource    valid_edit_highlight.robot
 
 *** Variables ***
 ${USERNAME}          staff@gmail.com

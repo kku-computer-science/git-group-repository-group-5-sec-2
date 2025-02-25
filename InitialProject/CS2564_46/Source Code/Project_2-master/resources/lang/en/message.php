@@ -25,5 +25,19 @@ return [
 'by' => 'by',
 'search_result' => 'Search Results',
 
+//researchproject
+'academicproject' => 'Academic service projects/ research projects',
+'fund_project_duration' => 'Project Duration',
+'fund_type' => 'Types of research grants',
+'fund_agency' => 'Funding Agency',
+'fund_responsible_agency' => 'Responsible agency',
+'fund_alloc' => 'Allocated budget',
+
+'order' => 'Order',
+'year' => 'Year',
+'project_name' => 'Project Name',
+'detail' => 'Detail',
+'project_manager' => 'Project Manager',
+'status' => 'Status',
 
 ];
