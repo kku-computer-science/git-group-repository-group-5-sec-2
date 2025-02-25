@@ -8,6 +8,9 @@ deployment:
     - /bin/unzip -o "${PROJECTCODEPATH}"/vendor.zip -d $SOURCEPATH
     - /bin/rm -r $SOURCEPATH/vendor.zip
     - /bin/rm -r $SOURCEPATH/public/index.php
+    - /bin/rm -r $SOURCEPATH/public/images
+    - /bin/rm -r $SOURCEPATH/public/img
+    - /bin/rm -r $SOURCEPATH/public/files
     - /bin/rm -r $DEPLOYPATH/assets
     - /bin/rm -r $DEPLOYPATH/css
     - /bin/rm -r $DEPLOYPATH/js
@@ -17,8 +20,6 @@ deployment:
     - /bin/rm -r $DEPLOYPATH/build
     - /bin/rm -r $DEPLOYPATH/dist
     - /bin/rm -r $DEPLOYPATH/fonts
-    - /bin/rm -r $DEPLOYPATH/images
-    - /bin/rm -r $DEPLOYPATH/img
     - /bin/rm -r $DEPLOYPATH/files
     - /bin/rm -r $DEPLOYPATH/plugins
     - /bin/rm -r $DEPLOYPATH/word-template
