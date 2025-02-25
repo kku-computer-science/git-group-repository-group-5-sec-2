@@ -4,8 +4,8 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${BROWSER}          Chrome
-${SERVER}            http://127.0.0.1:8000
-# ${SERVER}            http://cs05sec267.cpkkuhost.com
+# ${SERVER}            http://127.0.0.1:8000
+${SERVER}            http://cs05sec267.cpkkuhost.com
 ${TAG_NAME}         cp
 ${TAG_PAGE_URL}     ${SERVER}/highlights/tag/${TAG_NAME}
 ${HEADING}          xpath=//h1[contains(text(),'ผลการค้นหาสำหรับ')]

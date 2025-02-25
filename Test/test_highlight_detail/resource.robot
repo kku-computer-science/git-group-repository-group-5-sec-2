@@ -3,8 +3,8 @@ Documentation    A resource file for testing highlight detail page.
 Library           SeleniumLibrary
 
 *** Variables ***
-${SERVER}            http://127.0.0.1:8000
-# ${SERVER}            http://cs05sec267.cpkkuhost.com
+# ${SERVER}            http://127.0.0.1:8000
+${SERVER}            http://cs05sec267.cpkkuhost.com
 ${BROWSER}           Chrome
 ${HIGHLIGHT_DETAIL_URL}        ${SERVER}/highlightdetail/1
 ${COVER_IMAGE}                 xpath=//img[contains(@class,'cover-image')]
