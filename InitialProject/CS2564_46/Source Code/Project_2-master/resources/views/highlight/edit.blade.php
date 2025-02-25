@@ -104,7 +104,7 @@
                     <label class="form-label">Cover Image ปัจจุบัน</label>
                     <img src="{{ asset($highlight->cover_image) }}" class="img-fluid mt-2 col-md-12">
                     <label class="form-label mt-3">Cover Image ใหม่</label>
-                    <input type="file" class="form-control" name="cover_image">
+                    <input type="file" class="form-control" name="cover_image" accept="image/*">
                 </div>
 
                 <!-- Images ที่อัปโหลดไปแล้ว -->
@@ -126,22 +126,24 @@
                 <!-- อัปโหลด Images ใหม่ -->
                 <div class="mb-3">
                     <label class="form-label">เพิ่ม Images ใหม่</label>
-                    <input type="file" class="form-control" name="images[]" multiple>
+                    <input type="file" class="form-control" name="images[]" accept="image/*" multiple>
                 </div>
 
-        <!-- Tags -->
-        <div class="mb-3">
-            <label class="form-label">เลือก Tags</label>
-            <div class="ms-4 d-flex flex-wrap gap-2">
-                @foreach ($tags as $tag)
-                    <div class="col-md-1">
-                        <input type="checkbox" class="form-check-input" name="tags[]" value="{{ $tag->id }}"
-                            {{ in_array($tag->id, $highlight->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
-                        <label class="form-check-label">{{ $tag->name }}</label>
+                <!-- Tags -->
+                <div class="mb-3">
+                    <label class="form-label">เลือก Tags</label>
+                    <div class="d-flex flex-wrap gap-3">
+                        @foreach ($tags as $tag)
+                            <div class="col-md-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}"
+                                        id="tag{{ $tag->id }}" {{ in_array($tag->id, $highlight->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                    <label for="tag{{ $tag->id }}">{{ $tag->name }}</label>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
-            </div>
-        </div>
+                </div>
 
                 <!-- Active Status -->
                 <div class="mb-3">
@@ -152,8 +154,6 @@
                     </select>
                     <input type="hidden" name="active" value="{{ $highlight->active }}">
                 </div>
-
-
 
                 <!-- ปุ่มอัปเดต และ ย้อนกลับ -->
                 <div class="d-flex gap-2">

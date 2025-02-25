@@ -113,7 +113,7 @@
                 <div class="mb-3">
                     <label for="cover_image" class="form-label">อัปโหลดภาพปก (ขนาดแนะนำ 1600 x 900)</label>
                     <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image"
-                        name="cover_image" required>
+                        name="cover_image" accept="image/*" required>
                     <img id="coverPreview" src="#" alt="Cover Preview" class="img-fluid mt-2 d-none"
                         style="max-width: 200px;">
                     @error('cover_image')
@@ -125,7 +125,7 @@
                 <div class="mb-3">
                     <label for="images" class="form-label">อัปโหลดอัลบั้มภาพ</label>
                     <input type="file" class="form-control @error('images') is-invalid @enderror" id="images"
-                        name="images[]" multiple>
+                        name="images[]" accept="image/*" multiple>
                     <div id="imagePreviewContainer" class="mt-2"></div>
                     @error('images')
                         <div class="invalid-feedback">{{ $message }}</div>
