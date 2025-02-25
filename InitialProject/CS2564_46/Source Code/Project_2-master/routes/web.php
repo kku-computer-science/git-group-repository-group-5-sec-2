@@ -42,6 +42,7 @@ use App\Http\Controllers\HighlightController;
 use App\Models\Highlight_paper;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\AllHighlightController;
+use App\Http\Controllers\TagsFilterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,8 +152,10 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     
 
 
-
 });
+
+Route::get('/highlights/tag/{tagName}', [TagsFilterController::class, 'filterByTag']);
+
 
 
 

@@ -109,7 +109,6 @@ class HighlightController extends Controller
     }
 
     // ✅ ฟังก์ชันอัปเดต Highlight
-    // ✅ ฟังก์ชันอัปเดต Highlight
     public function update(Request $request, $id)
     {
         $highlight = Highlight::findOrFail($id);
@@ -235,6 +234,4 @@ class HighlightController extends Controller
         $highlight = Highlight::with('images', 'tags')->findOrFail($id);
         return view('highlightdetail', compact('highlight'));
     }
-
-
 }
