@@ -53,7 +53,8 @@
     
     .hl-image{
         width: 100%;
-        height: 80vh;
+        height: 100%;
+        min-height: 100vh;
         object-fit: cover;
         margin: 0;
     }
@@ -76,7 +77,8 @@
     }
 
     .carousel-indicators {
-        height: 10;
+        height: 15;
+        scale: 1.5;
         justify-content: center;
         z-index:-10;
     }
@@ -84,7 +86,7 @@
 </style>
 @section('content')
 
-<div class="hl-banner justify-content-center mt-0 bg-warning">
+<div class="hl-banner justify-content-center mt-0 shadow">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
@@ -95,7 +97,7 @@
             @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
-                    <img src="{{ $hl->cover_image }}" class="hl-image" alt="highlight image">
+                    <img src="{{ $hl->cover_image ? $hl->cover_image : images/imag_user/no-image.png }}" class="hl-image" alt="highlight image">
                         <!-- <h1 class="hl-title">{{$hl->title}}</h1> -->
                     </a>
                 </div>
