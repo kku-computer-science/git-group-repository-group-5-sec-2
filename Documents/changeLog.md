@@ -14,12 +14,9 @@
 ### การปรับปรุงฟีเจอร์
 
 #### [การจัดการไฮไลท์] (Task: *As an administrative staff, I want to create and edit highlights.*)
+- เพิ่มระบบ **แท็ก (Tags)** สำหรับจัดหมวดหมู่ไฮไลท์
 - เพิ่มตัวเลือกให้สามารถ **เลือกแท็ก (Tags)** เพื่อจัดหมวดหมู่ของไฮไลท์
 - เพิ่มระบบ **เปิด-ปิดการแสดงผล** ของไฮไลท์ที่ต้องการนำเสนอ
-
-#### [การจัดการแท็ก] (Task: *As an administrative staff, I want to categorize highlights using tags.*)
-- เพิ่มระบบ **แท็ก (Tags)** สำหรับจัดหมวดหมู่ไฮไลท์
-- เจ้าหน้าที่สามารถ **เพิ่ม/แก้ไข/ลบ** แท็กได้จากเมนู **Highlight Setting**
 - ระบบสามารถแสดงผลไฮไลท์ตามแท็กที่เกี่ยวข้องได้
 
 #### [การแสดงผลงานวิจัยและไฮไลท์ร่วมกับแท็ก] (Task: *As a user, I want to view research information and highlights.*)
