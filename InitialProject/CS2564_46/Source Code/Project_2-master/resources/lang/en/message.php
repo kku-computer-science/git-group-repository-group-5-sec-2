@@ -23,6 +23,7 @@ return [
 'tags' => 'Tags',
 'publish' => 'Publish',
 'by' => 'by',
+'search_result' => 'Search Results',
 
 //researchproject
 'academicproject' => 'Academic service projects/ research projects',
