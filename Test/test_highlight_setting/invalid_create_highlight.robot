@@ -82,7 +82,3 @@ Tag Can Be Null
     Scroll Down
     Sleep    1s 
     [Teardown]    Close Browser         
-
-*** Keywords ***
-Click Highlight Create Button
-    Click Link         //div[contains(@class, 'container mt-5')]//a[contains(@class, 'btn btn-primary mb-3')]  # click the create highlight button
