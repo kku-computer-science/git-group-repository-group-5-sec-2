@@ -96,7 +96,7 @@
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
                     <img src="{{ $hl->cover_image }}" class="hl-image" alt="highlight image">
-                        <h1 class="hl-title">{{$hl->title}}</h1>
+                        <!-- <h1 class="hl-title">{{$hl->title}}</h1> -->
                     </a>
                 </div>
             @endforeach
