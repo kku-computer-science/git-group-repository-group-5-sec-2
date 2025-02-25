@@ -27,18 +27,18 @@
 - รองรับการอัปโหลด **รูปโปรไฟล์**
 - สามารถเปลี่ยนแปลง **คำนำหน้าชื่อ, ชื่อ, นามสกุล และอีเมล** ได้จากหน้า **User Profile**
 
-#### [การสร้างและแก้ไขไฮไลท์] (Task: *As a staff member, I want to create and edit highlights.*)
+#### [การสร้างและแก้ไขไฮไลท์] (Task: *As an administrative staff, I want to create and edit highlights.*)
 - เพิ่มฟีเจอร์ให้เจ้าหน้าที่สามารถสร้าง **Highlight ใหม่**
 - รองรับการ **อัปโหลดภาพปก** และ **อัลบั้มรูปภาพ** สำหรับแต่ละไฮไลท์
 - เพิ่มตัวเลือกให้สามารถ **เลือกแท็ก (Tags)** เพื่อจัดหมวดหมู่ของไฮไลท์
 - เพิ่ม UI สำหรับ **แก้ไขไฮไลท์ที่มีอยู่** และอัปเดตข้อมูลได้ตามต้องการ
 
-#### [การจัดการแท็ก] (Task: *As a staff member, I want to categorize highlights using tags.*)
+#### [การจัดการแท็ก] (Task: *As an administrative staff, I want to categorize highlights using tags.*)
 - เพิ่มระบบ **แท็ก (Tags)** สำหรับจัดหมวดหมู่ไฮไลท์
 - เจ้าหน้าที่สามารถ **เพิ่ม/แก้ไข/ลบ** แท็กได้จากเมนู **Highlight Setting**
 - ระบบสามารถแสดงผลไฮไลท์ตามแท็กที่เกี่ยวข้องได้
 
-#### [การแสดงผลงานวิจัยและไฮไลท์] (Task: *As a visitor, I want to view research information and highlights.*)
+#### [การแสดงผลงานวิจัยและไฮไลท์] (Task: *As a user, I want to view research information and highlights.*)
 - เพิ่มหน้าแสดงผล **Highlight Papers** ให้ผู้เข้าชมสามารถดูรายละเอียดแต่ละไฮไลท์ได้
 - รองรับการแสดงไฮไลท์ที่มี **ภาพปกและรายละเอียด** แบบครบถ้วน
 - เพิ่มการกรองไฮไลท์ตาม **แท็ก (Tags)** เพื่อให้ค้นหาไฮไลท์ที่สนใจได้ง่ายขึ้น
