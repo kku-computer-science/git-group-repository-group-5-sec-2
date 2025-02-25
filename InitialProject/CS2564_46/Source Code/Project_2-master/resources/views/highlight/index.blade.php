@@ -175,6 +175,7 @@
         <div class="mt-4">
             <h4>Tags ทั้งหมด</h4>
         
+            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ สร้าง Tags ใหม่</a>
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
