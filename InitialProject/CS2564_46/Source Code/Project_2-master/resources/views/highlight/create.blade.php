@@ -74,6 +74,32 @@
             justify-content: center;
             align-items: center;
         }
+
+        /* tag v.2 */
+        .dropdown-menu {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .selected-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+            padding-bottom: 10px;
+        }
+        .selected-item {
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .selected-item span {
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -139,8 +165,7 @@
                         @foreach ($tags as $tag)
                             <div class="col-md-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}"
-                                        id="tag{{ $tag->id }}">
+                                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}">
                                     <label for="tag{{ $tag->id }}">{{ $tag->name }}</label>
                                 </div>
                             </div>
@@ -148,11 +173,48 @@
                     </div>
                     @error('tags')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
-                    @enderror
+                    @enderror 
 
                     <!-- ✅ ปุ่มสำหรับไปที่หน้าเพิ่ม Tag -->
                     <a href="{{ route('tags.create') }}" class="btn btn-primary mt-2">+ สร้าง Tag ใหม่</a>
                 </div>
+
+                <!-- แก้  tag v.2-->
+
+                <!-- <div class="mb-3">
+                    <label class="form-label">เลือกหัวข้อที่เกี่ยวข้อง</label>
+                    
+                    <div class="dropdown">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Search and select..." 
+                            id="dropdownInput" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false">
+
+                        <ul class="dropdown-menu w-100" id="dropdownContent">
+                            @foreach ($tags as $tag)
+                                <li>
+                                    <label class="dropdown-item" for="tag{{ $tag->id }}">
+                                        <input 
+                                            class="form-check-input" 
+                                            type="checkbox" 
+                                            name="tags[]" 
+                                            value="{{ $tag->id }}" 
+                                            id="tag{{ $tag->id }}">
+                                        <span>{{ $tag->name }}</span>
+                                    </label>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div> -->
+
+                    <!-- Show selected items -->
+                    <!-- <div class="selected-items" id="selectedItems"></div>
+                </div> -->
+
+
 
                 <button type="submit" class="btn btn-primary">สร้าง Highlight</button>
                 <a href="{{ route('highlight.index') }}" class="btn btn-secondary">ยกเลิก</a>
@@ -186,6 +248,67 @@
                     });
                 }
             });
+
+
+            // tag v.2
+            // const dropdownInput = document.getElementById('dropdownInput');
+            // const dropdownContent = document.getElementById('dropdownContent');
+            // const selectedItemsContainer = document.getElementById('selectedItems');
+
+            // Filter options based on input
+            // dropdownInput.addEventListener('input', (e) => {
+            // const filter = e.target.value.toLowerCase();
+            // const labels = dropdownContent.querySelectorAll('label');
+            // labels.forEach((label) => {
+            //     const text = label.textContent.toLowerCase();
+            //     if (text.includes(filter)) {
+            //     label.parentElement.style.display = 'block';
+            //     } else {
+            //     label.parentElement.style.display = 'none';
+            //     }
+            // });
+            // });
+
+            // Handle checkbox selection
+            // dropdownContent.addEventListener('change', (e) => {
+            //     const checkbox = e.target;
+            //     const tagName = checkbox.closest('label').querySelector('span').textContent; // Get the tag name from <span>
+            //     const value = checkbox.value;
+
+            //     if (checkbox.checked) {
+            //         // Add the selected tag to the container
+            //         const item = document.createElement('div');
+            //         item.className = 'selected-item';
+            //         item.textContent = tagName; // Use the tag name here
+            //         const removeButton = document.createElement('span');
+            //         removeButton.textContent = '✕';
+            //         removeButton.style.cursor = 'pointer';
+            //         removeButton.addEventListener('click', () => {
+            //             checkbox.checked = false; // Uncheck the corresponding checkbox
+            //             selectedItemsContainer.removeChild(item); // Remove the item from selected list
+            //         });
+            //         item.appendChild(removeButton);
+            //         selectedItemsContainer.appendChild(item);
+            //     } else {
+            //         // Remove the tag from the container when unchecked
+            //         const items = selectedItemsContainer.querySelectorAll('.selected-item');
+            //         items.forEach((item) => {
+            //             if (item.textContent.includes(tagName)) {
+            //                 selectedItemsContainer.removeChild(item);
+            //             }
+            //         });
+            //     }
+            // });
+            // Close dropdown when clicking outside
+            // document.addEventListener('click', (e) => {
+            // const dropdown = document.querySelector('.dropdown');
+            // if (!dropdown.contains(e.target)) {
+            //     dropdown.querySelector('.dropdown-menu').classList.remove('show');
+            // }
+            // });
+
+
+            
         </script>
     @endsection
 </body>
