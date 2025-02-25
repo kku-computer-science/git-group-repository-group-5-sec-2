@@ -16,8 +16,8 @@ Login
 
 Create Tag
     Go To Highlight Setting Page
-    Scroll Down
-    Sleep    1s 
+    Click Highlight Create Button
+    Scroll To Bottom of Page  
     Click Tag Create Button
     Title Should Be    Create Tags
     Input Text      //input[@id='name']    ${TAG_NAME}
@@ -26,7 +26,3 @@ Create Tag
     Scroll To Bottom of Page
     Sleep    2s
     [Teardown]    Close Browser
-
-*** Keywords ***
-Click Tag Create Button
-    Click Link    //div[contains(@class, 'mt-4')]//a[contains(@class, 'btn btn-primary mb-3')]  # click the create tag button

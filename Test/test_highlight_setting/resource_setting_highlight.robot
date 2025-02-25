@@ -66,14 +66,21 @@ Input Images
 Select Tags
     [Arguments]    @{TAGS}
     FOR    ${tag}    IN    @{TAGS}
-        ${TAG_ID}        Get Element Attribute   //label[text()='${tag}']    For  # get the id of the tag
-        Click Element    //input[@type='checkbox' and @id='${TAG_ID}']            # click the tag
+        ${TAG_ID}    Get Element Attribute    //label[contains(text(),'${tag}')]   for  # get the id of the tag
+        Execute JavaScript    document.getElementById('${TAG_ID}').click();            # click the tag
     END
 Submit Highlight Form
     Click Button     //button[@type='submit']    # confirm the creation of the highlight
 
 Cancel Highlight Form
     Click Link      //a[@class='btn btn-secondary']    # cancel the creation of the highlight
+
+Click Highlight Create Button
+    Click Link         //div[contains(@class, 'container mt-5')]//a[contains(@class, 'btn btn-primary mb-3')]  # click the create highlight button
+    Title Should Be    create Highlight
+
+Click Tag Create Button
+    Click Link    //div[contains(@class, 'mb-3')]//a[contains(@class, 'btn btn-primary mt-2')]  # click the create tag button
 
 Scroll Down
     ${document_height}=    Execute JavaScript    return document.body.scrollHeight
