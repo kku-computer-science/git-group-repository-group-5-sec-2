@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-25T15:40:20.133199" rpa="false" schemaversion="5">
+<suite id="s1" name="Highlight Tag" source="C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_tag\highlight_tag.robot">
+<test id="s1-t1" name="Test Tag Filter Page" line="6">
+<kw name="Open Tag Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T15:40:20.426651" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/highlights/tag/cp'.</msg>
+<arg>${TAG_PAGE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T15:40:20.426426" elapsed="6.480050"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T15:40:26.906859" elapsed="0.087960"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T15:40:28.995452" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T15:40:26.995126" elapsed="2.000419"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${HEADING}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T15:40:28.995694" elapsed="0.011164"/>
+</kw>
+<status status="PASS" start="2025-02-25T15:40:20.425836" elapsed="8.581144"/>
+</kw>
+<kw name="Verify Tag Page Loaded" owner="resource">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-25T15:40:29.039685" level="INFO">${heading_text} = ผลการค้นหาสำหรับ: cp</msg>
+<var>${heading_text}</var>
+<arg>${HEADING}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T15:40:29.007720" elapsed="0.032007"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${heading_text}</arg>
+<arg>${TAG_NAME}</arg>
+<arg>msg=Heading should contain the tag name</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-02-25T15:40:29.039958" elapsed="0.000316"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T15:40:29.058602" level="INFO">Element 'xpath=//p[contains(text(),'พบทั้งหมด')]' is displayed.</msg>
+<arg>${COUNT_TEXT}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T15:40:29.040409" elapsed="0.018291"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${HIGHLIGHT_ITEM}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T15:40:29.058849" elapsed="0.009846"/>
+</kw>
+<status status="PASS" start="2025-02-25T15:40:29.007340" elapsed="0.061464"/>
+</kw>
+<kw name="Click First Highlight" owner="resource">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T15:40:29.069571" level="INFO">Clicking element 'xpath=(//div[contains(@class,'col-12')])//a'.</msg>
+<arg>${FIRST_HIGHLIGHT_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T15:40:29.069370" elapsed="4.962811"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T15:40:37.032902" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T15:40:34.032365" elapsed="3.000630"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-25T15:40:37.037192" level="INFO">${current_url} = http://127.0.0.1:8000/highlightdetail/1</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-25T15:40:37.033148" elapsed="0.004082"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${current_url}</arg>
+<arg>highlightdetail</arg>
+<arg>msg=Expected URL to contain "highlightdetail"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-02-25T15:40:37.037374" elapsed="0.000184"/>
+</kw>
+<kw name="Go Back" owner="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" start="2025-02-25T15:40:37.037668" elapsed="0.023257"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T15:40:39.062142" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T15:40:37.061290" elapsed="2.001035"/>
+</kw>
+<status status="PASS" start="2025-02-25T15:40:29.069134" elapsed="9.993441"/>
+</kw>
+<kw name="Close Tag Page" owner="resource">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T15:40:39.063802" elapsed="2.361947"/>
+</kw>
+<status status="PASS" start="2025-02-25T15:40:39.063317" elapsed="2.362538"/>
+</kw>
+<status status="PASS" start="2025-02-25T15:40:20.425178" elapsed="21.000894"/>
+</test>
+<status status="PASS" start="2025-02-25T15:40:20.134592" elapsed="21.292082"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Highlight Tag">Highlight Tag</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
