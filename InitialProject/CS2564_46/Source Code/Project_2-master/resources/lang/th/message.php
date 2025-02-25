@@ -23,5 +23,6 @@ return [
 'tags' => 'แท็ก',
 'publish' => 'เผยแพร่',
 'by' => 'โดย',
+'search_result' => 'ผลการค้นหา',
 
 ];

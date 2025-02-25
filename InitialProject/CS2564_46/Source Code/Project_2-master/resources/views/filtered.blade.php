@@ -45,6 +45,7 @@
     }
 </style>
 
+
 <div class="container py-5">
     <h1 class="fw-bold mb-4 text-primary">
         ผลการค้นหาสำหรับ: <span class="text-secondary">{{ $tagName }}</span>
@@ -78,6 +79,7 @@
                             <div class="text-muted">
                                 สร้างเมื่อ {{ \Carbon\Carbon::parse($highlight->updated_at)->format('d/m/Y') }}
                             </div>
+
                         </div>
                     </div>
                 </a>
