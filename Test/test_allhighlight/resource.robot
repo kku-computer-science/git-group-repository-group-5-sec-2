@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    A resource file for testing highlight banner in home page.
+Documentation    A resource file for testing all highlights page.
 Library           SeleniumLibrary
 
 *** Variables ***
