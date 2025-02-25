@@ -47,13 +47,13 @@ Click Valid Highlight Link
 Click Valid Next Button
     [Documentation]    Click the next button and verify the active slide changes.
     Wait Until Element Is Visible    ${NEXT_BUTTON}    timeout=5s
-    Click Button    ${NEXT_BUTTON}
+    Click Element    ${NEXT_BUTTON}
     Wait Until Keyword Succeeds    3 times    1s    Active Slide Changed    ${INITIAL_ACTIVE_ID}
 
 Click Valid Prev Button
     [Documentation]    Click the previous button and verify the active slide changes.
     Wait Until Element Is Visible    ${PREV_BUTTON}    timeout=5s
-    Click Button    ${PREV_BUTTON}
+    Click Element    ${PREV_BUTTON}
     Wait Until Keyword Succeeds    3 times    1s    Active Slide Changed    ${INITIAL_ACTIVE_ID}
 
 Click Invalid Highlight Link

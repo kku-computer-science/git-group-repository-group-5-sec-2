@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-25T12:02:18.416992" rpa="false" schemaversion="5">
+<suite id="s1" name="Highlightdetail Valid" source="C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_detail\highlightdetail_valid.robot">
+<test id="s1-t1" name="Test Verify Page Loaded" line="6">
+<kw name="Open Highlight Detail Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:18.692958" level="INFO">Opening browser 'Chrome' to base url 'http://cs05sec267.cpkkuhost.com/highlightdetail/12'.</msg>
+<arg>${HIGHLIGHT_DETAIL_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T12:02:18.692714" elapsed="7.583624"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T12:02:26.277054" elapsed="0.047071"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T12:02:28.325210" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T12:02:26.324564" elapsed="2.000783"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${COVER_IMAGE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T12:02:28.325561" elapsed="0.011296"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:18.692080" elapsed="9.644887"/>
+</kw>
+<kw name="Verify Highlight Detail Loaded" owner="resource">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:28.349763" level="INFO">Element 'xpath=//img[contains(@class,'cover-image')]' is displayed.</msg>
+<arg>${COVER_IMAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:28.337547" elapsed="0.012293"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:28.366070" level="INFO">Element 'xpath=//h1[contains(@class,'title')]' is displayed.</msg>
+<arg>${TITLE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:28.349974" elapsed="0.016173"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:28.378138" level="INFO">Element 'xpath=//p[@id='creationInfo']' is displayed.</msg>
+<arg>${CREATION_INFO}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:28.366280" elapsed="0.011934"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:28.389575" level="INFO">Element 'xpath=//pre[contains(@class,'detail')]' is displayed.</msg>
+<arg>${DETAIL_TEXT}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:28.378345" elapsed="0.011311"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:28.337300" elapsed="0.052444"/>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T12:02:28.390176" elapsed="2.185464"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:28.389973" elapsed="2.185767"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:18.691406" elapsed="11.884601"/>
+</test>
+<test id="s1-t2" name="Test Click Tag Link" line="11">
+<kw name="Open Highlight Detail Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:30.577631" level="INFO">Opening browser 'Chrome' to base url 'http://cs05sec267.cpkkuhost.com/highlightdetail/12'.</msg>
+<arg>${HIGHLIGHT_DETAIL_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T12:02:30.577460" elapsed="6.231523"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T12:02:36.809141" elapsed="0.039380"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T12:02:38.850510" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T12:02:36.849260" elapsed="2.001400"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${COVER_IMAGE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T12:02:38.850901" elapsed="0.014559"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:30.577244" elapsed="8.288326"/>
+</kw>
+<kw name="Verify Highlight Detail Loaded" owner="resource">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:38.885442" level="INFO">Element 'xpath=//img[contains(@class,'cover-image')]' is displayed.</msg>
+<arg>${COVER_IMAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:38.866174" elapsed="0.019352"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:38.905919" level="INFO">Element 'xpath=//h1[contains(@class,'title')]' is displayed.</msg>
+<arg>${TITLE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:38.885678" elapsed="0.020336"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:38.921203" level="INFO">Element 'xpath=//p[@id='creationInfo']' is displayed.</msg>
+<arg>${CREATION_INFO}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:38.906181" elapsed="0.015107"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:38.936524" level="INFO">Element 'xpath=//pre[contains(@class,'detail')]' is displayed.</msg>
+<arg>${DETAIL_TEXT}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:38.921450" elapsed="0.015180"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:38.865877" elapsed="0.070852"/>
+</kw>
+<kw name="Click Tag Link" owner="resource">
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:38.942171" level="INFO">${current_url} = https://cs05sec267.cpkkuhost.com/highlightdetail/12</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-25T12:02:38.937382" elapsed="0.004827"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:38.942534" level="INFO">Clicking element 'xpath=(//a[starts-with(@id, 'tagLink-')])[1]'.</msg>
+<msg time="2025-02-25T12:02:40.294715" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-25T12:02:40.294889" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (277, 931)
+  (Session info: chrome=133.0.6943.127)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EBC26EE5+28773]
+	(No symbol) [0x00007FF6EBB925D0]
+	(No symbol) [0x00007FF6EBA28FAA]
+	(No symbol) [0x00007FF6EBA87109]
+	(No symbol) [0x00007FF6EBA84AD2]
+	(No symbol) [0x00007FF6EBA81B81]
+	(No symbol) [0x00007FF6EBA80A91]
+	(No symbol) [0x00007FF6EBA72284]
+	(No symbol) [0x00007FF6EBAA724A]
+	(No symbol) [0x00007FF6EBA71B36]
+	(No symbol) [0x00007FF6EBAA7460]
+	(No symbol) [0x00007FF6EBACF6F3]
+	(No symbol) [0x00007FF6EBAA7023]
+	(No symbol) [0x00007FF6EBA6FF5E]
+	(No symbol) [0x00007FF6EBA711E3]
+	GetHandleVerifier [0x00007FF6EBF7422D+3490733]
+	GetHandleVerifier [0x00007FF6EBF8BA13+3586963]
+	GetHandleVerifier [0x00007FF6EBF8144D+3544525]
+	GetHandleVerifier [0x00007FF6EBCEC9AA+838442]
+	(No symbol) [0x00007FF6EBB9D01F]
+	(No symbol) [0x00007FF6EBB995E4]
+	(No symbol) [0x00007FF6EBB99786]
+	(No symbol) [0x00007FF6EBB88CB9]
+	BaseThreadInitThunk [0x00007FF8A20CE8D7+23]
+	RtlUserThreadStart [0x00007FF8A2ADBF2C+44]
+</msg>
+<arg>${TAG_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2025-02-25T12:02:38.942350" elapsed="1.355952">ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (277, 931)
+  (Session info: chrome=133.0.6943.127)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EBC26EE5+28773]
+	(No symbol) [0x00007FF6EBB925D0]
+	(No symbol) [0x00007FF6EBA28FAA]
+	(No symbol) [0x00007FF6EBA87109]
+	(No symbol) [0x00007FF6EBA84AD2]
+	(No symbol) [0x00007FF6EBA81B81]
+	(No symbol) [0x00007FF6EBA80A91]
+	(No symbol) [0x00007FF6EBA72284]
+	(No symbol) [0x00007FF6EBAA724A]
+	(No symbol) [0x00007FF6EBA71B36]
+	(No symbol) [0x00007FF6EBAA7460]
+	(No symbol) [0x00007FF6EBACF6F3]
+	(No symbol) [0x00007FF6EBAA7023]
+	(No symbol) [0x00007FF6EBA6FF5E]
+	(No symbol) [0x00007FF6EBA711E3]
+	GetHandleVerifier [0x00007FF6EBF7422D+3490733]
+	GetHandleVerifier [0x00007FF6EBF8BA13+3586963]
+	GetHandleVerifier [0x00007FF6EBF8144D+3544525]
+	GetHandleVerifier [0x00007FF6EBCEC9AA+838442]
+	(No symbol) [0x00007FF6EBB9D01F]
+	(No symbol) [0x00007FF6EBB995E4]
+	(No symbol) [0x00007FF6EBB99786]
+	(No symbol) [0x00007FF6EBB88CB9]
+	BaseThreadInitThunk [0x00007FF8A20CE8D7+23]
+	RtlUserThreadStart [0x00007FF8A2ADBF2C+44]
+</status>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-02-25T12:02:40.298481" elapsed="0.000031"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<var>${new_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="NOT RUN" start="2025-02-25T12:02:40.298601" elapsed="0.000023"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${new_url}</arg>
+<arg>highlights/tag</arg>
+<arg>msg=Expected URL to contain "highlights/tag"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2025-02-25T12:02:40.298709" elapsed="0.000029"/>
+</kw>
+<kw name="Go Back" owner="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="NOT RUN" start="2025-02-25T12:02:40.298817" elapsed="0.000019"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-02-25T12:02:40.298917" elapsed="0.000031"/>
+</kw>
+<status status="FAIL" start="2025-02-25T12:02:38.937124" elapsed="1.361963">ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (277, 931)
+  (Session info: chrome=133.0.6943.127)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EBC26EE5+28773]
+	(No symbol) [0x00007FF6EBB925D0]
+	(No symbol) [0x00007FF6EBA28FAA]
+	(No symbol) [0x00007FF6EBA87109]
+	(No symbol) [0x00007FF6EBA84AD2]
+	(No symbol) [0x00007FF6EBA81B81]
+	(No symbol) [0x00007FF6EBA80A91]
+	(No symbol) [0x00007FF6EBA72284]
+	(No symbol) [0x00007FF6EBAA724A]
+	(No symbol) [0x00007FF6EBA71B36]
+	(No symbol) [0x00007FF6EBAA7460]
+	(No symbol) [0x00007FF6EBACF6F3]
+	(No symbol) [0x00007FF6EBAA7023]
+	(No symbol) [0x00007FF6EBA6FF5E]
+	(No symbol) [0x00007FF6EBA711E3]
+	GetHandleVerifier [0x00007FF6EBF7422D+3490733]
+	GetHandleVerifier [0x00007FF6EBF8BA13+3586963]
+	GetHandleVerifier [0x00007FF6EBF8144D+3544525]
+	GetHandleVerifier [0x00007FF6EBCEC9AA+838442]
+	(No symbol) [0x00007FF6EBB9D01F]
+	(No symbol) [0x00007FF6EBB995E4]
+	(No symbol) [0x00007FF6EBB99786]
+	(No symbol) [0x00007FF6EBB88CB9]
+	BaseThreadInitThunk [0x00007FF8A20CE8D7+23]
+	RtlUserThreadStart [0x00007FF8A2ADBF2C+44]
+</status>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<status status="NOT RUN" start="2025-02-25T12:02:40.299372" elapsed="0.000036"/>
+</kw>
+<status status="FAIL" start="2025-02-25T12:02:30.576895" elapsed="9.722726">ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (277, 931)
+  (Session info: chrome=133.0.6943.127)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EBC26EE5+28773]
+	(No symbol) [0x00007FF6EBB925D0]
+	(No symbol) [0x00007FF6EBA28FAA]
+	(No symbol) [0x00007FF6EBA87109]
+	(No symbol) [0x00007FF6EBA84AD2]
+	(No symbol) [0x00007FF6EBA81B81]
+	(No symbol) [0x00007FF6EBA80A91]
+	(No symbol) [0x00007FF6EBA72284]
+	(No symbol) [0x00007FF6EBAA724A]
+	(No symbol) [0x00007FF6EBA71B36]
+	(No symbol) [0x00007FF6EBAA7460]
+	(No symbol) [0x00007FF6EBACF6F3]
+	(No symbol) [0x00007FF6EBAA7023]
+	(No symbol) [0x00007FF6EBA6FF5E]
+	(No symbol) [0x00007FF6EBA711E3]
+	GetHandleVerifier [0x00007FF6EBF7422D+3490733]
+	GetHandleVerifier [0x00007FF6EBF8BA13+3586963]
+	GetHandleVerifier [0x00007FF6EBF8144D+3544525]
+	GetHandleVerifier [0x00007FF6EBCEC9AA+838442]
+	(No symbol) [0x00007FF6EBB9D01F]
+	(No symbol) [0x00007FF6EBB995E4]
+	(No symbol) [0x00007FF6EBB99786]
+	(No symbol) [0x00007FF6EBB88CB9]
+	BaseThreadInitThunk [0x00007FF8A20CE8D7+23]
+	RtlUserThreadStart [0x00007FF8A2ADBF2C+44]
+</status>
+</test>
+<test id="s1-t3" name="Test Gallery Image Modal" line="17">
+<kw name="Open Highlight Detail Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:40.301557" level="INFO">Opening browser 'Chrome' to base url 'http://cs05sec267.cpkkuhost.com/highlightdetail/12'.</msg>
+<arg>${HIGHLIGHT_DETAIL_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T12:02:40.301393" elapsed="6.583608"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T12:02:46.885292" elapsed="0.042348"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T12:02:48.928387" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T12:02:46.927838" elapsed="2.000694"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${COVER_IMAGE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T12:02:48.928761" elapsed="0.014284"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:40.301172" elapsed="8.642017"/>
+</kw>
+<kw name="Verify Highlight Detail Loaded" owner="resource">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:48.968255" level="INFO">Element 'xpath=//img[contains(@class,'cover-image')]' is displayed.</msg>
+<arg>${COVER_IMAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:48.943846" elapsed="0.024498"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:49.003179" level="INFO">Element 'xpath=//h1[contains(@class,'title')]' is displayed.</msg>
+<arg>${TITLE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:48.968496" elapsed="0.034771"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:49.024587" level="INFO">Element 'xpath=//p[@id='creationInfo']' is displayed.</msg>
+<arg>${CREATION_INFO}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:49.003425" elapsed="0.021247"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:49.045351" level="INFO">Element 'xpath=//pre[contains(@class,'detail')]' is displayed.</msg>
+<arg>${DETAIL_TEXT}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T12:02:49.024822" elapsed="0.020631"/>
+</kw>
+<status status="PASS" start="2025-02-25T12:02:48.943505" elapsed="0.102173"/>
+</kw>
+<kw name="Click Gallery Image And Verify Modal" owner="resource">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:49.047223" level="INFO">Clicking element 'xpath=(//img[contains(@class, 'image')])[1]'.</msg>
+<arg>${GALLERY_IMAGE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T12:02:49.047011" elapsed="0.076002"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T12:02:52.123503" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T12:02:49.123201" elapsed="3.000402"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T12:02:57.514754" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-25T12:02:57.514946" level="FAIL">Element 'xpath=//div[contains(@id, 'imageModal') and contains(@class, 'modal')]' not visible after 5 seconds.</msg>
+<arg>${IMAGE_MODAL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2025-02-25T12:02:52.123812" elapsed="5.392315">Element 'xpath=//div[contains(@id, 'imageModal') and contains(@class, 'modal')]' not visible after 5 seconds.</status>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<arg>${IMAGE_MODAL}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2025-02-25T12:02:57.516282" elapsed="0.000029"/>
+</kw>
+<status status="FAIL" start="2025-02-25T12:02:49.046619" elapsed="8.469785">Element 'xpath=//div[contains(@id, 'imageModal') and contains(@class, 'modal')]' not visible after 5 seconds.</status>
+</kw>
+<kw name="Close Modal" owner="resource">
+<status status="NOT RUN" start="2025-02-25T12:02:57.516757" elapsed="0.000032"/>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<status status="NOT RUN" start="2025-02-25T12:02:57.517026" elapsed="0.000030"/>
+</kw>
+<status status="FAIL" start="2025-02-25T12:02:40.300839" elapsed="17.216431">Element 'xpath=//div[contains(@id, 'imageModal') and contains(@class, 'modal')]' not visible after 5 seconds.</status>
+</test>
+<status status="FAIL" start="2025-02-25T12:02:18.418392" elapsed="39.099638"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="2" skip="0" id="s1" name="Highlightdetail Valid">Highlightdetail Valid</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
