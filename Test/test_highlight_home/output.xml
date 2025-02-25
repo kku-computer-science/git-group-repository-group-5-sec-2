@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-25T10:53:36.957486" rpa="false" schemaversion="5">
+<suite id="s1" name="Invalid Banner" source="C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_home\invalid_banner.robot">
+<test id="s1-t1" name="Test Highlight Link Does Not Exist" line="6">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:37.237637" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/'.</msg>
+<arg>${SERVER}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T10:53:37.237403" elapsed="4.439899"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T10:53:41.677667" elapsed="1.935045"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T10:53:45.613762" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T10:53:43.613102" elapsed="2.000756"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${CAROUSEL_CONTAINER}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T10:53:45.614055" elapsed="0.012531"/>
+</kw>
+<status status="PASS" start="2025-02-25T10:53:37.236754" elapsed="8.389971"/>
+</kw>
+<kw name="Click Invalid Highlight Link" owner="resource">
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:45.633218" level="INFO">${current_url} = http://127.0.0.1:8000/</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-25T10:53:45.627543" elapsed="0.005727"/>
+</kw>
+<kw name="Run Keyword And Expect Error" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:45.633760" level="INFO">Clicking element 'xpath=//a[@id="nonExistentHighlight"]'.</msg>
+<msg time="2025-02-25T10:53:45.845740" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-23.png"&gt;&lt;img src="selenium-screenshot-23.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-25T10:53:45.845991" level="FAIL">Element with locator 'xpath=//a[@id="nonExistentHighlight"]' not found.</msg>
+<arg>${INVALID_HIGHLIGHT_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2025-02-25T10:53:45.633596" elapsed="0.238333">Element with locator 'xpath=//a[@id="nonExistentHighlight"]' not found.</status>
+</kw>
+<arg>*</arg>
+<arg>Click Element</arg>
+<arg>${INVALID_HIGHLIGHT_LINK}</arg>
+<doc>Runs the keyword and checks that the expected error occurred.</doc>
+<status status="PASS" start="2025-02-25T10:53:45.633420" elapsed="0.238869"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:45.881621" level="INFO">${new_url} = http://127.0.0.1:8000/</msg>
+<var>${new_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-25T10:53:45.872558" elapsed="0.009132"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${current_url}</arg>
+<arg>${new_url}</arg>
+<arg>Error: Invalid highlight link should not change URL</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-02-25T10:53:45.881941" elapsed="0.000448"/>
+</kw>
+<doc>Attempt to click a non-existent highlight link and verify no navigation occurs.</doc>
+<status status="PASS" start="2025-02-25T10:53:45.627199" elapsed="0.255352"/>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T10:53:45.883436" elapsed="2.289350"/>
+</kw>
+<status status="PASS" start="2025-02-25T10:53:45.883011" elapsed="2.289880"/>
+</kw>
+<doc>Verify that clicking a non-existent highlight link does not change the URL.</doc>
+<status status="PASS" start="2025-02-25T10:53:37.236001" elapsed="10.937240"/>
+</test>
+<test id="s1-t2" name="Test Next Button Does Not Exist" line="12">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:48.175190" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/'.</msg>
+<arg>${SERVER}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T10:53:48.175008" elapsed="5.724227"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T10:53:53.899461" elapsed="0.038698"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T10:53:55.939920" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T10:53:53.938825" elapsed="2.001196"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${CAROUSEL_CONTAINER}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T10:53:55.940174" elapsed="0.009601"/>
+</kw>
+<status status="PASS" start="2025-02-25T10:53:48.174798" elapsed="7.775086"/>
+</kw>
+<kw name="Click Invalid Next Button" owner="resource">
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:55.968859" level="INFO">${current_id} = highlightLink-1</msg>
+<var>${current_id}</var>
+<arg>${ACTIVE_LINK}</arg>
+<arg>id</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-02-25T10:53:55.950514" elapsed="0.018405"/>
+</kw>
+<kw name="Run Keyword And Expect Error" owner="BuiltIn">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:55.969419" level="INFO">Clicking button 'xpath=//button[@class="invalid-carousel-control-next"]'.</msg>
+<msg time="2025-02-25T10:53:56.194208" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-24.png"&gt;&lt;img src="selenium-screenshot-24.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-25T10:53:56.194419" level="FAIL">Button with locator 'xpath=//button[@class="invalid-carousel-control-next"]' not found.</msg>
+<arg>${INVALID_NEXT_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-02-25T10:53:55.969248" elapsed="0.226544">Button with locator 'xpath=//button[@class="invalid-carousel-control-next"]' not found.</status>
+</kw>
+<arg>*</arg>
+<arg>Click Button</arg>
+<arg>${INVALID_NEXT_BUTTON}</arg>
+<doc>Runs the keyword and checks that the expected error occurred.</doc>
+<status status="PASS" start="2025-02-25T10:53:55.969079" elapsed="0.226843"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:56.211575" level="INFO">${new_id} = highlightLink-1</msg>
+<var>${new_id}</var>
+<arg>${ACTIVE_LINK}</arg>
+<arg>id</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-02-25T10:53:56.196056" elapsed="0.015560"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${current_id}</arg>
+<arg>${new_id}</arg>
+<arg>Error: Invalid next button should not change the slide!</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-02-25T10:53:56.211777" elapsed="0.000231"/>
+</kw>
+<doc>Attempt to click an invalid next button and verify the active slide remains unchanged.</doc>
+<status status="PASS" start="2025-02-25T10:53:55.950212" elapsed="0.261875"/>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T10:53:56.212611" elapsed="2.428902"/>
+</kw>
+<status status="PASS" start="2025-02-25T10:53:56.212342" elapsed="2.429386"/>
+</kw>
+<doc>Verify that clicking an invalid next button does not change the active slide.</doc>
+<status status="PASS" start="2025-02-25T10:53:48.174344" elapsed="10.467790"/>
+</test>
+<test id="s1-t3" name="Test Prev Button Does Not Exist" line="18">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:53:58.643873" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/'.</msg>
+<arg>${SERVER}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T10:53:58.643713" elapsed="5.812137"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T10:54:04.456036" elapsed="0.048051"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T10:54:06.505230" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T10:54:04.504826" elapsed="2.000500"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${CAROUSEL_CONTAINER}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T10:54:06.505479" elapsed="0.009300"/>
+</kw>
+<status status="PASS" start="2025-02-25T10:53:58.643499" elapsed="7.871383"/>
+</kw>
+<kw name="Click Invalid Prev Button" owner="resource">
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:54:06.533665" level="INFO">${current_id} = highlightLink-1</msg>
+<var>${current_id}</var>
+<arg>${ACTIVE_LINK}</arg>
+<arg>id</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-02-25T10:54:06.515399" elapsed="0.018480"/>
+</kw>
+<kw name="Run Keyword And Expect Error" owner="BuiltIn">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:54:06.535057" level="INFO">Clicking button 'xpath=//button[@class="invalid-carousel-control-prev"]'.</msg>
+<msg time="2025-02-25T10:54:06.711499" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-25.png"&gt;&lt;img src="selenium-screenshot-25.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-25T10:54:06.711651" level="FAIL">Button with locator 'xpath=//button[@class="invalid-carousel-control-prev"]' not found.</msg>
+<arg>${INVALID_PREV_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-02-25T10:54:06.534668" elapsed="0.178146">Button with locator 'xpath=//button[@class="invalid-carousel-control-prev"]' not found.</status>
+</kw>
+<arg>*</arg>
+<arg>Click Button</arg>
+<arg>${INVALID_PREV_BUTTON}</arg>
+<doc>Runs the keyword and checks that the expected error occurred.</doc>
+<status status="PASS" start="2025-02-25T10:54:06.534331" elapsed="0.178610"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-02-25T10:54:06.725191" level="INFO">${new_id} = highlightLink-1</msg>
+<var>${new_id}</var>
+<arg>${ACTIVE_LINK}</arg>
+<arg>id</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-02-25T10:54:06.713072" elapsed="0.012163"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${current_id}</arg>
+<arg>${new_id}</arg>
+<arg>Error: Invalid prev button should not change the slide!</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-02-25T10:54:06.725380" elapsed="0.000210"/>
+</kw>
+<doc>Attempt to click an invalid previous button and verify the active slide remains unchanged.</doc>
+<status status="PASS" start="2025-02-25T10:54:06.515163" elapsed="0.210501"/>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T10:54:06.726088" elapsed="2.428930"/>
+</kw>
+<status status="PASS" start="2025-02-25T10:54:06.725885" elapsed="2.429232"/>
+</kw>
+<doc>Verify that clicking an invalid previous button does not change the active slide.</doc>
+<status status="PASS" start="2025-02-25T10:53:58.643079" elapsed="10.512316"/>
+</test>
+<status status="PASS" start="2025-02-25T10:53:36.959091" elapsed="32.197446"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Invalid Banner">Invalid Banner</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
