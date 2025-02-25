@@ -77,7 +77,8 @@
     }
 
     .carousel-indicators {
-        height: 10;
+        height: 15;
+        scale: 1.5;
         justify-content: center;
         z-index:-10;
     }
@@ -85,7 +86,7 @@
 </style>
 @section('content')
 
-<div class="hl-banner justify-content-center mt-0">
+<div class="hl-banner justify-content-center mt-0 shadow">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
