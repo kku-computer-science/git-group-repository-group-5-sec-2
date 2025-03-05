@@ -14,7 +14,7 @@
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            height: 300px;
+            /* height: 300px; */
             /* กำหนดขนาดการ์ด */
             display: flex;
             flex-direction: column;
@@ -23,7 +23,8 @@
 
         .highlight-item img {
             width: 100%;
-            height: 100%;
+            height: auto; /* ปล่อยให้สูงตามสัดส่วนจริงของรูป */
+            /* height: 100%; */
             /* ทำให้รูปภาพเต็มขนาดของการ์ด */
             object-fit: cover;
             /* ทำให้รูปภาพเติมเต็มกรอบโดยไม่บิดเบี้ยว */
@@ -60,7 +61,7 @@
         <p>{{ $highlight->cover_image }}</p>
         @endforeach --}}
 
-        <h1 class="text-center fw-bold mb-4 ">Highlights</h1>
+        <h1 class="text-center fw-bold mb-4 ">{{trans('message.Highlights')}}</h1>
         <div class="row g-4">
             @foreach($highlights as $highlight)
                 <div class="col-lg-4 col-md-6 col-12">

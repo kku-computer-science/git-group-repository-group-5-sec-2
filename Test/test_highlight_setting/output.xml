@@ -1,655 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-12T13:07:04.932660" rpa="false" schemaversion="5">
-<suite id="s1" name="Invalid Edit Highlight" source="C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_setting\invalid_edit_highlight.robot">
-<test id="s1-t1" name="Login" line="18">
-<kw name="Open Browser To Login Page" owner="resource">
+<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2025-02-25T18:04:42.274401" rpa="false" schemaversion="5">
+<suite id="s1" name="Delete Highlight" source="C:\Users\User\Documents\GitHub\git-group-repository-group-5-sec-2\Test\test_highlight_setting\delete_highlight.robot">
+<test id="s1-t1" name="Login" line="11">
+<kw name="Open Browser To Login Page" owner="resource_setting_highlight">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:05.361197" level="INFO">Opening browser 'Chrome' to base url 'http://cs05sec267.cpkkuhost.com/login'.</msg>
+<msg time="2025-02-25T18:04:42.548503" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/login'.</msg>
 <arg>${LOGIN URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-02-12T13:07:05.360807" elapsed="3.738827"/>
+<status status="PASS" start="2025-02-25T18:04:42.548503" elapsed="1.892304"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-02-12T13:07:09.099923" elapsed="0.049007"/>
+<status status="PASS" start="2025-02-25T18:04:44.440807" elapsed="0.047774"/>
 </kw>
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-02-12T13:07:09.149148" elapsed="0.000351"/>
+<status status="PASS" start="2025-02-25T18:04:44.488581" elapsed="0.001027"/>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:09.259073" level="INFO">Page title is 'Login'.</msg>
+<msg time="2025-02-25T18:04:44.598851" level="INFO">Page title is 'Login'.</msg>
 <arg>Login</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:09.149673" elapsed="0.109658"/>
+<status status="PASS" start="2025-02-25T18:04:44.489608" elapsed="0.109243"/>
 </kw>
-<status status="PASS" start="2025-02-12T13:07:05.359869" elapsed="3.899739"/>
+<status status="PASS" start="2025-02-25T18:04:42.547464" elapsed="2.051387"/>
 </kw>
-<kw name="Input Username" owner="resource">
+<kw name="Input Username" owner="resource_setting_highlight">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:09.262274" level="INFO">Typing text 'staff@gmail.com' into text field 'id:username'.</msg>
+<msg time="2025-02-25T18:04:44.599865" level="INFO">Typing text 'staff@gmail.com' into text field 'id:username'.</msg>
 <arg>id:username</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:09.261411" elapsed="0.545288"/>
+<status status="PASS" start="2025-02-25T18:04:44.599865" elapsed="0.461920"/>
 </kw>
 <arg>${USERNAME}</arg>
-<status status="PASS" start="2025-02-12T13:07:09.260543" elapsed="0.546382"/>
+<status status="PASS" start="2025-02-25T18:04:44.599865" elapsed="0.461920"/>
 </kw>
-<kw name="Input Password" owner="resource">
+<kw name="Input Password" owner="resource_setting_highlight">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:09.808260" level="INFO">Typing text '123456789' into text field 'id:password'.</msg>
+<msg time="2025-02-25T18:04:45.064103" level="INFO">Typing text '123456789' into text field 'id:password'.</msg>
 <arg>id:password</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:09.807919" elapsed="0.535671"/>
+<status status="PASS" start="2025-02-25T18:04:45.063105" elapsed="0.444497"/>
 </kw>
 <arg>${PASSWORD}</arg>
-<status status="PASS" start="2025-02-12T13:07:09.807404" elapsed="0.536524"/>
+<status status="PASS" start="2025-02-25T18:04:45.063105" elapsed="0.444497"/>
 </kw>
-<kw name="Submit Credentials" owner="resource">
+<kw name="Submit Credentials" owner="resource_setting_highlight">
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:10.346210" level="INFO">Clicking button 'xpath=//button[@type='submit']'.</msg>
+<msg time="2025-02-25T18:04:45.509626" level="INFO">Clicking button 'xpath=//button[@type='submit']'.</msg>
 <arg>xpath=//button[@type='submit']</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:10.345887" elapsed="3.482631"/>
+<status status="PASS" start="2025-02-25T18:04:45.509626" elapsed="2.129564"/>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:13.935066" level="INFO">Page title is 'Dashboard'.</msg>
+<msg time="2025-02-25T18:04:47.750740" level="INFO">Page title is 'Dashboard'.</msg>
 <arg>Dashboard</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:13.828737" elapsed="0.106518"/>
+<status status="PASS" start="2025-02-25T18:04:47.639753" elapsed="0.110987"/>
 </kw>
-<status status="PASS" start="2025-02-12T13:07:10.345084" elapsed="3.590459"/>
+<status status="PASS" start="2025-02-25T18:04:45.508620" elapsed="2.242120"/>
 </kw>
-<status status="PASS" start="2025-02-12T13:07:05.358649" elapsed="8.577476"/>
+<status status="PASS" start="2025-02-25T18:04:42.546477" elapsed="5.205270"/>
 </test>
-<test id="s1-t2" name="Go To Edit Highlight Page" line="24">
-<kw name="Go To Highlight Setting Page" owner="resource">
+<test id="s1-t2" name="Delete Highlight" line="17">
+<kw name="Go To Highlight Setting Page" owner="resource_setting_highlight">
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>xpath=//span[text()='Highlight Setting']</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:13.938379" elapsed="0.525964"/>
+<status status="PASS" start="2025-02-25T18:04:47.756258" elapsed="0.517982"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:14.465715" level="INFO">Clicking element 'xpath=//span[text()='Highlight Setting']'.</msg>
+<msg time="2025-02-25T18:04:48.276257" level="INFO">Clicking element 'xpath=//span[text()='Highlight Setting']'.</msg>
 <arg>xpath=//span[text()='Highlight Setting']</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:14.465156" elapsed="1.146182"/>
+<status status="PASS" start="2025-02-25T18:04:48.275247" elapsed="0.833917"/>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:15.719910" level="INFO">Page title is 'Highlight Papers'.</msg>
-<arg>Highlight Papers</arg>
+<msg time="2025-02-25T18:04:49.217631" level="INFO">Page title is 'Highlight'.</msg>
+<arg>Highlight</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:15.611552" elapsed="0.108497"/>
+<status status="PASS" start="2025-02-25T18:04:49.109164" elapsed="0.108467"/>
 </kw>
-<status status="PASS" start="2025-02-12T13:07:13.937913" elapsed="1.782316"/>
+<status status="PASS" start="2025-02-25T18:04:47.755251" elapsed="1.463412"/>
 </kw>
-<kw name="Click Edit Highlight Button">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:49.335169" level="INFO">Page title is 'Highlight'.</msg>
+<arg>Highlight</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-02-25T18:04:49.219648" elapsed="0.115521"/>
+</kw>
+<kw name="Click Delete Highlight Button">
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
+<arg>//td[text()='${TITLE}']</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:15.721211" elapsed="0.485752"/>
-</kw>
-<kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:16.207587" level="INFO">Clicking link 'xpath=//tbody/tr[1]//a[@class='btn btn-warning btn-sm']'.</msg>
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:16.207248" elapsed="1.270170"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:17.586385" level="INFO">Page title is 'Edit Highlight Paper'.</msg>
-<arg>Edit Highlight Paper</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:17.477809" elapsed="0.108731"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:15.720711" elapsed="1.865951"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:13.937143" elapsed="3.649908"/>
-</test>
-<test id="s1-t3" name="Title Can Not Be Null" line="28">
-<kw name="Fill Highlight Form With Validation">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:17.591202" level="INFO">Typing text '' into text field 'xpath=//input[@name='title']'.</msg>
-<arg>xpath=//input[@name='title']</arg>
-<arg>${TITLE}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:17.590864" elapsed="0.658390"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:18.251750" level="INFO">Typing text 'วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ ศ. ดร.จักรชัย โสอินทร์ อ. ดร.ญานิกา คงโสรส อ. ดร.เพชร อิ่มทองคำ และ Mr.Chenset Kim เนื่องในโอกาสที่บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ จำนวน 1 บทความวิจัย' into text field 'xpath=//input[@name='description']'.</msg>
-<arg>xpath=//input[@name='description']</arg>
-<arg>${DESCRIPTION}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:18.250313" elapsed="0.836966"/>
-</kw>
-<kw name="Choose File" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:19.087908" level="INFO">Sending C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_setting\highlight2.png to browser.</msg>
-<arg>xpath=//input[@name='picture']</arg>
-<arg>${PICTURE_PATH}</arg>
-<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:19.087531" elapsed="0.260627"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:19.349389" level="INFO">Selecting options from selection list 'xpath=//select[@id='researcherSelect']' by value 3.</msg>
-<arg>xpath=//select[@id='researcherSelect']</arg>
-<arg>${RESEARCHER_ID}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:19.348675" elapsed="0.969690"/>
-</kw>
-<kw name="Select From List By Index" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:20.319146" level="INFO">Selecting options from selection list 'xpath=//select[@id='paperSelect']' by index 1.</msg>
-<arg>xpath=//select[@id='paperSelect']</arg>
-<arg>${PAPER_INDEX}</arg>
-<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
-<status status="PASS" start="2025-02-12T13:07:20.318717" elapsed="1.209344"/>
-</kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:21.528636" elapsed="0.517542"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:22.046636" level="INFO">Selecting options from selection list 'xpath=//select[@name='isSelected']' by value 1.</msg>
-<arg>xpath=//select[@name='isSelected']</arg>
-<arg>${IS_SELECTED}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:22.046416" elapsed="0.940393"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:22.987311" level="INFO">Clicking button 'xpath=//button[@class='btn btn-primary']'.</msg>
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:22.987082" elapsed="0.870555"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:23.858726" level="INFO">Clicking button 'xpath=//button[@id='confirmEditBtn']'.</msg>
-<arg>xpath=//button[@id='confirmEditBtn']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:23.858468" elapsed="4.114071"/>
-</kw>
-<arg>${EMPTY}</arg>
-<arg>${DESCRIPTION}</arg>
-<arg>${PICTURE_PATH}</arg>
-<arg>${Researcher_ID}</arg>
-<arg>${PAPER_INDEX}</arg>
-<arg>${IS_SELECTED}</arg>
-<status status="PASS" start="2025-02-12T13:07:17.589203" elapsed="10.383563"/>
-</kw>
-<kw name="Element Should Contain" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:28.231896" level="INFO">Element 'xpath=//div[@class='alert alert-danger']' contains text 'The title field is required.'.</msg>
-<arg>xpath=//div[@class='alert alert-danger']</arg>
-<arg>The title field is required.</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="PASS" start="2025-02-12T13:07:27.973599" elapsed="0.259567"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:28.344819" level="INFO">Page title is 'Edit Highlight Paper'.</msg>
-<arg>Edit Highlight Paper</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:28.235255" elapsed="0.109729"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:17.587890" elapsed="10.757454"/>
-</test>
-<test id="s1-t4" name="Description Can Be Null" line="32">
-<kw name="Fill Highlight Form With Validation">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:28.348085" level="INFO">Typing text 'บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ' into text field 'xpath=//input[@name='title']'.</msg>
-<arg>xpath=//input[@name='title']</arg>
-<arg>${TITLE}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:28.347720" elapsed="0.503062"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:28.851838" level="INFO">Typing text '' into text field 'xpath=//input[@name='description']'.</msg>
-<arg>xpath=//input[@name='description']</arg>
-<arg>${DESCRIPTION}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:28.851082" elapsed="0.406448"/>
-</kw>
-<kw name="Choose File" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:29.259263" level="INFO">Sending C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_setting\highlight2.png to browser.</msg>
-<arg>xpath=//input[@name='picture']</arg>
-<arg>${PICTURE_PATH}</arg>
-<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:29.258171" elapsed="0.281911"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:29.542319" level="INFO">Selecting options from selection list 'xpath=//select[@id='researcherSelect']' by value 3.</msg>
-<arg>xpath=//select[@id='researcherSelect']</arg>
-<arg>${RESEARCHER_ID}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:29.541029" elapsed="0.954301"/>
-</kw>
-<kw name="Select From List By Index" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:30.495868" level="INFO">Selecting options from selection list 'xpath=//select[@id='paperSelect']' by index 1.</msg>
-<arg>xpath=//select[@id='paperSelect']</arg>
-<arg>${PAPER_INDEX}</arg>
-<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
-<status status="PASS" start="2025-02-12T13:07:30.495570" elapsed="1.209987"/>
-</kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:31.705856" elapsed="0.497380"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:32.203767" level="INFO">Selecting options from selection list 'xpath=//select[@name='isSelected']' by value 1.</msg>
-<arg>xpath=//select[@name='isSelected']</arg>
-<arg>${IS_SELECTED}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:32.203472" elapsed="0.926105"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:33.130046" level="INFO">Clicking button 'xpath=//button[@class='btn btn-primary']'.</msg>
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:33.129807" elapsed="0.874208"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:34.004480" level="INFO">Clicking button 'xpath=//button[@id='confirmEditBtn']'.</msg>
-<arg>xpath=//button[@id='confirmEditBtn']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:34.004274" elapsed="3.872881"/>
-</kw>
-<arg>${TITLE}</arg>
-<arg>${EMPTY}</arg>
-<arg>${PICTURE_PATH}</arg>
-<arg>${Researcher_ID}</arg>
-<arg>${PAPER_INDEX}</arg>
-<arg>${IS_SELECTED}</arg>
-<status status="PASS" start="2025-02-12T13:07:28.346569" elapsed="9.530894"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:37.989640" level="INFO">Page title is 'Highlight Papers'.</msg>
-<arg>Highlight Papers</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:37.878693" elapsed="0.111108"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:28.346018" elapsed="9.644230"/>
-</test>
-<test id="s1-t5" name="Picture Can Be Null" line="35">
-<kw name="Click Edit Highlight Button">
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:37.992858" elapsed="0.499813"/>
-</kw>
-<kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:38.494231" level="INFO">Clicking link 'xpath=//tbody/tr[1]//a[@class='btn btn-warning btn-sm']'.</msg>
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:38.493170" elapsed="1.534233"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:40.135731" level="INFO">Page title is 'Edit Highlight Paper'.</msg>
-<arg>Edit Highlight Paper</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:40.027590" elapsed="0.108389"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:37.992327" elapsed="2.143887"/>
-</kw>
-<kw name="Fill Highlight Form With Validation Without Image">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:40.137740" level="INFO">Typing text 'บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ' into text field 'xpath=//input[@name='title']'.</msg>
-<arg>xpath=//input[@name='title']</arg>
-<arg>${TITLE}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:40.137463" elapsed="0.620186"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:40.758289" level="INFO">Typing text 'วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ ศ. ดร.จักรชัย โสอินทร์ อ. ดร.ญานิกา คงโสรส อ. ดร.เพชร อิ่มทองคำ และ Mr.Chenset Kim เนื่องในโอกาสที่บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ จำนวน 1 บทความวิจัย' into text field 'xpath=//input[@name='description']'.</msg>
-<arg>xpath=//input[@name='description']</arg>
-<arg>${DESCRIPTION}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:40.757929" elapsed="0.705196"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:41.464308" level="INFO">Selecting options from selection list 'xpath=//select[@id='researcherSelect']' by value 3.</msg>
-<arg>xpath=//select[@id='researcherSelect']</arg>
-<arg>${RESEARCHER_ID}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:41.463645" elapsed="0.706125"/>
-</kw>
-<kw name="Select From List By Index" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:42.170156" level="INFO">Selecting options from selection list 'xpath=//select[@id='paperSelect']' by index 1.</msg>
-<arg>xpath=//select[@id='paperSelect']</arg>
-<arg>${PAPER_INDEX}</arg>
-<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
-<status status="PASS" start="2025-02-12T13:07:42.169947" elapsed="0.923897"/>
-</kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:43.094067" elapsed="0.488303"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:43.583699" level="INFO">Selecting options from selection list 'xpath=//select[@name='isSelected']' by value 1.</msg>
-<arg>xpath=//select[@name='isSelected']</arg>
-<arg>${IS_SELECTED}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:43.582914" elapsed="0.675461"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:44.258892" level="INFO">Clicking button 'xpath=//button[@class='btn btn-primary']'.</msg>
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:44.258625" elapsed="0.857512"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:45.116829" level="INFO">Clicking button 'xpath=//button[@id='confirmEditBtn']'.</msg>
-<arg>xpath=//button[@id='confirmEditBtn']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:45.116487" elapsed="2.194762"/>
-</kw>
-<arg>${TITLE}</arg>
-<arg>${DESCRIPTION}</arg>
-<arg>${Researcher_ID}</arg>
-<arg>${PAPER_INDEX}</arg>
-<arg>${IS_SELECTED}</arg>
-<status status="PASS" start="2025-02-12T13:07:40.136813" elapsed="7.174821"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:47.430090" level="INFO">Page title is 'Highlight Papers'.</msg>
-<arg>Highlight Papers</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:47.312690" elapsed="0.117530"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:37.991496" elapsed="9.439129"/>
-</test>
-<test id="s1-t6" name="Researcher Can Not Be Null" line="39">
-<kw name="Click Edit Highlight Button">
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:47.432325" elapsed="0.485293"/>
-</kw>
-<kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:47.921067" level="INFO">Clicking link 'xpath=//tbody/tr[1]//a[@class='btn btn-warning btn-sm']'.</msg>
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:47.918000" elapsed="1.432626"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:49.467876" level="INFO">Page title is 'Edit Highlight Paper'.</msg>
-<arg>Edit Highlight Paper</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:49.351161" elapsed="0.116862"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:47.432053" elapsed="2.036137"/>
-</kw>
-<kw name="Fill Highlight Form With Validation">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:49.470183" level="INFO">Typing text 'บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ' into text field 'xpath=//input[@name='title']'.</msg>
-<arg>xpath=//input[@name='title']</arg>
-<arg>${TITLE}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:49.469866" elapsed="0.478535"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:49.949565" level="INFO">Typing text 'วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ ศ. ดร.จักรชัย โสอินทร์ อ. ดร.ญานิกา คงโสรส อ. ดร.เพชร อิ่มทองคำ และ Mr.Chenset Kim เนื่องในโอกาสที่บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ จำนวน 1 บทความวิจัย' into text field 'xpath=//input[@name='description']'.</msg>
-<arg>xpath=//input[@name='description']</arg>
-<arg>${DESCRIPTION}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:49.949105" elapsed="0.707281"/>
-</kw>
-<kw name="Choose File" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:50.658683" level="INFO">Sending C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_setting\highlight2.png to browser.</msg>
-<arg>xpath=//input[@name='picture']</arg>
-<arg>${PICTURE_PATH}</arg>
-<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:50.657475" elapsed="0.256430"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:50.914626" level="INFO">Selecting options from selection list 'xpath=//select[@id='researcherSelect']' by value .</msg>
-<arg>xpath=//select[@id='researcherSelect']</arg>
-<arg>${RESEARCHER_ID}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:50.914226" elapsed="0.976897"/>
-</kw>
-<kw name="Select From List By Index" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:51.891824" level="INFO">Selecting options from selection list 'xpath=//select[@id='paperSelect']' by index 1.</msg>
-<arg>xpath=//select[@id='paperSelect']</arg>
-<arg>${PAPER_INDEX}</arg>
-<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
-<status status="PASS" start="2025-02-12T13:07:51.891427" elapsed="1.287772"/>
-</kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:53.179426" elapsed="0.508156"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:53.688786" level="INFO">Selecting options from selection list 'xpath=//select[@name='isSelected']' by value 1.</msg>
-<arg>xpath=//select[@name='isSelected']</arg>
-<arg>${IS_SELECTED}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:07:53.688093" elapsed="0.687777"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:54.376308" level="INFO">Clicking button 'xpath=//button[@class='btn btn-primary']'.</msg>
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:54.376093" elapsed="0.880321"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:55.256938" level="INFO">Clicking button 'xpath=//button[@id='confirmEditBtn']'.</msg>
-<arg>xpath=//button[@id='confirmEditBtn']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:55.256644" elapsed="3.780523"/>
-</kw>
-<arg>${TITLE}</arg>
-<arg>${DESCRIPTION}</arg>
-<arg>${PICTURE_PATH}</arg>
-<arg>${EMPTY}</arg>
-<arg>${PAPER_INDEX}</arg>
-<arg>${IS_SELECTED}</arg>
-<status status="PASS" start="2025-02-12T13:07:49.468782" elapsed="9.568699"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:59.145869" level="INFO">Page title is 'Highlight Papers'.</msg>
-<arg>Highlight Papers</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:07:59.038257" elapsed="0.107736"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:47.431557" elapsed="11.714793"/>
-</test>
-<test id="s1-t7" name="Paper Can Be Null" line="43">
-<kw name="Click Edit Highlight Button">
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:07:59.147836" elapsed="0.498397"/>
-</kw>
-<kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:07:59.647027" level="INFO">Clicking link 'xpath=//tbody/tr[1]//a[@class='btn btn-warning btn-sm']'.</msg>
-<arg>xpath=//tbody/tr[${row}]//a[@class='btn btn-warning btn-sm']</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:07:59.646577" elapsed="1.612102"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:01.366366" level="INFO">Page title is 'Edit Highlight Paper'.</msg>
-<arg>Edit Highlight Paper</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:08:01.258906" elapsed="0.107865"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:59.147522" elapsed="2.219604"/>
-</kw>
-<kw name="Fill Highlight Form With Validation">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:01.369494" level="INFO">Typing text 'บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ' into text field 'xpath=//input[@name='title']'.</msg>
-<arg>xpath=//input[@name='title']</arg>
-<arg>${TITLE}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:01.369109" elapsed="0.594185"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:01.963809" level="INFO">Typing text 'วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ ศ. ดร.จักรชัย โสอินทร์ อ. ดร.ญานิกา คงโสรส อ. ดร.เพชร อิ่มทองคำ และ Mr.Chenset Kim เนื่องในโอกาสที่บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ จำนวน 1 บทความวิจัย' into text field 'xpath=//input[@name='description']'.</msg>
-<arg>xpath=//input[@name='description']</arg>
-<arg>${DESCRIPTION}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:01.963561" elapsed="0.713841"/>
-</kw>
-<kw name="Choose File" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:02.678681" level="INFO">Sending C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_setting\highlight2.png to browser.</msg>
-<arg>xpath=//input[@name='picture']</arg>
-<arg>${PICTURE_PATH}</arg>
-<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:02.677959" elapsed="0.275692"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:02.954228" level="INFO">Selecting options from selection list 'xpath=//select[@id='researcherSelect']' by value 3.</msg>
-<arg>xpath=//select[@id='researcherSelect']</arg>
-<arg>${RESEARCHER_ID}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:08:02.953896" elapsed="0.931504"/>
-</kw>
-<kw name="Select From List By Index" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:03.886031" level="INFO">Selecting options from selection list 'xpath=//select[@id='paperSelect']' by index 0.</msg>
-<arg>xpath=//select[@id='paperSelect']</arg>
-<arg>${PAPER_INDEX}</arg>
-<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
-<status status="PASS" start="2025-02-12T13:08:03.885748" elapsed="0.804109"/>
-</kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:08:04.690095" elapsed="0.487720"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:05.178322" level="INFO">Selecting options from selection list 'xpath=//select[@name='isSelected']' by value 1.</msg>
-<arg>xpath=//select[@name='isSelected']</arg>
-<arg>${IS_SELECTED}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:08:05.178040" elapsed="0.654009"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:05.832541" level="INFO">Clicking button 'xpath=//button[@class='btn btn-primary']'.</msg>
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:05.832281" elapsed="0.810545"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:06.643315" level="INFO">Clicking button 'xpath=//button[@id='confirmEditBtn']'.</msg>
-<arg>xpath=//button[@id='confirmEditBtn']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:06.643065" elapsed="4.143139"/>
-</kw>
-<arg>${TITLE}</arg>
-<arg>${DESCRIPTION}</arg>
-<arg>${PICTURE_PATH}</arg>
-<arg>${Researcher_ID}</arg>
-<arg>${PAPER_NOT_SELECT}</arg>
-<arg>${IS_SELECTED}</arg>
-<status status="PASS" start="2025-02-12T13:08:01.368023" elapsed="9.418354"/>
-</kw>
-<kw name="Element Should Contain" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:11.013759" level="INFO">Element 'xpath=//div[@class='alert alert-danger']' contains text 'The paper id field is required.'.</msg>
-<arg>xpath=//div[@class='alert alert-danger']</arg>
-<arg>The paper id field is required.</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="PASS" start="2025-02-12T13:08:10.786830" elapsed="0.227139"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:11.123941" level="INFO">Page title is 'Edit Highlight Paper'.</msg>
-<arg>Edit Highlight Paper</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:08:11.014459" elapsed="0.109645"/>
-</kw>
-<status status="PASS" start="2025-02-12T13:07:59.147021" elapsed="11.977516"/>
-</test>
-<test id="s1-t8" name="IsSelected Can Be Null" line="48">
-<kw name="Fill Highlight Form With Validation Without IsSelected">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:11.126931" level="INFO">Typing text 'บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ' into text field 'xpath=//input[@name='title']'.</msg>
-<arg>xpath=//input[@name='title']</arg>
-<arg>${TITLE}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:11.126637" elapsed="0.485133"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:11.612445" level="INFO">Typing text 'วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ ศ. ดร.จักรชัย โสอินทร์ อ. ดร.ญานิกา คงโสรส อ. ดร.เพชร อิ่มทองคำ และ Mr.Chenset Kim เนื่องในโอกาสที่บทความวิจัยได้รับการตีพิมพ์ในวารสารวิชาการระดับนานาชาติ จำนวน 1 บทความวิจัย' into text field 'xpath=//input[@name='description']'.</msg>
-<arg>xpath=//input[@name='description']</arg>
-<arg>${DESCRIPTION}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:11.612079" elapsed="0.735742"/>
-</kw>
-<kw name="Choose File" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:12.348483" level="INFO">Sending C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_highlight_setting\highlight2.png to browser.</msg>
-<arg>xpath=//input[@name='picture']</arg>
-<arg>${PICTURE_PATH}</arg>
-<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:12.348099" elapsed="0.242740"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:12.591379" level="INFO">Selecting options from selection list 'xpath=//select[@id='researcherSelect']' by value 3.</msg>
-<arg>xpath=//select[@id='researcherSelect']</arg>
-<arg>${RESEARCHER_ID}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-02-12T13:08:12.591081" elapsed="0.894807"/>
-</kw>
-<kw name="Select From List By Index" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:13.486669" level="INFO">Selecting options from selection list 'xpath=//select[@id='paperSelect']' by index 1.</msg>
-<arg>xpath=//select[@id='paperSelect']</arg>
-<arg>${PAPER_INDEX}</arg>
-<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
-<status status="PASS" start="2025-02-12T13:08:13.486242" elapsed="1.222985"/>
-</kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-02-12T13:08:14.709752" elapsed="0.537363"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:15.247876" level="INFO">Clicking button 'xpath=//button[@class='btn btn-primary']'.</msg>
-<arg>xpath=//button[@class='btn btn-primary']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:15.247475" elapsed="1.148704"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:16.396851" level="INFO">Clicking button 'xpath=//button[@id='confirmEditBtn']'.</msg>
-<arg>xpath=//button[@id='confirmEditBtn']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-12T13:08:16.396521" elapsed="3.970665"/>
-</kw>
-<arg>${TITLE}</arg>
-<arg>${DESCRIPTION}</arg>
-<arg>${PICTURE_PATH}</arg>
-<arg>${Researcher_ID}</arg>
-<arg>${PAPER_INDEX}</arg>
-<status status="PASS" start="2025-02-12T13:08:11.126028" elapsed="9.241334"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-02-12T13:08:20.475655" level="INFO">Page title is 'Highlight Papers'.</msg>
-<arg>Highlight Papers</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-02-12T13:08:20.367866" elapsed="0.108055"/>
+<status status="PASS" start="2025-02-25T18:04:49.339123" elapsed="0.534803"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:49.875445" level="INFO">Clicking element '//td[text()='งานวิจัยดีเด่น']/following-sibling::td//button[@class='btn btn-danger btn-sm']'.</msg>
+<arg>//td[text()='${TITLE}']/following-sibling::td//button[@class='btn btn-danger btn-sm']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:04:49.874434" elapsed="0.356012"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:49.337687" elapsed="0.893269"/>
+</kw>
+<kw name="Handle Alert" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:50.231967" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<arg>accept</arg>
+<doc>Handles the current alert and returns its message.</doc>
+<status status="PASS" start="2025-02-25T18:04:50.230956" elapsed="0.313657"/>
+</kw>
+<kw name="Scroll Down" owner="resource_setting_highlight">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:50.546624" level="INFO">Executing JavaScript:
+return document.body.scrollHeight
+Without any arguments.</msg>
+<msg time="2025-02-25T18:04:52.114496" level="INFO">${document_height} = 1635</msg>
+<var>${document_height}</var>
+<arg>return document.body.scrollHeight</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-02-25T18:04:50.545624" elapsed="1.568872"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-02-25T18:04:52.116527" level="INFO">${middle_position} = 408.75</msg>
+<var>${middle_position}</var>
+<arg>${document_height} / 4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-02-25T18:04:52.115513" elapsed="0.001014"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:52.118506" level="INFO">Executing JavaScript:
+window.scrollTo(0, 408.75)
+Without any arguments.</msg>
+<arg>window.scrollTo(0, ${middle_position})</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-02-25T18:04:52.116527" elapsed="0.113873"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:50.545624" elapsed="1.684776"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-12T13:08:23.477893" level="INFO">Slept 3 seconds.</msg>
-<arg>3s</arg>
+<msg time="2025-02-25T18:04:54.232737" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-12T13:08:20.476757" elapsed="3.001237"/>
+<status status="PASS" start="2025-02-25T18:04:52.232421" elapsed="2.000316"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-02-12T13:08:23.478576" elapsed="2.237196"/>
+<status status="PASS" start="2025-02-25T18:04:54.233755" elapsed="2.246094"/>
 </kw>
-<status status="PASS" start="2025-02-12T13:08:11.125408" elapsed="14.590723"/>
+<status status="PASS" start="2025-02-25T18:04:47.753746" elapsed="8.726616"/>
 </test>
-<doc>This is a test suite for invalid editing a highlight</doc>
-<status status="PASS" start="2025-02-12T13:07:04.934732" elapsed="80.782580"/>
+<doc>This is a test suite for deleting a highlight</doc>
+<status status="PASS" start="2025-02-25T18:04:42.276404" elapsed="14.206978"/>
 </suite>
 <statistics>
 <total>
-<stat pass="8" fail="0" skip="0">All Tests</stat>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="8" fail="0" skip="0" id="s1" name="Invalid Edit Highlight">Invalid Edit Highlight</stat>
+<stat pass="2" fail="0" skip="0" id="s1" name="Delete Highlight">Delete Highlight</stat>
 </suite>
 </statistics>
 <errors>

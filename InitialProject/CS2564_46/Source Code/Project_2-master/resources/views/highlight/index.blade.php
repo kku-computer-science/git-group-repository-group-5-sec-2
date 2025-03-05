@@ -113,7 +113,7 @@
 
     @section('content')
     <div class="container mt-5">
-        <h2>รายการ Highlight Papers</h2>
+        <h2>รายการ Highlights</h2>
 
         {{-- Highlight Lists --}}
         <a href="{{ route('highlight.create') }}" class="btn btn-primary mb-3">+ สร้าง Highlight ใหม่</a>
@@ -174,10 +174,8 @@
         {{-- Tags Lists --}}
         <div class="mt-4">
             <h4>Tags ทั้งหมด</h4>
-            
-            <!-- ✅ ปุ่มสำหรับไปที่หน้าเพิ่ม Tag -->
-            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ สร้าง Tag ใหม่</a>
         
+            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ สร้าง Tags ใหม่</a>
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
