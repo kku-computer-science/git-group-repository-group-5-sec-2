@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Highlight;
 use App\Models\images;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use App\Models\Tags;
 
@@ -44,8 +44,8 @@ class HighlightController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'detail' => 'required',
-            'cover_image' => 'required|image',
-            'images.*' => 'image'
+            'cover_image' => 'required|image|max:10240', // 10MB = 10240KB
+            'images.*' => 'image|max:10240' // 10MB สำหรับแต่ละไฟล์
         ]);
 
         // ตรวจสอบและสร้างโฟลเดอร์
@@ -91,9 +91,22 @@ class HighlightController extends Controller
         }
 
         // บันทึก Tags
-        if ($request->has('tags')) {
-            $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
-            $highlight->tags()->sync($selectedTags);
+        if ($request->has('tags_json')) {
+            // ถอดรหัส JSON เป็น array
+            $tagNames = json_decode($request->tags_json, true);
+            
+            if (is_array($tagNames) && count($tagNames) > 0) {
+                $tagIds = [];
+                
+                foreach ($tagNames as $tagName) {
+                    // หา tag ที่มีอยู่แล้ว หรือสร้างใหม่ถ้ายังไม่มี
+                    $tag = Tags::firstOrCreate(['name' => trim($tagName)]);
+                    $tagIds[] = $tag->id;
+                }
+                
+                // บันทึกความสัมพันธ์ระหว่าง highlight กับ tags
+                $highlight->tags()->sync($tagIds);
+            }
         }
 
         return redirect()->route('highlight.index')->with('success', 'Highlight ถูกสร้างเรียบร้อยแล้ว!');
@@ -116,8 +129,8 @@ class HighlightController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'detail' => 'required',
-            'cover_image' => 'image',
-            'images.*' => 'image',
+            'cover_image' => 'image|max:10240', // 10MB = 10240KB
+            'images.*' => 'image|max:10240', // 10MB สำหรับแต่ละไฟล์
             'active' => 'required|boolean'
         ]);
 
@@ -151,9 +164,24 @@ class HighlightController extends Controller
         }
 
         // อัปเดต Tags
-        if ($request->has('tags')) {
-            $selectedTags = is_array($request->tags) ? $request->tags : explode(",", $request->tags);
-            $highlight->tags()->sync($selectedTags);
+        if ($request->has('tags_json')) {
+            // ถอดรหัส JSON เป็น array
+            $tagNames = json_decode($request->tags_json, true);
+            
+            if (is_array($tagNames) && count($tagNames) > 0) {
+                $tagIds = [];
+                
+                foreach ($tagNames as $tagName) {
+                    // หา tag ที่มีอยู่แล้ว หรือสร้างใหม่ถ้ายังไม่มี
+                    $tag = Tags::firstOrCreate(['name' => trim($tagName)]);
+                    $tagIds[] = $tag->id;
+                }
+                
+                // บันทึกความสัมพันธ์ระหว่าง highlight กับ tags
+                $highlight->tags()->sync($tagIds);
+            } else {
+                $highlight->tags()->sync([]);
+            }
         } else {
             $highlight->tags()->sync([]); // ถ้าไม่มี tags ให้ล้าง tags ทั้งหมด
         }

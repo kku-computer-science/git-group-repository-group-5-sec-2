@@ -121,17 +121,15 @@
         <table class="table table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
                     <th>Title</th>
                     <th>Creator</th>
-                    <th>Active</th> <!-- ✅ ใช้ Toggle Switch -->
+                    <th>Active</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($highlights as $highlight)
                 <tr>
-                    <td>{{ $highlight->id }}</td>
                     <td class="text-truncate" style="max-width: 150px;">{{ $highlight->title }}</td>
                     <td>{{ $highlight->creator }}</td>
         
@@ -179,7 +177,6 @@
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>ID</th>
                         <th>Tag Name</th>
                         <th>Actions</th>
                     </tr>
@@ -187,7 +184,6 @@
                 <tbody>
                     @foreach ($tags as $tag)
                     <tr>
-                        <td>{{ $tag->id }}</td>
                         <td>{{ $tag->name }}</td>
                         <td>
                             <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-warning btn-sm">Edit</a>

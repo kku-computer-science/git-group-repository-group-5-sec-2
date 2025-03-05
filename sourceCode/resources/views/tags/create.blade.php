@@ -22,7 +22,13 @@
             padding: 25px;
         }
 
-        
+        /* สไตล์ข้อความแจ้งเตือน */
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none; /* ซ่อนเริ่มต้น */
+        }
     </style>
 </head>
 
@@ -40,25 +46,56 @@
         </div>
     @endif
 
-        <form action="{{ route('tags.store') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="name" class="form-label">Tag Name</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
-                @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">สร้าง</button>
-            <a href="{{ route('highlight.index') }}" class="btn btn-secondary">ย้อนกลับ</a>
-        </form>
-    </div>
-    @endsection
+    <form id="tag-form" action="{{ route('tags.store') }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="name" class="form-label">Tag Name</label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
+            <div id="name-error" class="error-message">❌ ห้ามมีช่องว่างใน Tag Name</div>
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <button type="submit" class="btn btn-primary">สร้าง</button>
+        <a href="{{ route('highlight.index') }}" class="btn btn-secondary">ย้อนกลับ</a>
+    </form>
+</div>
+@endsection
 
-    @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @endsection
+@section('javascript')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tagInput = document.getElementById('name');
+        const form = document.getElementById('tag-form');
+        const errorMessage = document.getElementById('name-error');
+
+        function validateTagName() {
+            const tagName = tagInput.value;
+            if (/\s/.test(tagName)) { // เช็คว่ามี space หรือไม่
+                errorMessage.style.display = 'block'; // แสดงข้อความแจ้งเตือน
+                tagInput.classList.add('is-invalid'); // เพิ่ม border สีแดง
+                return false;
+            } else {
+                errorMessage.style.display = 'none'; // ซ่อนข้อความแจ้งเตือน
+                tagInput.classList.remove('is-invalid'); // เอา border สีแดงออก
+                return true;
+            }
+        }
+
+        // ตรวจสอบเมื่อพิมพ์
+        tagInput.addEventListener('input', validateTagName);
+
+        // ตรวจสอบเมื่อ submit ฟอร์ม
+        form.addEventListener('submit', function (event) {
+            if (!validateTagName()) {
+                event.preventDefault(); // ยกเลิกการ submit ถ้ามี space
+            }
+        });
+    });
+</script>
+@endsection
 
 </body>
-
 </html>
