@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paper;
-use App\Models\Highlight;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Bibtex;
@@ -180,20 +179,13 @@ class HomeController extends Controller
 
         //$key="watchara";
         //return response()->json($bb);
-
-        //-------------------------------[Hightlight]----------------------------
-        $highlights = Highlight::all();
-        //-------------------------------[Hightlight]----------------------------
-
         return view('home', compact('papers'))->with('year', json_encode($year, JSON_NUMERIC_CHECK))
             ->with('paper_tci', json_encode($paper_tci, JSON_NUMERIC_CHECK))
             ->with('paper_scopus', json_encode($paper_scopus, JSON_NUMERIC_CHECK))
             ->with('paper_wos', json_encode($paper_wos, JSON_NUMERIC_CHECK))
             ->with('paper_tci_numall', json_encode($paper_tci_numall, JSON_NUMERIC_CHECK))
             ->with('paper_scopus_numall', json_encode($paper_scopus_numall, JSON_NUMERIC_CHECK))
-            ->with('paper_wos_numall', json_encode($paper_wos_numall, JSON_NUMERIC_CHECK))
-            ->with('highlights', $highlights);
-            
+            ->with('paper_wos_numall', json_encode($paper_wos_numall, JSON_NUMERIC_CHECK));
 
 
 

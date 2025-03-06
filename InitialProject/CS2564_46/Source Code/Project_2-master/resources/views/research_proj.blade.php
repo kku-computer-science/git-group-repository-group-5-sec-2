@@ -2,24 +2,24 @@
 @section('content')
 
 <div class="container refund">
-    <p>{{trans('message.academicproject')}}</p>
+    <p>โครงการบริการวิชาการ/ โครงการวิจัย</p>
 
     <div class="table-refund table-responsive">
         <table id="example1" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th style="font-weight: bold;">{{trans('message.order')}}</th>
-                    <th class="col-md-1" style="font-weight: bold;">{{trans('message.year')}}</th>
-                    <th class="col-md-4" style="font-weight: bold;">{{trans('message.project_name')}}</th>
-                    <!-- <th>trans('message.fund_project_duration')</th>
+                    <th style="font-weight: bold;">ลำดับ</th>
+                    <th class="col-md-1" style="font-weight: bold;">ปี</th>
+                    <th class="col-md-4" style="font-weight: bold;">ชื่อโครงการ </th>
+                    <!-- <th>ระยะเวลาโครงการ</th>
                     <th>ผู้รับผิดชอบโครงการ</th>
-                    <th>trans('message.fund_type')</th>
-                    <th>trans('message.fund_agency')</th>
-                    <th>trans('message.fund_alloc')</th> -->
-                    <th class="col-md-4" style="font-weight: bold;">{{trans('message.detail')}}</th>
-                    <th class="col-md-2" style="font-weight: bold;">{{trans('message.project_manager')}}</th>
-                    <!-- <th class="col-md-5">trans('message.fund_responsible_agency')</th> -->
-                    <th class="col-md-1" style="font-weight: bold;">{{trans('message.status')}}</th>
+                    <th>ประเภททุนวิจัย</th>
+                    <th>หน่วยงานที่สนันสนุนทุน</th>
+                    <th>งบประมาณที่ได้รับจัดสรร</th> -->
+                    <th class="col-md-4" style="font-weight: bold;">รายละเอียด</th>
+                    <th class="col-md-2" style="font-weight: bold;">ผู้รับผิดชอบโครงการ</th>
+                    <!-- <th class="col-md-5">หน่วยงานที่รับผิดชอบ</th> -->
+                    <th class="col-md-1" style="font-weight: bold;">สถานะ</th>
                 </tr>
             </thead>
 
@@ -38,14 +38,14 @@
 
                             @if ($re->project_start != null)
                             <span style="font-weight: bold;">
-                                {{trans('message.fund_project_duration')}}
+                                ระยะเวลาโครงการ
                             </span>
                             <span style="padding-left: 10px;">
                                 {{\Carbon\Carbon::parse($re->project_start)->thaidate('j F Y') }} ถึง {{\Carbon\Carbon::parse($re->project_end)->thaidate('j F Y') }}
                             </span>
                             @else
                             <span style="font-weight: bold;">
-                                {{trans('message.fund_project_duration')}}
+                                ระยะเวลาโครงการ
                             </span>
                             <span>
 
@@ -77,28 +77,28 @@
                     </td> -->
                         <!-- <td>{{$re->budget}}</td> -->
                         <div style="padding-bottom: 10px;">
-                            <span style="font-weight: bold;">{{trans('message.fund_type')}}</span>
+                            <span style="font-weight: bold;">ประเภททุนวิจัย</span>
                             <span style="padding-left: 10px;"> @if(is_null($re->fund))
                                 @else
                                 {{$re->fund->fund_type}}
                                 @endif</span>
                         </div>
                         <div style="padding-bottom: 10px;">
-                            <span style="font-weight: bold;">{{trans('message.fund_agency')}}</span>
+                            <span style="font-weight: bold;">หน่วยงานที่สนันสนุนทุน</span>
                             <span style="padding-left: 10px;"> @if(is_null($re->fund))
                                 @else
                                 {{$re->fund->support_resource}}
                                 @endif</span>
                         </div>
                         <div style="padding-bottom: 10px;">
-                            <span style="font-weight: bold;">{{trans('message.fund_responsible_agency')}}</span>
+                            <span style="font-weight: bold;">หน่วยงานที่รับผิดชอบ</span>
                             <span style="padding-left: 10px;">
                                 {{$re->responsible_department}}
                             </span>
                         </div>
                         <div style="padding-bottom: 10px;">
 
-                            <span style="font-weight: bold;">{{trans('message.fund_alloc')}}</span>
+                            <span style="font-weight: bold;">งบประมาณที่ได้รับจัดสรร</span>
                             <span style="padding-left: 10px;"> {{number_format($re->budget)}} บาท</span>
                         </div>
                     </td>

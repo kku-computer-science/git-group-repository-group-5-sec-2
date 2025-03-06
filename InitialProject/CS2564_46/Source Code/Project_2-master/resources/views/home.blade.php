@@ -31,95 +31,44 @@
         display: table;
         color: #4ad1e5;
     }
-
-
-    .carousel-icon-brightness { filter: brightness(0.1); }
-
-    .title {
-        font-size: 15px;
-        overflow: auto;
-        max-height: 80px;
-    }
-
-    .hl-banner {
-        width: 100vw;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0px;
-        margin: 0px;
-    }
-    
-    .hl-image{
-        width: 100%;
-        height: 100%;
-        min-height: 100vh;
-        object-fit: cover;
-        margin: 0;
-    }
-
-    .hl-title {
-        font-family: "Noto Sans Thai", "Kanit", sans-serif !important;
-        font-size: 18px;
-        position: absolute;
-        bottom: 35px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        color: #fff;
-        padding: 3px 6px;
-        border-radius: 0px;
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
-        background-color: rgba(10, 10, 10, 0.6);
-        backdrop-filter: blur(1px);
-        width: 100%;
-    }
-
-    .carousel-indicators {
-        height: 15;
-        scale: 1.5;
-        justify-content: center;
-        z-index:-10;
-    }
-
 </style>
 @section('content')
-
-<div class="hl-banner justify-content-center mt-0 shadow">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }} carousel-icon-brightness" aria-label="Slide {{ $index + 1 }}"></button>
-            @endforeach
-        </div>
-        <div class="carousel-inner">
-            @foreach($highlights->filter(fn($hl) => $hl->active == 1)->values() as $index => $hl)
-                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <a href="highlightdetail/{{$hl->id}}" id="highlightLink-{{$hl->id}}">
-                    <img src="{{ $hl->cover_image ? $hl->cover_image : images/imag_user/no-image.png }}" class="hl-image" alt="highlight image">
-                        <!-- <h1 class="hl-title">{{$hl->title}}</h1> -->
-                    </a>
+<div class="container home">
+    <div class="container d-sm-flex justify-content-center mt-5">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button> -->
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{asset('img/Banner1.png')}}" class="d-block w-100" alt="...">
                 </div>
-            @endforeach
+                <div class="carousel-item">
+                    <img src="{{asset('img/Banner2.png')}}" class="d-block w-100" alt="...">
+                </div>
+                <!-- <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div> -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
-</div>
-
-<div class="container home ">
-
-    
 
 
     <!-- Modal -->
+
+
+
     <div class="container card-cart d-sm-flex justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card">
@@ -329,7 +278,7 @@
 
         title: {
             display: true,
-            text: '{{ trans('message.total_article_graph') }}',
+            text: 'Report the total number of articles ( 5 years : cumulative)',
             fontSize: 20
         }
 
