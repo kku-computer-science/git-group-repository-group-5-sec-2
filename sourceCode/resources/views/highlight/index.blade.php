@@ -134,7 +134,10 @@
             <tbody>
                 @foreach ($highlights as $highlight)
                 <tr>
-                    <td class="text-truncate" style="max-width: 150px;">{{ $highlight->title }}</td>
+                    <!-- ชื่อไฮไลท์ -->
+                    <td class="text-truncate" style="max-width: 500px;">{{ $highlight->title }}</td>
+
+                    <!-- ชื่อผู้สร้างไฮไลท์ -->
                     <td>{{ $highlight->creator }}</td>
         
                     <!-- ✅ ใช้ Toggle Switch สำหรับ Active -->

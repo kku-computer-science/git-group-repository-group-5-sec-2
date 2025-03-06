@@ -106,7 +106,7 @@
                 <div class="mb-3">
                     <label for="tag-input" class="form-label">เพิ่ม Tags</label>
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control" id="tag-input" placeholder="พิมพ์ Tag แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
+                        <input type="text" class="form-control" style="height:100%" id="tag-input" placeholder="พิมพ์ Tag แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
                         <button class="btn btn-outline-secondary" type="button" id="add-tag-btn">เพิ่ม</button>
                     </div>
                     <div id="tag-suggestions" class="list-group position-absolute d-none" style="z-index: 1000; width: 95%;"></div>
