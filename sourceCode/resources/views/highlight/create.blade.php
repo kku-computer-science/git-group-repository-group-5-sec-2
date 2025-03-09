@@ -85,7 +85,7 @@
                 <!-- Cover Image Upload -->
                 <div class="mb-3">
                     <label for="cover_image" class="form-label">
-                        <span class="text-red-500">*</span> อัปโหลดภาพปก (ขนาดแนะนำ 1600 x 900)
+                        <span class="text-red-500">*</span> อัปโหลดภาพปก
                     </label>
 
                     <!-- Image Upload Box -->
@@ -101,11 +101,11 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> PNG,
-                            JPeg, SVG (ขนาดแนะนำ 1600 x 900)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png,
+                            .jpeg, .svg (ขนาดแนะนำ 1600 x 900)</p>
 
                         <!-- Image Preview (Initially hidden) -->
-                        <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 rounded-lg hidden p-0">
+                        <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 hidden p-0">
                     </div>
 
                     <!-- Error Message -->
@@ -117,9 +117,29 @@
                 <!-- Multiple Images Upload -->
                 <div class="mb-3">
                     <label for="images" class="form-label">อัปโหลดอัลบั้มภาพ</label>
-                    <input type="file" class="form-control @error('images') is-invalid @enderror" id="images"
-                        name="images[]" accept="image/*" multiple>
-                    <div id="imagePreviewContainer" class="mt-2"></div>
+
+                    <!-- Image Upload Box -->
+                    <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
+                        id="uploadBoxMultiple">
+                        <input type="file" class="absolute inset-0 opacity-0 cursor-pointer" id="images" name="images[]"
+                            accept="image/*" multiple>
+
+                        <!-- Upload Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-black-400 mx-auto mb-2" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                        </svg>
+
+                        <!-- Instruction Text -->
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png,
+                            .jpeg, .svg (อัปโหลดได้หลายรูป)</p>
+
+                        <!-- Image Preview Container (Initially hidden) -->
+                        <div id="imagePreviewContainer" class="mt-2 hidden flex">
+                            <!-- Dynamically generated preview images will appear here -->
+                        </div>
+                    </div>
+
                     @error('images')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -157,6 +177,7 @@
     <!-- ใช้ชื่อ section ที่ถูกต้อง: javascript -->
     @section('javascript')
         <script>
+            //coverimage
             document.getElementById('cover_image').addEventListener('change', function (event) {
                 let coverPreview = document.getElementById('coverPreview');
                 let uploadBox = document.getElementById('uploadBox'); // Get the upload box
@@ -173,21 +194,39 @@
                 }
             });
 
-            // แสดงรูปตัวอย่างหลายรูป
+            //multiple image
             document.getElementById('images').addEventListener('change', function (event) {
                 let previewContainer = document.getElementById('imagePreviewContainer');
+                let uploadBox = document.getElementById('uploadBoxMultiple');
+                let uploadIcon = uploadBox.querySelector('svg');
+                let instructionText = uploadBox.querySelector('p');
+
                 previewContainer.innerHTML = ''; // เคลียร์รูปเก่าออกก่อน
 
                 if (event.target.files.length > 0) {
-                    Array.from(event.target.files).forEach(file => {
+                    previewContainer.classList.remove('hidden'); // แสดง container เมื่อมีการเลือกไฟล์
+                    uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400'); // ซ่อนเส้นขอบ dashed
+                    uploadIcon.classList.add('hidden'); // ซ่อนไอคอน
+                    instructionText.classList.add('hidden'); // ซ่อนข้อความแนะนำ
+
+                    Array.from(event.target.files).forEach((file, index) => {
                         let img = document.createElement('img');
                         img.src = URL.createObjectURL(file);
-                        img.classList.add('img-thumbnail', 'm-1');
-                        img.style.maxWidth = '100px';
+                        img.classList.add('img-thumbnail', 'mr-2'); // เพิ่ม margin ระหว่างภาพ
+                        img.style.maxWidth = '100px'; // กำหนดขนาดสูงสุดของภาพ
+
                         previewContainer.appendChild(img);
                     });
+                } else {
+                    // ถ้าไม่มีไฟล์ให้เลือก คืนค่า UI เดิม
+                    previewContainer.classList.add('hidden');
+                    uploadBox.classList.add('border-dashed', 'border-2', 'border-gray-400');
+                    uploadIcon.classList.remove('hidden');
+                    instructionText.classList.remove('hidden');
                 }
             });
+
+
 
             // Tags Manager with Autocomplete
             document.addEventListener('DOMContentLoaded', function () {
@@ -236,11 +275,7 @@
                         tagElement.className = 'badge bg-primary me-1 mb-1 p-2';
                         tagElement.style.position = 'relative';
 
-                        tagElement.innerHTML = `
-                                                                                                            ${tagName}
-                                                                                                            <button type="button" class="btn-close btn-close-white ms-2" 
-                                                                                                                    style="font-size: 0.5rem;" aria-label="Close"></button>
-                                                                                                        `;
+                        tagElement.innerHTML = `${tagName}<button type="button" class="btn-close btn-close-white ms-2"style="font-size: 0.5rem;" aria-label="Close"></button>`;
 
                         // Add click event to remove tag
                         tagElement.querySelector('.btn-close').addEventListener('click', function () {
