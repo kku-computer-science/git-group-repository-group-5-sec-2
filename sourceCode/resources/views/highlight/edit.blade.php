@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
     <style>
         body {
@@ -66,30 +67,25 @@
 
                 <!-- Title -->
                 <div class="mb-3">
-                    <label class="form-label">Title</label>
+                    <label class="form-label"><span class="text-red-500 font-bold">*</span> ชื่อ</label>
                     <input type="text" class="form-control" name="title" value="{{ $highlight->title }}" required>
                 </div>
 
                 <!-- Detail -->
                 <div class="mb-3">
-                    <label class="form-label">Detail</label>
+                    <label class="form-label"><span class="text-red-500 font-bold">*</span> คำอธิบาย</label>
                     <textarea class="form-control" name="detail" rows="8" style="height: 200px; resize: vertical;"
                         required>{{ $highlight->detail }}</textarea>
                 </div>
 
                 <!-- Cover Image -->
                 <div class="mb-3">
-                    <label class="form-label">รูปภาพปัจจุบัน</label>
-                    <div class="mt-2">
-                        <img src="{{ asset($highlight->cover_image) }}" class="img-fluid" style="max-width: 300px;">
-                    </div>
-
-                    <label class="form-label mt-3">รูปภาพปกใหม่</label>
-                    <div class="mt-2">
-                        <input type="file" class="form-control" name="cover_image" accept="image/*">
-                    </div>
+                    <label class="form-label"><span class="text-red-500 font-bold">*</span> รูปภาพปกปัจจุบัน</label>
+                    <img src="{{ asset($highlight->cover_image) }}" class="img-fluid mt-2" style="max-width: 300px;">
+                    <label class="form-label mt-3">อัปโหลดรูปภาพปกใหม่ .png,
+                    .jpeg, .svg (ขนาดแนะนำ 1600 x 900)</label>
+                    <input type="file" class="form-control" name="cover_image" accept="image/*">
                 </div>
-
 
                 <!-- Images ที่อัปโหลดไปแล้ว -->
                 <div class="mb-3">
@@ -107,15 +103,16 @@
                     </div>
                 </div>
 
-                <!-- อัปโหลด Images ใหม่ -->
+                <!-- อัปโหลดรูปภาพใหม่ -->
                 <div class="mb-3">
-                    <label class="form-label">เพิ่มรูปภาพใหม่</label>
+                    <label class="form-label">เพิ่มรูปภาพใหม่ .png,
+                    .jpeg, .svg (อัปโหลดได้หลายรูป)</label>
                     <input type="file" class="form-control" name="images[]" accept="image/*" multiple>
                 </div>
 
                 <!-- Tags Input -->
                 <div class="mb-3">
-                    <label for="tag-input" class="form-label">แท็ก</label>
+                    <label for="tag-input" class="form-label"><span class="text-red-500 font-bold">*</span> แท็ก</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
                             placeholder="พิมพ์ Tag แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
@@ -175,7 +172,6 @@
                         console.error('Error:', error);
                     });
             }
-
             // Tags Manager with Autocomplete
             document.addEventListener('DOMContentLoaded', function () {
                 const tagInput = document.getElementById('tag-input');
@@ -213,10 +209,10 @@
                     tagElement.style.position = 'relative';
 
                     tagElement.innerHTML = `
-                            ${tagName}
-                            <button type="button" class="btn-close btn-close-white ms-2" 
-                                    style="font-size: 0.5rem;" aria-label="Close"></button>
-                        `;
+                                                ${tagName}
+                                                <button type="button" class="btn-close btn-close-white ms-2" 
+                                                        style="font-size: 0.5rem;" aria-label="Close"></button>
+                                            `;
 
                     // Add click event to remove tag
                     tagElement.querySelector('.btn-close').addEventListener('click', function () {

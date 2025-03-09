@@ -226,8 +226,6 @@
                 }
             });
 
-
-
             // Tags Manager with Autocomplete
             document.addEventListener('DOMContentLoaded', function () {
                 const tagInput = document.getElementById('tag-input');
