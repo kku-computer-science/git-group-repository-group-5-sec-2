@@ -195,3 +195,10 @@ Route::get('/clear-all', function () {
         'message' => 'All cache cleared'
     ], 200);
 });
+
+use App\Http\Controllers\SearchTagController;
+
+Route::get('/search-results', [SearchTagController::class, 'index'])->name('search.results');
+
+
+
