@@ -40,4 +40,10 @@ return [
 'project_manager' => 'Project Manager',
 'status' => 'Status',
 
+//search result
+'found' => 'Found',
+'result' => 'result',
+'search_tags' => 'search tags...',
+'notfound' => 'No items found matching this search',
+
 ];

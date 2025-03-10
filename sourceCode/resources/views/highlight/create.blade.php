@@ -109,8 +109,7 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png,
-                            .jpeg, .svg (ขนาดแนะนำ 1600 x 900)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)</p>
 
                         <!-- Image Preview (Initially hidden) -->
                         <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 hidden p-0">
@@ -139,8 +138,7 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png,
-                            .jpeg, .svg (อัปโหลดได้หลายรูป)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)</p>
 
                         <!-- Image Preview Container (Initially hidden) -->
                         <div id="imagePreviewContainer" class="mt-2 hidden flex">
@@ -190,7 +188,7 @@
                 let coverPreview = document.getElementById('coverPreview');
                 let uploadBox = document.getElementById('uploadBox');
                 let file = event.target.files[0];
-                let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml'];
+                let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/avif', 'image/webp'];
 
                 if (file && !allowedTypes.includes(file.type)) {
                     alert('ไฟล์ไม่ถูกต้อง! กรุณาอัปโหลดเฉพาะไฟล์ .png, .jpeg, .svg');
@@ -207,13 +205,13 @@
                 }
             });
 
-            // ตรวจสอบไฟล์สำหรับอัปโหลดหลายไฟล์
+            // multiple image
             document.getElementById('images').addEventListener('change', function (event) {
                 let previewContainer = document.getElementById('imagePreviewContainer');
                 let uploadBox = document.getElementById('uploadBoxMultiple');
                 let uploadIcon = uploadBox.querySelector('svg');
                 let instructionText = uploadBox.querySelector('p');
-                let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml'];
+                let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/avif', 'image/webp'];
                 let dt = new DataTransfer(); // ใช้เก็บไฟล์ที่ยังไม่ถูกลบ
 
                 previewContainer.innerHTML = '';
