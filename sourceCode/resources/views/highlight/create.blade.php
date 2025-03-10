@@ -28,7 +28,6 @@
         .badge {
             font-weight: normal;
         }
-
         /* Tag styles */
         #tags-container .badge {
             transition: all 0.3s ease;

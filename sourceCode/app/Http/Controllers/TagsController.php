@@ -42,7 +42,6 @@ class TagsController extends Controller
         $tag = Tags::findOrFail($id);
         return view('tags.edit', compact('tag'));
     }
-
     // ✅ อัปเดตข้อมูลแท็ก
     public function update(Request $request, $id)
     {

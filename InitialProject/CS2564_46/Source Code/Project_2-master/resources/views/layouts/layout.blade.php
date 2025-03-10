@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-
+    
 
 </head>
 
@@ -67,9 +67,6 @@
                     <li class="nav-item {{ request()->is('/') ? 'active' : ''}} ">
                         <a class="nav-link" href="/">{{ trans('message.Home') }}</a>
                     </li>
-                    <li class="nav-item {{ request()->is('allhighlights') ? 'active' : ''}}">
-                        <a class="nav-link" href="/allhighlights">{{ trans('message.Highlights') }}</a>
-                    </li>
                     <li
                         class="nav-item dropdown {{ Request::routeIs('researchers') ? 'active' : '' }} {{ request()->is('detail*') ? 'active' : ''}} ">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -78,9 +75,9 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($dn as $department)
-                                <li><a class="dropdown-item" href="{{ route('researchers', ['id' => $department->id])}}">
-                                        {{$department->program_name_en}}</a>
-                                </li>
+                            <li><a class="dropdown-item" href="{{ route('researchers',['id'=>$department->id])}}">
+                                    {{$department->program_name_en}}</a>
+                            </li>
                             @endforeach
                         </ul>
                     </li>
@@ -95,7 +92,6 @@
                     </li>
 
 
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -105,11 +101,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @foreach (Config::get('languages') as $lang => $language)
-                                @if ($lang != App::getLocale())
-                                    <a class="dropdown-item" href="{{ route('langswitch', $lang) }}"><span
-                                            class="flag-icon flag-icon-{{$language['flag-icon']}}"></span>
-                                        {{$language['display']}}</a>
-                                @endif
+                            @if ($lang != App::getLocale())
+                            <a class="dropdown-item" href="{{ route('langswitch', $lang) }}"><span
+                                    class="flag-icon flag-icon-{{$language['flag-icon']}}"></span>
+                                {{$language['display']}}</a>
+                            @endif
                             @endforeach
                         </div>
                     </li>
@@ -117,15 +113,15 @@
 
                 </ul>
                 @if (Route::has('login'))
-                    @auth
-                        <span class="nav-item">
+                @auth
+                <span class="nav-item">
 
-                        </span>
-                    @else
-                        <span class="nav-item">
-                            <a class="btn-solid-sm" href="/login" target="_blank">Login</a>
-                        </span>
-                    @endauth
+                </span>
+                @else
+                <span class="nav-item">
+                    <a class="btn-solid-sm" href="/login" target="_blank">Login</a>
+                </span>
+                @endauth
                 @endif
             </div> <!-- end of navbar-collapse -->
         </div> <!-- end of container -->

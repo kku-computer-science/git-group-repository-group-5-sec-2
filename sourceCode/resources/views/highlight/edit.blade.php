@@ -30,7 +30,6 @@
         .badge {
             font-weight: normal;
         }
-
         /* Tag styles */
         #tags-container .badge {
             transition: all 0.3s ease;
@@ -178,7 +177,6 @@
                 const tagsContainer = document.getElementById('tags-container');
                 const tagsInputField = document.getElementById('tags-input');
                 const tagSuggestions = document.getElementById('tag-suggestions');
-
                 // ดึงค่า tags ปัจจุบันจาก $highlight->tags
                 let tags = [
                     @foreach($highlight->tags as $tag)
@@ -195,12 +193,10 @@
                         allTags = data.map(tag => tag.name);
                     })
                     .catch(error => console.error('Error fetching tags:', error));
-
                 // Function to update the hidden input with all tags
                 function updateTagsInput() {
                     tagsInputField.value = JSON.stringify(tags);
                 }
-
                 // Function to create a tag element
                 function createTagElement(tagName) {
                     const tagElement = document.createElement('div');
@@ -231,7 +227,6 @@
                         tagsContainer.appendChild(createTagElement(tagName));
                         updateTagsInput();
                     }
-
                     tagInput.value = '';
                     tagInput.focus();
                     tagSuggestions.classList.add('d-none');
@@ -419,11 +414,9 @@
                 tags.forEach(tagName => {
                     tagsContainer.appendChild(createTagElement(tagName));
                 });
-
                 // Initialize the hidden input
                 updateTagsInput();
             });
-
 
         </script>
     @endsection

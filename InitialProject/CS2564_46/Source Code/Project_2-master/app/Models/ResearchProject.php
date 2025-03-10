@@ -9,8 +9,7 @@ class ResearchProject extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'project_name', 'project_start', 'project_end', 
-        'responsible_department', 'budget', 'note','status','project_year'
+        'project_name', 'project_start', 'project_end', 'responsible_department', 'budget', 'note','status','project_year'
     ];
 
     public function user()

@@ -1,12 +1,13 @@
+# For more information: https://laravel.com/docs/sail
 version: '3'
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.2
+            context: ./vendor/laravel/sail/runtimes/8.1
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.2/app
+        image: sail-8.1/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -28,7 +29,7 @@ services:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: '%'
+            MYSQL_ROOT_HOST: "%"
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
@@ -38,31 +39,12 @@ services:
         networks:
             - sail
         healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
+            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
-    phpmyadmin:
-        image: phpmyadmin
-        restart: on-failure
-        ports:
-            - '8080:80'
-        environment:
-            PMA_ARBITRARY: 1
-            PMA_HOST: mysql
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-        depends_on:
-            - mysql
-        networks:
-            - sail
 networks:
     sail:
         driver: bridge
 volumes:
     sailmysql:
-        driver: local
-    sail-mysql:
         driver: local
