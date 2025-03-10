@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-25T11:16:04.416614" rpa="false" schemaversion="5">
+<suite id="s1" name="Allhighligt" source="C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_allhighlight\allhighligt.robot">
+<test id="s1-t1" name="Test Open All Highlights Page" line="6">
+<kw name="Open All Highlights Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T11:16:04.687669" level="INFO">Opening browser 'Chrome' to base url 'http://cs05sec267.cpkkuhost.com/allhighlights'.</msg>
+<arg>${ALLHIGHLIGHTS_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T11:16:04.687429" elapsed="7.583908"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T11:16:12.271532" elapsed="0.054403"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T11:16:14.327801" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T11:16:12.326598" elapsed="2.001367"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${ALLHIGHLIGHTS_HEADER}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T11:16:14.328201" elapsed="0.011801"/>
+</kw>
+<doc>Open the All Highlights page</doc>
+<status status="PASS" start="2025-02-25T11:16:04.686782" elapsed="9.653345"/>
+</kw>
+<kw name="Verify All Highlights Page Loaded" owner="resource">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ALLHIGHLIGHTS_HEADER}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T11:16:14.340935" elapsed="0.013817"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T11:16:14.374989" level="INFO">Element 'xpath=//h1[contains(text(),'Highlights')]' is displayed.</msg>
+<arg>${ALLHIGHLIGHTS_HEADER}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T11:16:14.354898" elapsed="0.020191"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${HIGHLIGHT_ITEM}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T11:16:14.375246" elapsed="0.011493"/>
+</kw>
+<doc>Verify that the All Highlights page is loaded by checking the header</doc>
+<status status="PASS" start="2025-02-25T11:16:14.340665" elapsed="0.046184"/>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T11:16:14.387403" elapsed="2.264050"/>
+</kw>
+<status status="PASS" start="2025-02-25T11:16:14.387177" elapsed="2.264434"/>
+</kw>
+<doc>Verify that opening the All Highlights page directly loads the page and displays the header and highlight items.</doc>
+<status status="PASS" start="2025-02-25T11:16:04.685914" elapsed="11.966012"/>
+</test>
+<test id="s1-t2" name="Test Click Highlight Item" line="12">
+<kw name="Open All Highlights Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T11:16:16.653724" level="INFO">Opening browser 'Chrome' to base url 'http://cs05sec267.cpkkuhost.com/allhighlights'.</msg>
+<arg>${ALLHIGHLIGHTS_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T11:16:16.653485" elapsed="7.131784"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T11:16:23.785806" elapsed="0.131102"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T11:16:25.918392" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T11:16:23.917337" elapsed="2.001159"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${ALLHIGHLIGHTS_HEADER}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T11:16:25.918655" elapsed="0.011217"/>
+</kw>
+<doc>Open the All Highlights page</doc>
+<status status="PASS" start="2025-02-25T11:16:16.653132" elapsed="9.276846"/>
+</kw>
+<kw name="Verify All Highlights Page Loaded" owner="resource">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ALLHIGHLIGHTS_HEADER}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T11:16:25.930596" elapsed="0.016500"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-02-25T11:16:25.964096" level="INFO">Element 'xpath=//h1[contains(text(),'Highlights')]' is displayed.</msg>
+<arg>${ALLHIGHLIGHTS_HEADER}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T11:16:25.947269" elapsed="0.016911"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${HIGHLIGHT_ITEM}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T11:16:25.964322" elapsed="0.010496"/>
+</kw>
+<doc>Verify that the All Highlights page is loaded by checking the header</doc>
+<status status="PASS" start="2025-02-25T11:16:25.930266" elapsed="0.044711"/>
+</kw>
+<kw name="Click First Highlight Item" owner="resource">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T11:16:25.975921" level="INFO">Clicking element 'xpath=(//div[contains(@class,'col-lg-4 col-md-6 col-12')])//a'.</msg>
+<arg>${FIRST_HIGHLIGHT_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T11:16:25.975658" elapsed="0.743582"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T11:16:31.719874" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T11:16:26.719403" elapsed="5.000559"/>
+</kw>
+<doc>Click first highlight item</doc>
+<status status="PASS" start="2025-02-25T11:16:25.975339" elapsed="5.744710"/>
+</kw>
+<kw name="Verify Highlight Detail Page Loaded" owner="resource">
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-02-25T11:16:31.726046" level="INFO">${current_url} = https://cs05sec267.cpkkuhost.com/highlightdetail/18</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-02-25T11:16:31.721021" elapsed="0.005061"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${current_url}</arg>
+<arg>highlightdetail</arg>
+<arg>msg=Expected URL to contain "highlightdetail"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-02-25T11:16:31.726220" elapsed="0.000187"/>
+</kw>
+<doc>Verify that the highlight detail page is loaded by checking the URL</doc>
+<status status="PASS" start="2025-02-25T11:16:31.720575" elapsed="0.005918"/>
+</kw>
+<kw name="Go Back" owner="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" start="2025-02-25T11:16:31.726668" elapsed="0.023366"/>
+</kw>
+<kw name="Close Browser Session" owner="resource">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T11:16:31.753317" elapsed="2.255874"/>
+</kw>
+<status status="PASS" start="2025-02-25T11:16:31.752690" elapsed="2.256672"/>
+</kw>
+<doc>Verify that clicking the highlight item navigates to the highlight detail page.</doc>
+<status status="PASS" start="2025-02-25T11:16:16.652527" elapsed="17.357395"/>
+</test>
+<status status="PASS" start="2025-02-25T11:16:04.418309" elapsed="29.593272"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Allhighligt">Allhighligt</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,28 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/cs05sec267/public_html/
+    - export SOURCEPATH=/home2/cs05sec267/sourcecode/
+    - export PROJECTCODEPATH="InitialProject/CS2564_46/Source Code/Project_2-master"
+    - /bin/cp -r "${PROJECTCODEPATH}"/* $SOURCEPATH
+    - /bin/unzip -o "${PROJECTCODEPATH}"/vendor.zip -d $SOURCEPATH
+    - /bin/rm -r $SOURCEPATH/vendor.zip
+    - /bin/rm -r $SOURCEPATH/public/index.php
+    - /bin/rm -r $SOURCEPATH/public/images
+    - /bin/rm -r $SOURCEPATH/public/img
+    - /bin/rm -r $SOURCEPATH/public/files
+    - /bin/rm -r $DEPLOYPATH/assets
+    - /bin/rm -r $DEPLOYPATH/css
+    - /bin/rm -r $DEPLOYPATH/js
+    - /bin/rm -r $DEPLOYPATH/vendor
+    - /bin/rm -r $DEPLOYPATH/vendors
+    - /bin/rm -r $DEPLOYPATH/bootstrap
+    - /bin/rm -r $DEPLOYPATH/build
+    - /bin/rm -r $DEPLOYPATH/dist
+    - /bin/rm -r $DEPLOYPATH/fonts
+    - /bin/rm -r $DEPLOYPATH/files
+    - /bin/rm -r $DEPLOYPATH/plugins
+    - /bin/rm -r $DEPLOYPATH/word-template
+    - /bin/mv -f $SOURCEPATH/public/* $DEPLOYPATH
+    - /bin/mv -f $SOURCEPATH/public/.htaccess $DEPLOYPATH
+    - /bin/rm -r $SOURCEPATH/public
