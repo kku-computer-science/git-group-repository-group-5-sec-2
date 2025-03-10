@@ -57,7 +57,7 @@
 
     @section('content')
         <div class="container mt-5">
-            <h2 class="mb-4">สร้าง Highlight ใหม่</h2>
+            <h2 class="mb-4">สร้างไฮไลท์ใหม่</h2>
 
             <form action="{{ route('highlight.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -147,7 +147,7 @@
 
                 <!-- Tags Input -->
                 <div class="mb-3">
-                    <label for="tag-input" class="form-label"><span style="color: red;">*</span> เพิ่มแท็ก</label>
+                    <label for="tag-input" class="form-label"><span class="text-red-500 font-bold">*</span> เพิ่มแท็ก</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
                             placeholder="พิมพ์ Tag แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
@@ -168,7 +168,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">สร้าง Highlight</button>
+                <button type="submit" class="btn btn-primary">สร้างไฮไลท์</button>
                 <a href="{{ route('highlight.index') }}" class="btn btn-secondary">ยกเลิก</a>
             </form>
         </div>
@@ -342,7 +342,7 @@
                         const createItem = document.createElement('button');
                         createItem.type = 'button';
                         createItem.className = 'list-group-item list-group-item-action text-primary';
-                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้าง tag "<strong>${inputValue}</strong>"`;
+                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>แท็ก "<strong>${inputValue}</strong>"`;
 
                         createItem.addEventListener('click', () => {
                             addTag(inputValue);
