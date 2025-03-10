@@ -28,6 +28,7 @@
         .badge {
             font-weight: normal;
         }
+
         /* Tag styles */
         #tags-container .badge {
             transition: all 0.3s ease;
@@ -46,6 +47,13 @@
         #tag-suggestions .list-group-item.active {
             background-color: #0d6efd;
             color: white;
+        }
+
+        .invalid-feedback {
+            color: red;
+            font-size: 14px;
+            display: block;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -67,7 +75,7 @@
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                         required>
                     @error('title')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
                     @enderror
                 </div>
 
@@ -77,9 +85,10 @@
                     <textarea class="form-control @error('detail') is-invalid @enderror" id="detail" name="detail" rows="8"
                         style="height: 200px; resize: vertical;" required></textarea>
                     @error('detail')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback" style="color: red;">กรุณากรอกคำอธิบายให้ครบถ้วน</div>
                     @enderror
                 </div>
+
 
                 <!-- Cover Image Upload -->
                 <div class="mb-3">
@@ -100,8 +109,7 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png,
-                            .jpeg, .svg (ขนาดแนะนำ 1600 x 900)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)</p>
 
                         <!-- Image Preview (Initially hidden) -->
                         <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 hidden p-0">
@@ -130,8 +138,7 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png,
-                            .jpeg, .svg (อัปโหลดได้หลายรูป)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)</p>
 
                         <!-- Image Preview Container (Initially hidden) -->
                         <div id="imagePreviewContainer" class="mt-2 hidden flex">
@@ -146,7 +153,7 @@
 
                 <!-- Tags Input -->
                 <div class="mb-3">
-                    <label for="tag-input" class="form-label"><span class="text-red-500 font-bold">*</span> เพิ่มแท็ก</label>
+                    <label for="tag-input" class="form-label">เพิ่มแท็ก</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
                             placeholder="พิมพ์ Tag แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
@@ -179,45 +186,86 @@
             //coverimage
             document.getElementById('cover_image').addEventListener('change', function (event) {
                 let coverPreview = document.getElementById('coverPreview');
-                let uploadBox = document.getElementById('uploadBox'); // Get the upload box
+                let uploadBox = document.getElementById('uploadBox');
+                let file = event.target.files[0];
+                let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/avif', 'image/webp'];
 
-                if (event.target.files.length > 0) {
-                    let file = event.target.files[0];
-                    coverPreview.src = URL.createObjectURL(file);  // Set the image source
-                    coverPreview.classList.remove('hidden');  // Show the image preview
+                if (file && !allowedTypes.includes(file.type)) {
+                    alert('ไฟล์ไม่ถูกต้อง! กรุณาอัปโหลดเฉพาะไฟล์ .png, .jpeg, .svg');
+                    event.target.value = ''; // รีเซ็ตค่า input
+                    return;
+                }
 
-                    // Hide dashed border, icon, and text after file selection
-                    uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400');  // Remove dashed border
-                    uploadBox.querySelector('svg').classList.add('hidden');  // Hide the upload icon
-                    uploadBox.querySelector('p').classList.add('hidden');  // Hide the instruction text
+                if (file) {
+                    coverPreview.src = URL.createObjectURL(file);
+                    coverPreview.classList.remove('hidden');
+                    uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400');
+                    uploadBox.querySelector('svg').classList.add('hidden');
+                    uploadBox.querySelector('p').classList.add('hidden');
                 }
             });
 
-            //multiple image
+            // multiple image
             document.getElementById('images').addEventListener('change', function (event) {
                 let previewContainer = document.getElementById('imagePreviewContainer');
                 let uploadBox = document.getElementById('uploadBoxMultiple');
                 let uploadIcon = uploadBox.querySelector('svg');
                 let instructionText = uploadBox.querySelector('p');
+                let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/avif', 'image/webp'];
+                let dt = new DataTransfer(); // ใช้เก็บไฟล์ที่ยังไม่ถูกลบ
 
-                previewContainer.innerHTML = ''; // เคลียร์รูปเก่าออกก่อน
+                previewContainer.innerHTML = '';
+                let invalidFile = false;
+
+                Array.from(event.target.files).forEach(file => {
+                    if (!allowedTypes.includes(file.type)) {
+                        invalidFile = true;
+                    }
+                });
+
+                if (invalidFile) {
+                    alert('ไฟล์บางไฟล์ไม่ถูกต้อง! กรุณาอัปโหลดเฉพาะไฟล์ .png, .jpeg, .svg');
+                    event.target.value = '';
+                    return;
+                }
 
                 if (event.target.files.length > 0) {
-                    previewContainer.classList.remove('hidden'); // แสดง container เมื่อมีการเลือกไฟล์
-                    uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400'); // ซ่อนเส้นขอบ dashed
-                    uploadIcon.classList.add('hidden'); // ซ่อนไอคอน
-                    instructionText.classList.add('hidden'); // ซ่อนข้อความแนะนำ
+                    previewContainer.classList.remove('hidden');
+                    uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400');
+                    uploadIcon.classList.add('hidden');
+                    instructionText.classList.add('hidden');
 
                     Array.from(event.target.files).forEach((file, index) => {
+                        let imgWrapper = document.createElement('div');
+                        imgWrapper.classList.add('relative', 'inline-block', 'mr-2');
+                        imgWrapper.style.position = 'relative';
+
                         let img = document.createElement('img');
                         img.src = URL.createObjectURL(file);
-                        img.classList.add('img-thumbnail', 'mr-2'); // เพิ่ม margin ระหว่างภาพ
-                        img.style.maxWidth = '100px'; // กำหนดขนาดสูงสุดของภาพ
+                        img.classList.add('img-thumbnail');
+                        img.style.maxWidth = '100px';
 
-                        previewContainer.appendChild(img);
+                        let deleteBtn = document.createElement('button');
+                        deleteBtn.innerHTML = '&times;';
+                        deleteBtn.classList.add('absolute', 'top-0', 'right-0', 'bg-red-500', 'text-white', 'rounded-full', 'w-6', 'h-6', 'flex', 'items-center', 'justify-center');
+                        deleteBtn.style.cursor = 'pointer';
+
+                        deleteBtn.onclick = function () {
+                            if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
+                                imgWrapper.remove();
+                                dt.items.remove(index); // ลบไฟล์ออกจาก DataTransfer
+                                event.target.files = dt.files; // อัปเดตไฟล์ใน input
+                            }
+                        };
+
+                        imgWrapper.appendChild(img);
+                        imgWrapper.appendChild(deleteBtn);
+                        previewContainer.appendChild(imgWrapper);
+                        dt.items.add(file); // เพิ่มไฟล์ลง DataTransfer
                     });
+
+                    event.target.files = dt.files; // อัปเดตไฟล์ใน input
                 } else {
-                    // ถ้าไม่มีไฟล์ให้เลือก คืนค่า UI เดิม
                     previewContainer.classList.add('hidden');
                     uploadBox.classList.add('border-dashed', 'border-2', 'border-gray-400');
                     uploadIcon.classList.remove('hidden');
