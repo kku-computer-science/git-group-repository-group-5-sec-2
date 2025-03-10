@@ -79,9 +79,9 @@
 
                 <!-- Cover Image -->
                 <div class="mb-3">
-                    <label class="form-label">ภาพปกปัจจุบัน</label>
+                    <label class="form-label">รูปภาพปกปัจจุบัน</label>
                     <img src="{{ asset($highlight->cover_image) }}" class="img-fluid mt-2" style="max-width: 300px;">
-                    <label class="form-label mt-3">รูปภาพปกใหม่</label>
+                    <label class="form-label mt-3">อัปโหลดภาพปกใหม่</label>
                     <input type="file" class="form-control" name="cover_image" accept="image/*">
                 </div>
 
