@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-25T23:39:35.791755" rpa="false" schemaversion="5">
+<suite id="s1" name="Highlights Navbar" source="C:\SoftEn\git-group-repository-group-5-sec-2\Test\test_allhighlight\highlights_navbar.robot">
+<test id="s1-t1" name="Test Highlights Navbar" line="6">
+<kw name="Open Web Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T23:39:37.349718" level="INFO">Opening browser 'Chrome' to base url 'http://cs05sec267.cpkkuhost.com'.</msg>
+<arg>${SERVER}</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T23:39:37.348491" elapsed="4.828908"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T23:39:42.178888" elapsed="0.102672"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T23:39:44.284925" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T23:39:42.283871" elapsed="2.001281"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T23:39:49.698242" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-25T23:39:49.698750" level="FAIL">Element 'xpath=//nav//a[@href='/allhighlights']' did not appear in 5 seconds.</msg>
+<arg>${NAVBAR_HIGHLIGHT}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="FAIL" start="2025-02-25T23:39:44.285524" elapsed="5.477754">Element 'xpath=//nav//a[@href='/allhighlights']' did not appear in 5 seconds.</status>
+</kw>
+<status status="FAIL" start="2025-02-25T23:39:37.344241" elapsed="12.419842">Element 'xpath=//nav//a[@href='/allhighlights']' did not appear in 5 seconds.</status>
+</kw>
+<kw name="Click Navbar Highlights" owner="resource">
+<doc>Click "Highlights" in the navbar</doc>
+<status status="NOT RUN" start="2025-02-25T23:39:49.764954" elapsed="0.000075"/>
+</kw>
+<kw name="Verify All Highlights Page Loaded" owner="resource">
+<doc>Verify that the All Highlights page is loaded by checking the header</doc>
+<status status="NOT RUN" start="2025-02-25T23:39:49.765521" elapsed="0.000096"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" start="2025-02-25T23:39:49.766109" elapsed="0.000081"/>
+</kw>
+<doc>Verify that clicking the navbar "Highlights" navigates to the All Highlights page correctly</doc>
+<status status="FAIL" start="2025-02-25T23:39:37.336762" elapsed="12.429852">Element 'xpath=//nav//a[@href='/allhighlights']' did not appear in 5 seconds.</status>
+</test>
+<status status="FAIL" start="2025-02-25T23:39:35.796115" elapsed="13.975419"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Highlights Navbar">Highlights Navbar</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
