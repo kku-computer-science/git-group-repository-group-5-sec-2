@@ -1,0 +1,17 @@
+{
+  "name": "playwright_test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0-alpha-2025-03-09",
+    "@types/node": "^22.13.10"
+  },
+  "dependencies": {
+    "playwright_test": "file:"
+  }
+}
