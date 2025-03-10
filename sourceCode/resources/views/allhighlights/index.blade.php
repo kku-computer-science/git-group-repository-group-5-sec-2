@@ -69,12 +69,15 @@
         @endforeach --}}
 
         <h1 class="text-center fw-bold mb-4">{{trans('message.Highlights')}}</h1>
-        <div class="d-flex gap-2 ml-5">
+
+        <!-- ปุ่ม Tags ทั้งหมด -->
+        <!-- <div class="d-flex gap-2 ml-5">
             {{trans('message.tags')}} : 
             @foreach($tags as $tag)
                 <a href="highlights/tag/{{$tag->name}}" class="btn btn-outline-primary mb-5">{{ $tag->name }}</a>
             @endforeach
-        </div>
+        </div> -->
+        <a href ="/search-results" class="btn btn-outline-primary mb-5"> Search By Tag </a>
         
         <div class="row g-4">
             @foreach($highlights as $highlight)

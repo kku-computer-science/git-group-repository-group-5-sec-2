@@ -5,18 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tags;
 use App\Models\Highlight;
+use Illuminate\Support\Facades\DB;
 
 class SearchTagController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // ค้นหา Tag ตามชื่อ
-        $tags = Tags::all();
+        $availableTags = Tags::all();
 
-        // ดึงผลงานทั้งหมดที่มี Tag นั้น
-        $highlights = Highlight::all();
-    
-        // ส่งไปยัง View
-        return view('search_result', compact('highlights', 'tags'));
+        $filterTags = $request->has('tags') ? explode(',', $request->input('tags')) : [];
+
+
+        $tagsModel = new Tags();
+
+        if(empty($filterTags) || $filterTags[0] == '') {
+            $highlights = Highlight::all();
+        } else {
+            $highlights = $tagsModel->filteredHighlights($filterTags);
+        }
+
+        //$highlights = empty($filterTags) ? Highlight::all() : $tagsModel->filteredHighlights($filterTags);
+
+        return view('search_result', compact('highlights', 'availableTags'));
     }
 }
