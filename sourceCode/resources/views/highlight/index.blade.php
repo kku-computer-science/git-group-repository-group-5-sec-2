@@ -9,11 +9,14 @@
     <title>Highlight</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
 
     <style>
         body {
             background-color: #fff;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Noto Sans Thai', sans-serif !important;
         }
 
         .container {
@@ -113,10 +116,10 @@
 
     @section('content')
     <div class="container mt-5">
-        <h2>รายการ Highlights</h2>
+        <h2>รายการไฮไลท์</h2>
 
         {{-- Highlight Lists --}}
-        <a href="{{ route('highlight.create') }}" class="btn btn-primary mb-3">+ สร้าง Highlight ใหม่</a>
+        <a href="{{ route('highlight.create') }}" class="btn btn-primary mb-3">+ สร้างไฮไลท์ใหม่</a>
 
         <table class="table table-bordered">
             <thead class="table-dark">
@@ -143,23 +146,21 @@
                             <input type="hidden" name="active" value="{{ $highlight->active }}">
                             <label class="toggle-switch">
                                 <input type="checkbox" class="toggle-active"
-                                       data-id="{{ $highlight->id }}"
-                                       {{ $highlight->active ? 'checked' : '' }}>
+                                data-id="{{ $highlight->id }}"
+                                {{ $highlight->active ? 'checked' : '' }}>
                                 <span class="slider"></span>
                             </label>
                         </form>
                     </td>
                     
-                    
-        
                     <td>
-                        <a href="{{ route('highlight.edit', $highlight->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ route('highlight.edit', $highlight->id) }}" class="btn btn-warning btn-sm mr-2"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('highlight.destroy', $highlight->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm"
                                 onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบ Highlight นี้?');">
-                                Delete
+                                <i class="fas fa-trash"></i>
                             </button>
                         </form>
                     </td>
@@ -174,9 +175,8 @@
 
         {{-- Tags Lists --}}
         <div class="mt-4">
-            <h4>Tags ทั้งหมด</h4>
-        
-            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ สร้าง Tags ใหม่</a>
+            <h4>แท็กทั้งหมด</h4>
+            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ สร้างแท็กใหม่</a>
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
@@ -189,13 +189,14 @@
                     <tr>
                         <td>{{ $tag->name }}</td>
                         <td>
-                            <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-warning btn-sm mr-2"><i class="fas fa-edit"></i></a>
+
                             <form action="{{ route('tags.destroy', $tag->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
                                     onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบแท็กนี้?');">
-                                    Delete
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>
@@ -214,6 +215,7 @@
 
     @section('javascript')
 
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             console.log("✅ JavaScript Loaded");
