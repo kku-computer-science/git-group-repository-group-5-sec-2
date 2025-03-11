@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { waitForPageLoad, login } from './utils/utils';
+// import { testData } from './test-data';
+import path from 'path';
 
 test.describe.serial("CREATE module",() => {
     // const baseURL = "http://cs05sec267.cpkkuhost.com";
@@ -7,25 +9,10 @@ test.describe.serial("CREATE module",() => {
     const username = "staff@gmail.com";
     const password = "123456789";
     var dashboardPage ;
-    const tags = "";
-    const highlight_title = "นักวิจัย มข. และบริษัทมิตรผล จับมือนำ AI คัดแยกพันธุ์อ้อยสู่เวทีนานาชาติ ในงาน ITEX 2025";
-    const highlight_description = `
-    วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น ขอแสดงความยินดีกับ รศ. ดร.วรารัตน์ สงฆ์แป้น และคณะทีมวิจัย จากบริษัท มิตรผลวิจัย พัฒนาอ้อยและน้ำตาล จำกัด ในผลงานเรื่อง “การพัฒนาแบบจำลองปัญญาประดิษฐ์การคัดแยกพันธุ์อ้อยด้วยการเรียนรู้เครื่องและการเรียนรู้เชิงลึก" ได้รับคัดเลือกจากสำนักงานการวิจัยแห่งชาติ (วช.) เข้าร่วมประกวดและจัดแสดงผลงานในงาน The 36th International Invention, Innovation & Technology Exhibition (ITEX 2025) ระหว่างวันที่ 29 – 31 พฤษภาคม 2568 ณ กรุงกัวลาลัมเปอร์ สหพันธรัฐมาเลเซีย
+    var uploadImg;
+    const tags = "Wararat";
+    const testData = require('./test-data.json');
 
-โดยคณะทีมวิจัยมีรายชื่อดังต่อไปนี้
-
-1. รศ. ดร.วรารัตน์ สงฆ์แป้น วิทยาลัยการคอมพิวเตอร์ หัวหน้าโครงการ
-
-2. ดร.วรวีรุกรณ์ วีระจิตต์ บริษัทมิตรผลวิจัย พัฒนาอ้อยและน้ำตาล จำกัด
-
-3. นายเอกวัตร พันธุระ บริษัทมิตรผลวิจัย พัฒนาอ้อยและน้ำตาล จำกัด
-
-4. นายณฤบดินทร์ ยินดี บริษัทมิตรผลวิจัย พัฒนาอ้อยและน้ำตาล จำกัด
-
-โดยงานวิจัยและนวัตกรรมสิ่งประดิษฐ์นี้เป็นหนึ่งในโครงการที่ ทางมหาวิทยาลัยขอนแก่นและบริษัท มิตรผลวิจัย พัฒนาอ้อยและน้ำตาล จำกัด ได้มีความร่วมมือ MOU ในด้านการพัฒนาและสร้างผลงานวิจัย นวัตกรรมสิ่งประดิษฐ์ได้ให้เกิดประโยชน์ร่วมกัน
-    `;
-    const highlight_image = "";
-    const highlight_video = "";
 
     // setting default timeout
     test.beforeEach(async ({ page }) => {
@@ -35,6 +22,7 @@ test.describe.serial("CREATE module",() => {
 
     // UAT-sp3-005
     test("complete create highlight", async ({page}) => {
+        
 
         // test case 1
         await test.step("TC1: Login Success", async () => {
@@ -54,17 +42,61 @@ test.describe.serial("CREATE module",() => {
 
         
         // test case 3
-        await test.step("TC3 : create tags", async () => {
-            await page1.getByRole('link', { name: 'สร้าง Tags ใหม่' }).click();
-            await page1.getByRole('textbox', { name: 'Tag Name' }).click();
-            await page1.getByRole('textbox', { name: 'Tag Name' }).fill(tags);
-            await page1.getByRole('button', { name: 'สร้าง' }).click();
-        });
+        // await test.step("TC3 : create tags", async () => {
+            
+        //     //navigate to tags page
+        //     await dashboardPage.getByRole('link', { name: '+ สร้าง Tags ใหม่' }).click();
+
+        //     // fill tags field
+        //     await dashboardPage.getByRole('textbox', { name: 'ชื่อแท็ก' }).click();
+        //     await dashboardPage.getByRole('textbox', { name: 'ชื่อแท็ก' }).fill(tags)
+
+        //     await dashboardPage.getByRole('button', { name: 'สร้าง' }).click();
+        // });
         
         // test case 4
         await test.step("TC4 : create highlights", async () => {
-            await page1.getByRole('link', { name: 'สร้าง Highlight ใหม่' }).click();
+            await dashboardPage.getByRole('link', { name: 'สร้าง Highlight ใหม่' }).click();
+            // fill title field
+            await dashboardPage.getByRole('textbox', { name: 'ชื่อ' }).click();
+            await dashboardPage.getByRole('textbox', { name: 'ชื่อ' }).fill(testData.title);
             
+            // fill detail field
+            await dashboardPage.getByRole('textbox', { name: 'คำอธิบาย' }).click();
+            await dashboardPage.getByRole('textbox', { name: 'คำอธิบาย' }).fill(testData.description);
+
+            // upload cover image
+            const pathImg = path.join('../image' ,testData.cover_img);
+
+            // const fileChooserPromise = dashboardPage.waitForEvent('filechooser');
+            // if (fileChooserPromise) {
+            //     console.log(fileChooserPromise);
+            // }
+            // await dashboardPage.getByRole('textbox', { name: 'อัปโหลดภาพปก' }).click();
+            // const fileChooser = await fileChooserPromise;
+            // await fileChooser.setFiles(pathImg);
+
+
+
+            await dashboardPage.getByRole('textbox', { name: 'อัปโหลดภาพปก' }).setInputFiles(pathImg);
+            
+            // await expect(dashboardPage.getByRole('textbox', { name: 'อัปโหลดภาพปก' })).toHaveValue(`C:\\fakepath\\2024-12-2-1733715590-1.png`);
+            // await dashboardPage.waitForTimeout(5000);
+
+            // await dashboardPage.getByRole('textbox', { name: 'อัปโหลดอัลบั้มภาพ' }).click();
+            
+            const imagePaths = testData.album_img.map((imageName) =>
+                path.join('../image' , imageName)
+            );
+            await dashboardPage.getByRole('textbox', { name: 'อัปโหลดอัลบั้มภาพ' }).setInputFiles(imagePaths);
+            await dashboardPage.waitForTimeout(10000);
+
+
+
+            // const albumSelector = 'input[type="file"]'; // Replace with the actual selector for the file input
+
+            // // Upload multiple images
+            // await page.setInputFiles(albumSelector, imagePaths);
         });
     });
 });
