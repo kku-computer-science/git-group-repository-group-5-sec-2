@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2025-02-25T18:04:42.274401" rpa="false" schemaversion="5">
+<suite id="s1" name="Delete Highlight" source="C:\Users\User\Documents\GitHub\git-group-repository-group-5-sec-2\Test\test_highlight_setting\delete_highlight.robot">
+<test id="s1-t1" name="Login" line="11">
+<kw name="Open Browser To Login Page" owner="resource_setting_highlight">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:42.548503" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/login'.</msg>
+<arg>${LOGIN URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T18:04:42.548503" elapsed="1.892304"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T18:04:44.440807" elapsed="0.047774"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-02-25T18:04:44.488581" elapsed="0.001027"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:44.598851" level="INFO">Page title is 'Login'.</msg>
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-02-25T18:04:44.489608" elapsed="0.109243"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:42.547464" elapsed="2.051387"/>
+</kw>
+<kw name="Input Username" owner="resource_setting_highlight">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:44.599865" level="INFO">Typing text 'staff@gmail.com' into text field 'id:username'.</msg>
+<arg>id:username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:04:44.599865" elapsed="0.461920"/>
+</kw>
+<arg>${USERNAME}</arg>
+<status status="PASS" start="2025-02-25T18:04:44.599865" elapsed="0.461920"/>
+</kw>
+<kw name="Input Password" owner="resource_setting_highlight">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:45.064103" level="INFO">Typing text '123456789' into text field 'id:password'.</msg>
+<arg>id:password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:04:45.063105" elapsed="0.444497"/>
+</kw>
+<arg>${PASSWORD}</arg>
+<status status="PASS" start="2025-02-25T18:04:45.063105" elapsed="0.444497"/>
+</kw>
+<kw name="Submit Credentials" owner="resource_setting_highlight">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:45.509626" level="INFO">Clicking button 'xpath=//button[@type='submit']'.</msg>
+<arg>xpath=//button[@type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:04:45.509626" elapsed="2.129564"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:47.750740" level="INFO">Page title is 'Dashboard'.</msg>
+<arg>Dashboard</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-02-25T18:04:47.639753" elapsed="0.110987"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:45.508620" elapsed="2.242120"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:42.546477" elapsed="5.205270"/>
+</test>
+<test id="s1-t2" name="Delete Highlight" line="17">
+<kw name="Go To Highlight Setting Page" owner="resource_setting_highlight">
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>xpath=//span[text()='Highlight Setting']</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-02-25T18:04:47.756258" elapsed="0.517982"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:48.276257" level="INFO">Clicking element 'xpath=//span[text()='Highlight Setting']'.</msg>
+<arg>xpath=//span[text()='Highlight Setting']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:04:48.275247" elapsed="0.833917"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:49.217631" level="INFO">Page title is 'Highlight'.</msg>
+<arg>Highlight</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-02-25T18:04:49.109164" elapsed="0.108467"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:47.755251" elapsed="1.463412"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:49.335169" level="INFO">Page title is 'Highlight'.</msg>
+<arg>Highlight</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-02-25T18:04:49.219648" elapsed="0.115521"/>
+</kw>
+<kw name="Click Delete Highlight Button">
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>//td[text()='${TITLE}']</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-02-25T18:04:49.339123" elapsed="0.534803"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:49.875445" level="INFO">Clicking element '//td[text()='งานวิจัยดีเด่น']/following-sibling::td//button[@class='btn btn-danger btn-sm']'.</msg>
+<arg>//td[text()='${TITLE}']/following-sibling::td//button[@class='btn btn-danger btn-sm']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:04:49.874434" elapsed="0.356012"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:49.337687" elapsed="0.893269"/>
+</kw>
+<kw name="Handle Alert" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:50.231967" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<arg>accept</arg>
+<doc>Handles the current alert and returns its message.</doc>
+<status status="PASS" start="2025-02-25T18:04:50.230956" elapsed="0.313657"/>
+</kw>
+<kw name="Scroll Down" owner="resource_setting_highlight">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:50.546624" level="INFO">Executing JavaScript:
+return document.body.scrollHeight
+Without any arguments.</msg>
+<msg time="2025-02-25T18:04:52.114496" level="INFO">${document_height} = 1635</msg>
+<var>${document_height}</var>
+<arg>return document.body.scrollHeight</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-02-25T18:04:50.545624" elapsed="1.568872"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-02-25T18:04:52.116527" level="INFO">${middle_position} = 408.75</msg>
+<var>${middle_position}</var>
+<arg>${document_height} / 4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-02-25T18:04:52.115513" elapsed="0.001014"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:04:52.118506" level="INFO">Executing JavaScript:
+window.scrollTo(0, 408.75)
+Without any arguments.</msg>
+<arg>window.scrollTo(0, ${middle_position})</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-02-25T18:04:52.116527" elapsed="0.113873"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:50.545624" elapsed="1.684776"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:04:54.232737" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:04:52.232421" elapsed="2.000316"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-02-25T18:04:54.233755" elapsed="2.246094"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:04:47.753746" elapsed="8.726616"/>
+</test>
+<doc>This is a test suite for deleting a highlight</doc>
+<status status="PASS" start="2025-02-25T18:04:42.276404" elapsed="14.206978"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Delete Highlight">Delete Highlight</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
