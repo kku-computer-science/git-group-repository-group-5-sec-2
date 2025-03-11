@@ -30,6 +30,7 @@
         .badge {
             font-weight: normal;
         }
+
         /* Tag styles */
         #tags-container .badge {
             transition: all 0.3s ease;
@@ -66,53 +67,93 @@
 
                 <!-- Title -->
                 <div class="mb-3">
-                    <label class="form-label">ชื่อ</label>
+                    <label class="form-label"><span style="color: red;">*</span> ชื่อ</label>
                     <input type="text" class="form-control" name="title" value="{{ $highlight->title }}" required>
+                    @error('title')
+                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                    @enderror
                 </div>
 
                 <!-- Detail -->
                 <div class="mb-3">
-                    <label class="form-label">รายละเอียด</label>
+                    <label class="form-label"><span style="color: red;">*</span> รายละเอียด</label>
                     <textarea class="form-control" name="detail" rows="8" style="height: 200px; resize: vertical;"
                         required>{{ $highlight->detail }}</textarea>
+                    @error('title')
+                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                    @enderror
                 </div>
+                
+                <!-- Cover Image Upload -->
+                <div class="my-3">
+                    <!-- Current Cover Image Preview -->
+                    <label for="cover_image" class="form-label">
+                        ภาพปกปัจจุบัน
+                    </label>
+                    <img id="coverPreview" src="{{ asset($highlight->cover_image) }}" alt="Cover Preview"
+                        class="w-128 h-64 mt-2">
 
-                <!-- Cover Image -->
-                <div class="mb-3">
-                    <label class="form-label">รูปภาพปกปัจจุบัน</label>
-                    <img src="{{ asset($highlight->cover_image) }}" class="img-fluid mt-2" style="max-width: 300px;">
-                    <label class="form-label mt-3">อัปโหลดภาพปกใหม่</label>
-                    <input type="file" class="form-control" name="cover_image" accept="image/*">
+                    <label for="cover_image" class="form-label" style="margin-top: 15px">
+                        <span class="text-red-500">*</span> อัปโหลดภาพปก
+                    </label>
+
+                    <!-- Image Upload Box -->
+                    <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
+                        id="uploadBox">
+                        <input type="file" id="cover_image" name="cover_image" accept="image/*"
+                            class="absolute inset-0 opacity-0 cursor-pointer">
+
+                        <!-- Upload Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-black-400 mx-auto mb-2" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                        </svg>
+
+                        <!-- Instruction Text -->
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)</p>
+                    </div>
                 </div>
-
-                <!-- Images ที่อัปโหลดไปแล้ว -->
-                <div class="mb-3">
-                    <label class="form-label">รูปภาพที่อัปโหลดแล้ว</label>
-                    <div class="d-flex flex-wrap">
+                
+                <!-- Multiple Images Upload -->
+                <div class="my-3">
+                    <!-- Existing Images Preview -->
+                    <label for="cover_image" class="form-label" style="margin-top: 5px;">อัลบั้มภาพปัจจุบัน</label>
+                    <div class="d-flex flex-wrap mt-2">
                         @foreach ($highlight->images as $image)
                             <div id="image-{{ $image->id }}" class="position-relative m-2">
                                 <img src="{{ asset($image->image_path) }}" class="img-thumbnail" style="max-width: 100px;">
                                 <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0"
-                                    onclick="deleteImage({{ $image->id }})">
-                                    ×
-                                </button>
+                                    onclick="deleteImage({{ $image->id }})">×</button>
                             </div>
                         @endforeach
                     </div>
+                    <!-- New Images Preview Container -->
+                    <div id="imagePreviewContainer" class="mt-2 hidden flex"></div>
+                    <label for="images" class="form-label" style="margin-top: 10px">อัปโหลดอัลบั้มภาพ</label>
+                    
+                    <!-- Image Upload Box -->
+                    <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
+                        id="uploadBoxMultiple">
+                        <input type="file" class="absolute inset-0 opacity-0 cursor-pointer" id="images" name="images[]"
+                            accept="image/*" multiple>
+                        
+                            <!-- Upload Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-black-400 mx-auto mb-2" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        
+                        <!-- Instruction Text -->
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)</p>
+                    </div>
                 </div>
-
-                <!-- อัปโหลด Images ใหม่ -->
-                <div class="mb-3">
-                    <label class="form-label">อัปโหลดรูปภาพใหม่</label>
-                    <input type="file" class="form-control" name="images[]" accept="image/*" multiple>
-                </div>
-
+                
                 <!-- Tags Input -->
                 <div class="mb-3">
-                    <label for="tag-input" class="form-label">แท็ก</label>
+                    <label for="tag-input" class="form-label">เพิ่มแท็ก</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
-                            placeholder="พิมพ์ Tag แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
+                            placeholder="พิมพ์แท็ก แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
                         <button class="btn btn-outline-secondary" type="button" id="add-tag-btn">เพิ่ม</button>
                     </div>
                     <div id="tag-suggestions" class="list-group position-absolute d-none"
@@ -144,6 +185,64 @@
     @section('javascript')
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            //coverimage 
+            document.getElementById('cover_image').addEventListener('change', function (event) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('coverPreview').src = e.target.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            });
+
+            document.getElementById('images').addEventListener('change', function (event) {
+                const previewContainer = document.getElementById('imagePreviewContainer');
+                previewContainer.innerHTML = '';  // Clear previous previews
+                previewContainer.classList.remove('hidden');  // Make preview container visible
+
+                Array.from(event.target.files).forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imgContainer = document.createElement('div');
+                        imgContainer.classList.add('position-relative', 'm-2');
+                        imgContainer.setAttribute('data-index', index);
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('img-thumbnail');
+                        img.style.maxWidth = '100px';
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.type = 'button';
+                        deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'position-absolute', 'top-0', 'end-0');
+                        deleteButton.innerText = '×';
+                        deleteButton.onclick = () => confirmDeleteNewImage(imgContainer, index);
+
+                        imgContainer.appendChild(img);
+                        imgContainer.appendChild(deleteButton);
+                        previewContainer.appendChild(imgContainer);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            function confirmDeleteNewImage(imgContainer, index) {
+                if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
+                    deleteNewImage(imgContainer, index);
+                }
+            }
+
+            function deleteNewImage(imgContainer, index) {
+                imgContainer.remove();
+                const fileInput = document.getElementById('images');
+                const dataTransfer = new DataTransfer();
+                Array.from(fileInput.files).forEach((file, i) => {
+                    if (i !== index) {
+                        dataTransfer.items.add(file);
+                    }
+                });
+                fileInput.files = dataTransfer.files;
+            }
+
             function deleteImage(imageId) {
                 if (!confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) return;
 
@@ -169,6 +268,7 @@
                         console.error('Error:', error);
                     });
             }
+
 
             // Tags Manager with Autocomplete
             document.addEventListener('DOMContentLoaded', function () {
@@ -203,11 +303,8 @@
                     tagElement.className = 'badge bg-primary me-1 mb-1 p-2';
                     tagElement.style.position = 'relative';
 
-                    tagElement.innerHTML = `
-                            ${tagName}
-                            <button type="button" class="btn-close btn-close-white ms-2" 
-                                    style="font-size: 0.5rem;" aria-label="Close"></button>
-                        `;
+                    tagElement.innerHTML = `${tagName} <button type="button" class="btn-close btn-close-white ms-2" 
+                                style="font-size: 0.5rem;" aria-label="Close"></button>`;
 
                     // Add click event to remove tag
                     tagElement.querySelector('.btn-close').addEventListener('click', function () {
@@ -283,7 +380,7 @@
                         const createItem = document.createElement('button');
                         createItem.type = 'button';
                         createItem.className = 'list-group-item list-group-item-action text-primary';
-                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้าง tag "<strong>${inputValue}</strong>"`;
+                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>แท็ก "<strong>${inputValue}</strong>"`;
 
                         createItem.addEventListener('click', () => {
                             addTag(inputValue);
@@ -331,7 +428,7 @@
                             const createItem = document.createElement('button');
                             createItem.type = 'button';
                             createItem.className = 'list-group-item list-group-item-action text-primary';
-                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้าง tag "<strong>${inputValue}</strong>"`;
+                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้างแท็ก "<strong>${inputValue}</strong>"`;
 
                             createItem.addEventListener('click', () => {
                                 addTag(inputValue);
