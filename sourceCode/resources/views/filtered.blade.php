@@ -49,12 +49,12 @@
 
 <div class="container py-5">
     <h1 class="fw-bold mb-4 text-primary">
-        ผลการค้นหาสำหรับ: <span class="text-secondary">{{ $tagName }}</span>
+        Results of Tag: <span class="text-secondary">{{ $tagName }}</span>
     </h1>
-    <p class="text-muted">พบทั้งหมด {{ $highlights->count() }} รายการ</p>
+    <p class="text-muted">Found {{ $highlights->count() }} results</p>
 
     @if ($highlights->isEmpty())
-        <p class="text-danger">ไม่พบรายการที่ตรงกับคำค้นหานี้</p>
+        <p class="text-danger">No Highlight Found</p>
     @endif
 
     <div class="row g-4">
@@ -78,7 +78,7 @@
 
                             {{-- วันที่สร้าง --}}
                             <div class="text-muted">
-                                สร้างเมื่อ {{ \Carbon\Carbon::parse($highlight->updated_at)->format('d/m/Y') }}
+                                updated at: {{ \Carbon\Carbon::parse($highlight->updated_at)->format('d/m/Y') }}
                             </div>
 
                         </div>
