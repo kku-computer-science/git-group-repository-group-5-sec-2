@@ -89,7 +89,6 @@
                     @enderror
                 </div>
 
-
                 <!-- Cover Image Upload -->
                 <div class="mb-3">
                     <label for="cover_image" class="form-label">
