@@ -109,8 +109,7 @@
                     <p class="info" id="tagsInfo">{{trans('message.tags')}} :
                         @foreach($highlight->tags as $tag)
                             <a href="highlights/tag/{{$tag->name}}" id="tagLink-{{$tag->name}}">
-                                <i class="fas fa-tag"></i> {{$tag->name}}
-                            </a>
+                                <i class="fas fa-tag"></i>{{$tag->name}}</a>
                         @endforeach
                     </p>
                     <pre class="detail">{!! $highlight->detail !!}</pre>
@@ -133,7 +132,7 @@
                                     aria-labelledby="imageModalLabel{{ $image->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-centered">
                                         <div>
-                                            <img src="{{ $image->image_path }}" class="img-fluid rounded image-modal bg-warning" alt="full image">
+                                            <img src="{{ $image->image_path }}" class="img-fluid rounded image-modal" alt="full image">
                                             <button type="button"
                                                 class="btn-close btn-close-white position-absolute top-0 end-0 m-2"
                                                 data-bs-dismiss="modal" aria-label="Close"></button>

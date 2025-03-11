@@ -1,4 +1,4 @@
-log.html
-output.html
-report.html
-*.png
+**/log.html
+**/output.xml
+**/report.html
+**.png

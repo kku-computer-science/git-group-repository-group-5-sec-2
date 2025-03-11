@@ -21,7 +21,7 @@
         flex-wrap: wrap;
         gap: 5px;
         padding: 5px;
-        border: 1px solid #ced4da;
+        border: 1px solid rgb(145, 145, 145);
         border-radius: 20px;
         min-height: 38px;
     }
@@ -29,7 +29,7 @@
     .tag-input-container .tag {
         display: inline-flex;
         align-items: center;
-        background-color: #e9ecef;
+        background-color:rgb(151, 192, 243);
         padding: 5px 10px;
         margin: 2px;
         border-radius: 20px;
@@ -70,11 +70,13 @@
         overflow-y: auto;
         z-index: 1000;
         display: none;
+        opacity: 80%;
     }
 
     .tag-suggestion {
         padding: 8px 12px;
         cursor: pointer;
+        opacity: 100% !important;
     }
 
     .tag-suggestion:hover {
@@ -111,6 +113,10 @@
         translate: 0px -4px;
         opacity: 80%;
     }
+
+    .hint-overlay {
+        opacity: 0;
+    }
 </style>
 
 <div class="container py-5">
@@ -128,6 +134,7 @@
                         @endforeach
                     @endif
                     <input type="text" id="tagSearch" placeholder="{{ trans('message.search_tags') }}">
+                    <span class="hint-overlay" id="tagHint"></span>
                 </div>
                 <div class="tag-suggestions" id="tagSuggestions">
                     @foreach($availableTags as $tag)
@@ -178,11 +185,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tagInputContainer = document.getElementById('tagInputContainer');
     const searchInput = document.getElementById('tagSearch');
+    const tagHint = document.getElementById('tagHint');
     const suggestionsContainer = document.getElementById('tagSuggestions');
     const tagsInput = document.getElementById('tagsInput');
 
     const urlParams = new URLSearchParams(window.location.search);
     let selectedTags = urlParams.get('tags') ? urlParams.get('tags').split(',') : [];
+
+    const availableTags = Array.from(suggestionsContainer.querySelectorAll('.tag-suggestion'))
+        .map(tag => tag.getAttribute('data-tag'));
 
     searchInput.addEventListener('focus', function() {
         suggestionsContainer.style.display = 'block';
@@ -192,12 +203,55 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (!tagInputContainer.contains(e.target) && !suggestionsContainer.contains(e.target)) {
             suggestionsContainer.style.display = 'none';
+            tagHint.textContent = '';
         }
     });
 
     searchInput.addEventListener('input', function() {
         const query = this.value.toLowerCase();
         filterSuggestions(query);
+        const closestTag = availableTags.find(tag => 
+            tag.toLowerCase().startsWith(query) && !selectedTags.includes(tag)
+        );
+        console.log(closestTag)
+        if (closestTag && query) {
+            tagHint.textContent = this.value + closestTag.slice(query.length);
+        } else {
+            tagHint.textContent = '';
+        }
+    });
+
+    // add tag when press enter
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === 'Tab') {
+            e.preventDefault();
+            const query = this.value.trim();
+            let tagToAdd = null;
+
+            if  ((e.key === 'Tab' || e.key === 'Enter') && tagHint.textContent) {
+                tagToAdd = availableTags.find(tag => 
+                    tag.toLowerCase() === tagHint.textContent.toLowerCase() && !selectedTags.includes(tag)
+                );
+            }
+
+            if (tagToAdd) {
+                selectedTags.push(tagToAdd);
+                updateTagsDisplay();
+                filterHighlights();
+                this.value = '';
+                filterSuggestions('');
+                tagHint.textContent = '';
+                searchInput.focus();
+            }
+        }
+
+        if (e.key === 'Backspace' && !this.value) {
+            selectedTags.pop();
+            updateTagsDisplay();
+            filterHighlights();
+            tagHint.textContent = '';
+            searchInput.focus();
+        }
     });
     
     suggestionsContainer.addEventListener('click', function(e) {
@@ -210,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 filterHighlights();
                 searchInput.value = '';
                 filterSuggestions('');
+                searchInput.focus();
             }
         }
     });
