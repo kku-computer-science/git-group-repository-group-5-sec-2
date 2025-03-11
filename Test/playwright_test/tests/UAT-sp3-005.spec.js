@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 import { waitForPageLoad, login } from './utils/utils';
 
 test.describe.serial("CREATE module",() => {
-    // const baseURL = "http://cs05sec267.cpkkuhost.com"; // Base URL for the site, adjust as needed
-    const baseURL = "http://127.0.0.1:8000"; /// Base URL for the site, adjust as needed
+    const baseURL = "http://cs05sec267.cpkkuhost.com"; // Base URL for the site, adjust as needed
+    // const baseURL = "http://127.0.0.1:8000"; /// Base URL for the site, adjust as needed
     const username = "staff@gmail.com";
     const password = "123456789";
     var dashboardPage ;
