@@ -51,7 +51,7 @@ test.describe('TC1: View Highlights via Home Page', () => {
 
 // TC2: Validate Highlight Details Page, Tags, and Image Modal
 test.describe('TC2: Validate highlight details page', () => {
-  test('click highlight in banner and verify detail page content and image modal', async () => {
+  test('click highlight banner', async () => {
     // open home page
     await page.goto('https://cs05sec267.cpkkuhost.com/');
 
@@ -65,13 +65,17 @@ test.describe('TC2: Validate highlight details page', () => {
 
     // wait for the page to load
     await page.waitForLoadState('networkidle');
+  });
 
+  test('verify required content in highlight details page', async () => {
     // verify that the detail page content is visible
     await expect(page.locator('img.cover-image')).toBeVisible();  // cover image
     await expect(page.locator('h1.title')).toBeVisible();         // title
     await expect(page.locator('p#creationInfo')).toBeVisible();   // creation info
     await expect(page.locator('pre.detail')).toBeVisible();     // detail
+  });
 
+  test('verify image modal', async () => {
     // check if there is at least one image in the gallery
     const galleryImages = page.locator('.img-container .image');
     const galleryImageCount = await galleryImages.count();
@@ -99,8 +103,10 @@ test.describe('TC2: Validate highlight details page', () => {
         // verify that the modal is no longer visible
         await expect(modal).not.toBeVisible({ timeout: 3000 });
     }
+  });
 
-     // check if there is at least one tag in the tag list
+  test('verify tag list', async () => {
+    // check if there is at least one tag in the tag list
     const tagList = page.locator('#tagsInfo a[id^="tagLink-"]');
     // await expect(page.locator('p#tagsInfo')).toBeVisible();
     const tagCount = await tagList.count();
