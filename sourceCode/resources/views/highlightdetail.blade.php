@@ -126,7 +126,7 @@
                                     aria-labelledby="imageModalLabel{{ $image->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-centered">
                                         <div>
-                                            <img src="{{ $image->image_path }}" class="img-fluid rounded" alt="full image">
+                                            <img src="{{ $image->image_path }}" class="img-fluid rounded" alt="full image"  style="height: 100vh; width: auto;>
                                             <button type="button"
                                                 class="btn-close btn-close-white position-absolute top-0 end-0 m-2"
                                                 data-bs-dismiss="modal" aria-label="Close"></button>
