@@ -11,7 +11,7 @@
 1. ไปที่หน้าเว็บไซต์ของระบบ
 ![Home](UserManualImage/Home_Login.png)
 2. คลิกปุ่ม **Login** ที่มุมขวาบนของหน้าจอ  
-![Login Page](UserManualImage/login_page.png)
+![Login Page](UserManualImage/Login_page.png)
 3. กรอก **Username** และ **Password** แล้วกด **LOG IN** 
 4. หากลืมรหัสผ่าน ให้ติดต่อผู้ดูแลระบบ
 
