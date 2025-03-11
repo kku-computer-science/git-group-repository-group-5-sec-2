@@ -13,8 +13,6 @@
 2. คลิกปุ่ม **Login** ที่มุมขวาบนของหน้าจอ  
 ![Login Page](UserManualImage/login_page.png)
 3. กรอก **Username** และ **Password** แล้วกด **LOG IN** 
-  - **Username**: `staff@gmail.com`  
-  - **Password**: `123456789`  
 4. หากลืมรหัสผ่าน ให้ติดต่อผู้ดูแลระบบ
 
 ### 2.2 การออกจากระบบ
