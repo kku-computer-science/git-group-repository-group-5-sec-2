@@ -39,9 +39,15 @@
         }
 
         .image-modal {
-            top: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
         }
-
+        
         .px {
             padding-left: 120px;
             padding-right: 120px;
@@ -126,7 +132,7 @@
                                     aria-labelledby="imageModalLabel{{ $image->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-centered">
                                         <div>
-                                            <img src="{{ $image->image_path }}" class="img-fluid rounded" alt="full image">
+                                            <img src="{{ $image->image_path }}" class="img-fluid rounded image-modal" alt="full image">
                                             <button type="button"
                                                 class="btn-close btn-close-white position-absolute top-0 end-0 m-2"
                                                 data-bs-dismiss="modal" aria-label="Close"></button>
