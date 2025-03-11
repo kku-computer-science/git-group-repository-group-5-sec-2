@@ -103,8 +103,7 @@
                     <p class="info" id="tagsInfo">{{trans('message.tags')}} :
                         @foreach($highlight->tags as $tag)
                             <a href="highlights/tag/{{$tag->name}}" id="tagLink-{{$tag->name}}">
-                                <i class="fas fa-tag"></i> {{$tag->name}}
-                            </a>
+                                <i class="fas fa-tag"></i>{{$tag->name}}</a>
                         @endforeach
                     </p>
                     <pre class="detail">{!! $highlight->detail !!}</pre>
