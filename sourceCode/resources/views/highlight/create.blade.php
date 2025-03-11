@@ -155,7 +155,7 @@
                     <label for="tag-input" class="form-label">เพิ่มแท็ก</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
-                            placeholder="พิมพ์ Tag แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
+                            placeholder="พิมพ์แท็ก แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
                         <button class="btn btn-outline-secondary" type="button" id="add-tag-btn">เพิ่ม</button>
                     </div>
 
@@ -436,7 +436,7 @@
                             const createItem = document.createElement('button');
                             createItem.type = 'button';
                             createItem.className = 'list-group-item list-group-item-action text-primary';
-                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้าง tag "<strong>${inputValue}</strong>"`;
+                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้างแท็ก"<strong>${inputValue}</strong>"`;
 
                             createItem.addEventListener('click', () => {
                                 addTag(inputValue);
