@@ -26,6 +26,11 @@ export async function login(page, baseURL, username, password) {
     return page1;
 }
 
+export async function addTag(field, tagName) {
+    await field.fill(tagName);
+    await field.press('Enter');
+}
+
 // validate highlight details page
 export async function validateHighlightDetailsPage(page) {
     // scroll to cover image
