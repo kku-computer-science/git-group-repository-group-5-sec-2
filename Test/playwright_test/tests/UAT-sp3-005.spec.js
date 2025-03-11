@@ -1,12 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { waitForPageLoad, login } from './utils/utils';
-// import { testData } from './test-data';
+import { waitForPageLoad, login, addTag } from './utils/utils';
 import path from 'path';
 
 test.describe.serial("CREATE module",() => {
-    // const baseURL = "http://cs05sec267.cpkkuhost.com";
-    const baseURL = "http://127.0.0.1:8000"; 
-    const username = "staff@gmail.com";
+    const baseURL = "http://cs05sec267.cpkkuhost.com";
+    // const baseURL = "http://127.0.0.1:8000"; 
+    const username = "thanlao@kku.ac.th";
     const password = "123456789";
     var dashboardPage ;
     var uploadImg;
@@ -22,8 +21,7 @@ test.describe.serial("CREATE module",() => {
 
     // UAT-sp3-005
     test("complete create highlight", async ({page}) => {
-        
-
+    
         // test case 1
         await test.step("TC1: Login Success", async () => {
             dashboardPage = await login(page, baseURL, username, password);
@@ -31,7 +29,7 @@ test.describe.serial("CREATE module",() => {
         
     
         // test case 2
-        await test.step("TC2 : navigate to setting highlight page", async () => {
+        await test.step("TC2 : navigate to highlight setting page", async () => {
             await dashboardPage.getByRole('link', { name: 'Highlight Setting' }).click();
             
             await waitForPageLoad(dashboardPage);
@@ -42,61 +40,63 @@ test.describe.serial("CREATE module",() => {
 
         
         // test case 3
-        // await test.step("TC3 : create tags", async () => {
+        await test.step("TC3 : create tags", async () => {
             
-        //     //navigate to tags page
-        //     await dashboardPage.getByRole('link', { name: '+ สร้าง Tags ใหม่' }).click();
+            //navigate to tags page
+            await dashboardPage.getByRole('link', { name: 'New Tag' }).click();
 
-        //     // fill tags field
-        //     await dashboardPage.getByRole('textbox', { name: 'ชื่อแท็ก' }).click();
-        //     await dashboardPage.getByRole('textbox', { name: 'ชื่อแท็ก' }).fill(tags)
+            // fill tags field
+            const tagName = dashboardPage.getByRole('textbox', { name: 'Tag Name' });
+            await tagName.click();
+            await tagName.fill(tags)
 
-        //     await dashboardPage.getByRole('button', { name: 'สร้าง' }).click();
-        // });
+            await dashboardPage.getByRole('button', { name: 'Create' }).click();
+
+            // check if tags is created
+            await expect(dashboardPage.getByRole('cell', { name: 'Wararat' })).toBeVisible();
+
+        });
         
         // test case 4
         await test.step("TC4 : create highlights", async () => {
-            await dashboardPage.getByRole('link', { name: 'สร้าง Highlight ใหม่' }).click();
+            // button navigate to create highlight page
+            await dashboardPage.getByRole('link', { name: 'New Highlight' }).click();
+
             // fill title field
-            await dashboardPage.getByRole('textbox', { name: 'ชื่อ' }).click();
-            await dashboardPage.getByRole('textbox', { name: 'ชื่อ' }).fill(testData.title);
+            const titlefield = dashboardPage.getByRole('textbox', { name: 'Title' });
+            await titlefield.click();
+            await titlefield.fill(testData.title);
             
             // fill detail field
-            await dashboardPage.getByRole('textbox', { name: 'คำอธิบาย' }).click();
-            await dashboardPage.getByRole('textbox', { name: 'คำอธิบาย' }).fill(testData.description);
+            const detailfield = dashboardPage.getByRole('textbox', { name: 'Description' });
+            await detailfield.click();
+            await detailfield.fill(testData.description);
 
             // upload cover image
             const pathImg = path.join('../image' ,testData.cover_img);
-
-            // const fileChooserPromise = dashboardPage.waitForEvent('filechooser');
-            // if (fileChooserPromise) {
-            //     console.log(fileChooserPromise);
-            // }
-            // await dashboardPage.getByRole('textbox', { name: 'อัปโหลดภาพปก' }).click();
-            // const fileChooser = await fileChooserPromise;
-            // await fileChooser.setFiles(pathImg);
-
-
-
-            await dashboardPage.getByRole('textbox', { name: 'อัปโหลดภาพปก' }).setInputFiles(pathImg);
+            const  coverImgfield = dashboardPage.getByRole('textbox', { name: 'Cover Image' });
+            await coverImgfield.setInputFiles(pathImg);
             
-            // await expect(dashboardPage.getByRole('textbox', { name: 'อัปโหลดภาพปก' })).toHaveValue(`C:\\fakepath\\2024-12-2-1733715590-1.png`);
-            // await dashboardPage.waitForTimeout(5000);
-
-            // await dashboardPage.getByRole('textbox', { name: 'อัปโหลดอัลบั้มภาพ' }).click();
-            
+            // upload album image 
             const imagePaths = testData.album_img.map((imageName) =>
                 path.join('../image' , imageName)
             );
-            await dashboardPage.getByRole('textbox', { name: 'อัปโหลดอัลบั้มภาพ' }).setInputFiles(imagePaths);
-            await dashboardPage.waitForTimeout(10000);
+            const albumImgfield = dashboardPage.getByRole('textbox', { name: 'Image Album' });
+            await albumImgfield.setInputFiles(imagePaths);
+            // await dashboardPage.waitForTimeout(10000);
+
+            // tag selection
+            var tagsfield = dashboardPage.getByRole('textbox', { name: 'Tag' }) 
+            
+            await addTag(tagsfield, tags);
+            await addTag(tagsfield, "cpkku");
 
 
+            // submit form
+            await dashboardPage.getByRole('button', { name: 'Create' }).click();
 
-            // const albumSelector = 'input[type="file"]'; // Replace with the actual selector for the file input
+            await dashboardPage.waitForTimeout(5000);
 
-            // // Upload multiple images
-            // await page.setInputFiles(albumSelector, imagePaths);
         });
     });
 });
