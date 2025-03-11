@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
             suggestion.style.display = (matchesQuery && isNotSelected) ? 'block' : 'none';
         });
     }
-
+    
     function filterHighlights() {
         const url = new URL(window.location.href);
         url.searchParams.set('tags', selectedTags.join(','));
