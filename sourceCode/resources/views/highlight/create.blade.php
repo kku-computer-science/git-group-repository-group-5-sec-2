@@ -64,28 +64,28 @@
 
     @section('content')
         <div class="container mt-5">
-            <h2 class="mb-4">สร้างไฮไลท์ใหม่</h2>
+            <h2 class="mb-4">Create New Highlight</h2>
 
             <form action="{{ route('highlight.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Title -->
                 <div class="mb-3">
-                    <label for="title" class="form-label"><span style="color: red;">*</span> ชื่อ</label>
+                    <label for="title" class="form-label"><span style="color: red;">*</span> Title</label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                         required>
                     @error('title')
-                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                        <div class="invalid-feedback" style="color: red;">Please fill in this field</div>
                     @enderror
                 </div>
 
                 <!-- Detail -->
                 <div class="mb-3">
-                    <label for="detail" class="form-label"><span style="color: red;">*</span> คำอธิบาย</label>
+                    <label for="detail" class="form-label"><span style="color: red;">*</span> Description</label>
                     <textarea class="form-control @error('detail') is-invalid @enderror" id="detail" name="detail" rows="8"
                         style="height: 200px; resize: vertical;" required></textarea>
                     @error('title')
-                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                        <div class="invalid-feedback" style="color: red;">Please fill in this field</div>
                     @enderror
                 </div>
 
@@ -93,11 +93,11 @@
                 <div class="mb-3">
 
                     <!-- Image Preview (Initially hidden) -->
-                    <p id="labelCoverPreview" class="invisible" style="margin-top: 5px; font-size: 1rem;"><span class="text-red-500">*</span> ภาพปกปัจจุบัน</p>
+                    <p id="labelCoverPreview" class="invisible" style="margin-top: 5px; font-size: 1rem;"><span class="text-red-500">*</span> Current Cover Image</p>
                     <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 mt-2 hidden">
 
                     <label for="cover_image" class="form-label" style="margin-bottom: 15px;margin-top: 15px;">
-                        <span class="text-red-500">*</span> อัปโหลดภาพปก
+                        <span class="text-red-500">*</span> Cover Image
                     </label>
 
                     <!-- Image Upload Box -->
@@ -113,7 +113,7 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">Click To Upload Cover Image</span> .png, .jpeg, .svg, .avif, .webp (Recommended 1600 x 900)</p>
 
                         <!-- Image Preview (Initially hidden) -->
                         <!-- <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 hidden p-0"> -->
@@ -127,13 +127,13 @@
 
                 <!-- Multiple Images Upload -->
                 <div class="mb-3">
-                    <p id="labelImagePreviewContainer" class="invisible" style="margin-top: 5px; font-size: 1rem;">อัลบั้มภาพปัจจุบัน</p>
+                    <p id="labelImagePreviewContainer" class="invisible" style="margin-top: 5px; font-size: 1rem;">Current Image Album</p>
                     <!-- Image Preview Container (Initially hidden) -->
                     <div id="imagePreviewContainer" class="mt-2 hidden flex">
                         <!-- Dynamically generated preview images will appear here -->
                     </div>
 
-                    <label for="images" class="form-label" style="margin-top: 10px;" >อัปโหลดอัลบั้มภาพ</label>
+                    <label for="images" class="form-label" style="margin-top: 10px;" >Image Album</label>
 
                     <!-- Image Upload Box -->
                     <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
@@ -148,7 +148,7 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">Click To Upload Image Album</span> .png, .jpeg, .svg, .avif, .webp (Multiple Images)</p>
 
                     </div>
 
@@ -159,11 +159,11 @@
 
                 <!-- Tags Input -->
                 <div class="mb-3">
-                    <label for="tag-input" class="form-label">เพิ่มแท็ก</label>
+                    <label for="tag-input" class="form-label">Tag</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
-                            placeholder="พิมพ์แท็ก แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
-                        <button class="btn btn-outline-secondary" type="button" id="add-tag-btn">เพิ่ม</button>
+                            placeholder="ag And Press Enter To Type TAdd" autocomplete="off">
+                        <button class="btn btn-outline-secondary" type="button" id="add-tag-btn">Add</button>
                     </div>
 
                     <div id="tag-suggestions" class="list-group position-absolute d-none"
@@ -180,8 +180,8 @@
                     @enderror -->
                 </div>
 
-                <button type="submit" class="btn btn-primary">สร้างไฮไลท์</button>
-                <a href="{{ route('highlight.index') }}" class="btn btn-secondary">ยกเลิก</a>
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a href="{{ route('highlight.index') }}" class="btn btn-secondary">Cancel</a>
             </form>
         </div>
     @endsection
@@ -199,7 +199,7 @@
                 let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/avif', 'image/webp'];
 
                 if (file && !allowedTypes.includes(file.type)) {
-                    alert('ไฟล์ไม่ถูกต้อง! กรุณาอัปโหลดเฉพาะไฟล์ .png, .jpeg, .svg');
+                    alert('File type is not correct! Please upload only .png, .jpeg, .svg file');
                     event.target.value = ''; // รีเซ็ตค่า input
                     return;
                 }
@@ -235,7 +235,7 @@
                 });
 
                 if (invalidFile) {
-                    alert('ไฟล์บางไฟล์ไม่ถูกต้อง! กรุณาอัปโหลดเฉพาะไฟล์ .png, .jpeg, .svg');
+                    alert('File type is not correct! Please upload only .png, .jpeg, .svg file');
                     event.target.value = '';
                     return;
                 }
@@ -263,7 +263,7 @@
                         deleteBtn.style.cursor = 'pointer';
 
                         deleteBtn.onclick = function () {
-                            if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
+                            if (confirm('Do you want to delete this image?')) {
                                 imgWrapper.remove();
                                 dt.items.remove(index); // ลบไฟล์ออกจาก DataTransfer
                                 event.target.files = dt.files; // อัปเดตไฟล์ใน input
@@ -364,7 +364,7 @@
                             // แสดงหัวข้อ
                             const header = document.createElement('div');
                             header.className = 'list-group-item disabled text-muted small';
-                            header.textContent = 'Tags ยอดนิยม:';
+                            header.textContent = 'Popular Tags:';
                             tagSuggestions.appendChild(header);
 
                             // สร้างรายการ tags
@@ -401,7 +401,7 @@
                         const createItem = document.createElement('button');
                         createItem.type = 'button';
                         createItem.className = 'list-group-item list-group-item-action text-primary';
-                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>แท็ก "<strong>${inputValue}</strong>"`;
+                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>Tag "<strong>${inputValue}</strong>"`;
 
                         createItem.addEventListener('click', () => {
                             addTag(inputValue);
@@ -449,7 +449,7 @@
                             const createItem = document.createElement('button');
                             createItem.type = 'button';
                             createItem.className = 'list-group-item list-group-item-action text-primary';
-                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้างแท็ก"<strong>${inputValue}</strong>"`;
+                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>Create New Tag"<strong>${inputValue}</strong>"`;
 
                             createItem.addEventListener('click', () => {
                                 addTag(inputValue);

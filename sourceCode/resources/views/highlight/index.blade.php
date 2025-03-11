@@ -120,10 +120,10 @@
 
     @section('content')
     <div class="container mt-5">
-        <h2>รายการไฮไลท์</h2>
+        <h2>Highlight Lists</h2>
 
         {{-- Highlight Lists --}}
-        <a href="{{ route('highlight.create') }}" class="btn btn-primary mb-3">+ สร้าง Highlight ใหม่</a>
+        <a href="{{ route('highlight.create') }}" class="btn btn-primary mb-3">+ New Highlight</a>
 
         <table class="table table-bordered">
             <thead class="table-dark">
@@ -163,7 +163,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบ Highlight นี้?');">
+                                onclick="return confirm('Do you want to delete this highlight?');">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
@@ -179,9 +179,9 @@
 
         {{-- Tags Lists --}}
         <div class="mt-4">
-            <h4>Tags ทั้งหมด</h4>
+            <h4>Tag Lists</h4>
         
-            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ สร้าง Tags ใหม่</a>
+            <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">+ New Tag</a>
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
@@ -200,7 +200,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบแท็กนี้?');">
+                                    onclick="return confirm('Do you want to delete this tag?');">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
@@ -233,7 +233,7 @@
 
                     // ✅ เช็คว่ามี Active เกิน 5 อันหรือไม่
                     if (activeCount > 5 && this.checked) {
-                        alert("❌ ไม่สามารถเปิด Active เกิน 5 รายการได้!"); // แสดง Alert แจ้งเตือน
+                        alert("❌ Cannot activate more than 5 higlights!"); // แสดง Alert แจ้งเตือน
                         event.preventDefault(); // ป้องกันการเปลี่ยนค่า
                         this.checked = false;  // ปิด Toggle กลับไป
                         return;

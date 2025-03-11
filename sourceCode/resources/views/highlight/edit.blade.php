@@ -59,7 +59,7 @@
 
     @section('content')
         <div class="container mt-5">
-            <h2 class="mb-4">แก้ไขไฮไลท์</h2>
+            <h2 class="mb-4">Edit Highlight</h2>
 
             <form action="{{ route('highlight.update', $highlight->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -67,20 +67,20 @@
 
                 <!-- Title -->
                 <div class="mb-3">
-                    <label class="form-label"><span style="color: red;">*</span> ชื่อ</label>
+                    <label class="form-label"><span style="color: red;">*</span> Title</label>
                     <input type="text" class="form-control" name="title" value="{{ $highlight->title }}" required>
                     @error('title')
-                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                        <div class="invalid-feedback" style="color: red;">Please fill in this field</div>
                     @enderror
                 </div>
 
                 <!-- Detail -->
                 <div class="mb-3">
-                    <label class="form-label"><span style="color: red;">*</span> รายละเอียด</label>
+                    <label class="form-label"><span style="color: red;">*</span> Description</label>
                     <textarea class="form-control" name="detail" rows="8" style="height: 200px; resize: vertical;"
                         required>{{ $highlight->detail }}</textarea>
                     @error('title')
-                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                        <div class="invalid-feedback" style="color: red;">Please fill in this field</div>
                     @enderror
                 </div>
                 
@@ -88,13 +88,13 @@
                 <div class="my-3">
                     <!-- Current Cover Image Preview -->
                     <label for="cover_image" class="form-label">
-                        ภาพปกปัจจุบัน
+                        Current Cover Image
                     </label>
                     <img id="coverPreview" src="{{ asset($highlight->cover_image) }}" alt="Cover Preview"
                         class="w-128 h-64 mt-2">
 
                     <label for="cover_image" class="form-label" style="margin-top: 15px">
-                        <span class="text-red-500">*</span> อัปโหลดภาพปก
+                        <span class="text-red-500">*</span> Cover Image
                     </label>
 
                     <!-- Image Upload Box -->
@@ -110,14 +110,14 @@
                         </svg>
 
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">Click To Upload Cover Image</span> .png, .jpeg, .svg, .avif, .webp (Recommended 1600 x 900)</p>
                     </div>
                 </div>
                 
                 <!-- Multiple Images Upload -->
                 <div class="my-3">
                     <!-- Existing Images Preview -->
-                    <label for="cover_image" class="form-label" style="margin-top: 5px;">อัลบั้มภาพปัจจุบัน</label>
+                    <label for="cover_image" class="form-label" style="margin-top: 5px;">Current Image Album</label>
                     <div class="d-flex flex-wrap mt-2">
                         @foreach ($highlight->images as $image)
                             <div id="image-{{ $image->id }}" class="position-relative m-2">
@@ -129,7 +129,7 @@
                     </div>
                     <!-- New Images Preview Container -->
                     <div id="imagePreviewContainer" class="mt-2 hidden flex"></div>
-                    <label for="images" class="form-label" style="margin-top: 10px">อัปโหลดอัลบั้มภาพ</label>
+                    <label for="images" class="form-label" style="margin-top: 10px">Image Album</label>
                     
                     <!-- Image Upload Box -->
                     <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
@@ -144,17 +144,17 @@
                         </svg>
                         
                         <!-- Instruction Text -->
-                        <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)</p>
+                        <p class="text-grey-600"><span class="text-black-500 font-bold">Click To Upload Image Album</span> .png, .jpeg, .svg, .avif, .webp (Multiple Images)</p>
                     </div>
                 </div>
                 
                 <!-- Tags Input -->
                 <div class="mb-3">
-                    <label for="tag-input" class="form-label">เพิ่มแท็ก</label>
+                    <label for="tag-input" class="form-label">Tag</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
-                            placeholder="พิมพ์แท็ก แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
-                        <button class="btn btn-outline-secondary" type="button" id="add-tag-btn">เพิ่ม</button>
+                            placeholder="Type Tag And Press Enter To Add" autocomplete="off">
+                        <button class="btn btn-outline-secondary" type="button" id="add-tag-btn">Add</button>
                     </div>
                     <div id="tag-suggestions" class="list-group position-absolute d-none"
                         style="z-index: 1000; width: 95%;"></div>
@@ -167,16 +167,16 @@
                 <!-- Active Status -->
                 <div class="mb-3">
                     <!-- <label for="active" class="form-label">สถานะการแสดงผล</label> -->
-                    <select class="form-select" id="active" name="active" hidden aria-label="เลือกสถานะการแสดงผล">
-                        <option value="1" {{ $highlight->active == 1 ? 'selected' : '' }}>✅ แสดงผล</option>
-                        <option value="0" {{ $highlight->active == 0 ? 'selected' : '' }}>❌ ไม่แสดงผล</option>
+                    <select class="form-select" id="active" name="active" hidden aria-label="Select Active Status">
+                        <option value="1" {{ $highlight->active == 1 ? 'selected' : '' }}>✅ Active</option>
+                        <option value="0" {{ $highlight->active == 0 ? 'selected' : '' }}>❌ Not Active</option>
                     </select>
                 </div>
 
                 <!-- ปุ่มอัปเดต และ ย้อนกลับ -->
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">อัปเดต</button>
-                    <a href="{{ route('highlight.index') }}" class="btn btn-secondary">ย้อนกลับ</a>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{{ route('highlight.index') }}" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
         </div>
@@ -226,7 +226,7 @@
             });
 
             function confirmDeleteNewImage(imgContainer, index) {
-                if (confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) {
+                if (confirm('Do you want to delete this image?')) {
                     deleteNewImage(imgContainer, index);
                 }
             }
@@ -244,7 +244,7 @@
             }
 
             function deleteImage(imageId) {
-                if (!confirm('คุณต้องการลบรูปภาพนี้หรือไม่?')) return;
+                if (!confirm('Do you want to delete this image?')) return;
 
                 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -260,11 +260,11 @@
                         if (data.success) {
                             document.getElementById(`image-${imageId}`).remove();
                         } else {
-                            alert('เกิดข้อผิดพลาด: ' + data.message);
+                            alert('Error: ' + data.message);
                         }
                     })
                     .catch(error => {
-                        alert('เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์');
+                        alert('Error Connecting to Server');
                         console.error('Error:', error);
                     });
             }
@@ -380,7 +380,7 @@
                         const createItem = document.createElement('button');
                         createItem.type = 'button';
                         createItem.className = 'list-group-item list-group-item-action text-primary';
-                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>แท็ก "<strong>${inputValue}</strong>"`;
+                        createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>Tag "<strong>${inputValue}</strong>"`;
 
                         createItem.addEventListener('click', () => {
                             addTag(inputValue);
@@ -428,7 +428,7 @@
                             const createItem = document.createElement('button');
                             createItem.type = 'button';
                             createItem.className = 'list-group-item list-group-item-action text-primary';
-                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>สร้างแท็ก "<strong>${inputValue}</strong>"`;
+                            createItem.innerHTML = `<i class="fas fa-plus-circle me-2"></i>Create Tag "<strong>${inputValue}</strong>"`;
 
                             createItem.addEventListener('click', () => {
                                 addTag(inputValue);

@@ -45,7 +45,7 @@
         <div class="container mt-5">
             <div class="card p-4 shadow-sm">
                 <h2 class="card-title mb-4 text-center">
-                    <i class="fas fa-tag me-2"></i> สร้างแท็กใหม่
+                    <i class="fas fa-tag me-2"></i> Create New Tag
                 </h2>
 
                 @if(session('success'))
@@ -57,17 +57,17 @@
                 <form id="tag-form" action="{{ route('tags.store') }}" method="POST">
                     @csrf
                     <div class="mb-4">
-                        <label for="name" class="form-label">ชื่อแท็ก</label>
+                        <label for="name" class="form-label">Tag Name</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                             value="{{ old('name') }}" required>
-                        <div id="name-error" class="error-message text-danger">❌ ห้ามมีช่องว่างใน Tag Name</div>
+                        <div id="name-error" class="error-message text-danger">❌ No Space Allowed In Tag Name</div>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary w-48">สร้าง</button>
-                        <a href="{{ route('highlight.index') }}" class="btn btn-secondary w-48 text-center">ย้อนกลับ</a>
+                        <button type="submit" class="btn btn-primary w-48">Create</button>
+                        <a href="{{ route('highlight.index') }}" class="btn btn-secondary w-48 text-center">Cancel</a>
                     </div>
                 </form>
             </div>
