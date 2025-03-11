@@ -54,4 +54,66 @@ export async function validateHighlightDetailsPage(page) {
     await page.locator('pre.detail').scrollIntoViewIfNeeded();
     await page.waitForTimeout(2000);
     await expect(page.locator('pre.detail')).toBeVisible();
+
+    // Verify image modal functionality
+    await page.locator('.img-container').first().scrollIntoViewIfNeeded();
+    await page.waitForTimeout(3000);
+    const galleryImages = page.locator('.img-container .image');
+    const galleryImageCount = await galleryImages.count();
+
+    if (galleryImageCount > 0) {
+        for (let i = 0; i < galleryImageCount; i++) {
+            const currentImage = galleryImages.nth(i);
+            await currentImage.scrollIntoViewIfNeeded();
+
+            const modalTarget = await currentImage.getAttribute('data-bs-target');
+            if (modalTarget) {
+                // Open modal
+                await currentImage.click();
+                const modal = page.locator(modalTarget);
+                await expect(modal).toBeVisible({ timeout: 3000 });
+
+                // Verify the modal displays an image
+                const modalImage = modal.locator('img.img-fluid');
+                await expect(modalImage).toBeVisible();
+
+                // Close the modal
+                const closeButton = modal.locator('button[data-bs-dismiss="modal"]');
+                await closeButton.click();
+                await expect(modal).not.toBeVisible({ timeout: 3000 });
+            }
+        }
+    }
+
+    // Verify tag results page content
+    const tagList = page.locator('#tagsInfo a[id^="tagLink-"]');
+    await expect(page.locator('p#tagsInfo')).toBeVisible();
+    const tagCount = await tagList.count();
+    
+    if (tagCount > 0) {
+        for (let i = 0; i < tagCount; i++) {
+            const currentTag = tagList.nth(i);
+            const tagText = await currentTag.textContent();
+            if (tagText) {
+                // Click the tag link
+                await currentTag.click();
+                await page.waitForLoadState('networkidle');
+
+                // Verify URL navigates to a tag page
+                await expect(page).toHaveURL(/tag/);
+
+                // Verify the tag text is displayed on the page (e.g. in a span with class "text-secondary")
+                await expect(page.locator('span.text-secondary')).toContainText(tagText);
+
+                // Verify the tag page displays at least one highlight item
+                const highlightItems = page.locator('.highlight-item');
+                const itemCount = await highlightItems.count();
+                expect(itemCount).toBeGreaterThan(0);
+
+                // Go back to the highlight details page
+                await page.goBack();
+                await page.waitForLoadState('networkidle');
+            }
+        }
+    }
 }
