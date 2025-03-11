@@ -84,14 +84,19 @@
                     <label for="detail" class="form-label"><span style="color: red;">*</span> คำอธิบาย</label>
                     <textarea class="form-control @error('detail') is-invalid @enderror" id="detail" name="detail" rows="8"
                         style="height: 200px; resize: vertical;" required></textarea>
-                    @error('detail')
-                        <div class="invalid-feedback" style="color: red;">กรุณากรอกคำอธิบายให้ครบถ้วน</div>
+                    @error('title')
+                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
                     @enderror
                 </div>
 
                 <!-- Cover Image Upload -->
                 <div class="mb-3">
-                    <label for="cover_image" class="form-label">
+
+                    <!-- Image Preview (Initially hidden) -->
+                    <p id="labelCoverPreview" class="invisible" style="margin-top: 5px; font-size: 1rem;"><span class="text-red-500">*</span> ภาพปกปัจจุบัน</p>
+                    <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 mt-2 hidden">
+
+                    <label for="cover_image" class="form-label" style="margin-bottom: 15px;margin-top: 15px;">
                         <span class="text-red-500">*</span> อัปโหลดภาพปก
                     </label>
 
@@ -111,7 +116,7 @@
                         <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)</p>
 
                         <!-- Image Preview (Initially hidden) -->
-                        <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 hidden p-0">
+                        <!-- <img id="coverPreview" src="#" alt="Cover Preview" class="w-128 h-64 hidden p-0"> -->
                     </div>
 
                     <!-- Error Message -->
@@ -122,7 +127,13 @@
 
                 <!-- Multiple Images Upload -->
                 <div class="mb-3">
-                    <label for="images" class="form-label">อัปโหลดอัลบั้มภาพ</label>
+                    <p id="labelImagePreviewContainer" class="invisible" style="margin-top: 5px; font-size: 1rem;">อัลบั้มภาพปัจจุบัน</p>
+                    <!-- Image Preview Container (Initially hidden) -->
+                    <div id="imagePreviewContainer" class="mt-2 hidden flex">
+                        <!-- Dynamically generated preview images will appear here -->
+                    </div>
+
+                    <label for="images" class="form-label" style="margin-top: 10px;" >อัปโหลดอัลบั้มภาพ</label>
 
                     <!-- Image Upload Box -->
                     <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
@@ -139,10 +150,6 @@
                         <!-- Instruction Text -->
                         <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)</p>
 
-                        <!-- Image Preview Container (Initially hidden) -->
-                        <div id="imagePreviewContainer" class="mt-2 hidden flex">
-                            <!-- Dynamically generated preview images will appear here -->
-                        </div>
                     </div>
 
                     @error('images')
@@ -166,11 +173,11 @@
                     </div>
 
                     <!-- เพิ่ม debug output -->
-                    <div class="small text-muted mt-1">แท็กที่ถูกเลือก: <span id="debug-tags"></span></div>
+                    <!-- <div class="small text-muted mt-1">แท็กที่ถูกเลือก: <span id="debug-tags"></span></div>
                     <input type="hidden" name="tags_json" id="tags-input">
                     @error('tags')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
-                    @enderror
+                    @enderror -->
                 </div>
 
                 <button type="submit" class="btn btn-primary">สร้างไฮไลท์</button>
@@ -185,6 +192,8 @@
             //coverimage
             document.getElementById('cover_image').addEventListener('change', function (event) {
                 let coverPreview = document.getElementById('coverPreview');
+                let labelCoverPreview = document.getElementById('labelCoverPreview');
+                let labelImagePreviewContainer = document.getElementById('labelImagePreviewContainer');
                 let uploadBox = document.getElementById('uploadBox');
                 let file = event.target.files[0];
                 let allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/avif', 'image/webp'];
@@ -198,9 +207,12 @@
                 if (file) {
                     coverPreview.src = URL.createObjectURL(file);
                     coverPreview.classList.remove('hidden');
-                    uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400');
-                    uploadBox.querySelector('svg').classList.add('hidden');
-                    uploadBox.querySelector('p').classList.add('hidden');
+                    labelCoverPreview.className = 'visible';
+                    
+
+                    // uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400');
+                    // uploadBox.querySelector('svg').classList.add('hidden');
+                    // uploadBox.querySelector('p').classList.add('hidden');
                 }
             });
 
@@ -230,9 +242,10 @@
 
                 if (event.target.files.length > 0) {
                     previewContainer.classList.remove('hidden');
-                    uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400');
-                    uploadIcon.classList.add('hidden');
-                    instructionText.classList.add('hidden');
+                    // uploadBox.classList.remove('border-dashed', 'border-2', 'border-gray-400');
+                    // uploadIcon.classList.add('hidden');
+                    // instructionText.classList.add('hidden');
+                    labelImagePreviewContainer.className = 'visible';
 
                     Array.from(event.target.files).forEach((file, index) => {
                         let imgWrapper = document.createElement('div');

@@ -67,27 +67,36 @@
 
                 <!-- Title -->
                 <div class="mb-3">
-                    <label class="form-label">ชื่อ</label>
+                    <label class="form-label"><span style="color: red;">*</span> ชื่อ</label>
                     <input type="text" class="form-control" name="title" value="{{ $highlight->title }}" required>
+                    @error('title')
+                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                    @enderror
                 </div>
 
                 <!-- Detail -->
                 <div class="mb-3">
-                    <label class="form-label">รายละเอียด</label>
+                    <label class="form-label"><span style="color: red;">*</span> รายละเอียด</label>
                     <textarea class="form-control" name="detail" rows="8" style="height: 200px; resize: vertical;"
                         required>{{ $highlight->detail }}</textarea>
+                    @error('title')
+                        <div class="invalid-feedback" style="color: red;">กรุณากรอกชื่อให้ครบถ้วน</div>
+                    @enderror
                 </div>
-
+                
                 <!-- Cover Image Upload -->
-                <div class="mb-3">
+                <div class="my-3">
                     <!-- Current Cover Image Preview -->
-                    <label for="cover_image" class="form-label" style="margin-top: 5px;">ภาพปกปัจจุบัน</label>
+                    <label for="cover_image" class="form-label">
+                        ภาพปกปัจจุบัน
+                    </label>
                     <img id="coverPreview" src="{{ asset($highlight->cover_image) }}" alt="Cover Preview"
                         class="w-128 h-64 mt-2">
 
                     <label for="cover_image" class="form-label" style="margin-top: 15px">
-                        อัปโหลดภาพปก
+                        <span class="text-red-500">*</span> อัปโหลดภาพปก
                     </label>
+
                     <!-- Image Upload Box -->
                     <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
                         id="uploadBox">
@@ -104,9 +113,9 @@
                         <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)</p>
                     </div>
                 </div>
-
+                
                 <!-- Multiple Images Upload -->
-                <div class="mb-3">
+                <div class="my-3">
                     <!-- Existing Images Preview -->
                     <label for="cover_image" class="form-label" style="margin-top: 5px;">อัลบั้มภาพปัจจุบัน</label>
                     <div class="d-flex flex-wrap mt-2">
@@ -121,24 +130,27 @@
                     <!-- New Images Preview Container -->
                     <div id="imagePreviewContainer" class="mt-2 hidden flex"></div>
                     <label for="images" class="form-label" style="margin-top: 10px">อัปโหลดอัลบั้มภาพ</label>
+                    
                     <!-- Image Upload Box -->
                     <div class="relative border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-all"
                         id="uploadBoxMultiple">
                         <input type="file" class="absolute inset-0 opacity-0 cursor-pointer" id="images" name="images[]"
                             accept="image/*" multiple>
-                        <!-- Upload Icon -->
+                        
+                            <!-- Upload Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-black-400 mx-auto mb-2" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
                         </svg>
+                        
                         <!-- Instruction Text -->
                         <p class="text-grey-600"><span class="text-black-500 font-bold">คลิกเพื่ออัปโหลดรูป</span> .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)</p>
                     </div>
                 </div>
-
+                
                 <!-- Tags Input -->
                 <div class="mb-3">
-                    <label for="tag-input" class="form-label">แท็ก</label>
+                    <label for="tag-input" class="form-label">เพิ่มแท็ก</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control" style="height:100%" id="tag-input"
                             placeholder="พิมพ์แท็ก แล้วกด Enter เพื่อเพิ่ม" autocomplete="off">
