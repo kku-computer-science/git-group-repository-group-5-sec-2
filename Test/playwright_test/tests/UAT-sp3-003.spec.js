@@ -106,17 +106,17 @@ test.describe.serial('View Highlight Module', () => {
     await test.step('verify required content in highlight details page', async () => {
       // scroll to cover image
       await page.locator('img.cover-image').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(1000);
       await expect(page.locator('img.cover-image')).toBeVisible();
     
       // scroll to title
       await page.locator('h1.title').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(1000);
       await expect(page.locator('h1.title')).toBeVisible();
     
       // scroll to creation info
       await page.locator('p#creationInfo').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(1000);
       await expect(page.locator('p#creationInfo')).toBeVisible();
       // verify cration ifo format
       const creationText = await page.locator('p#creationInfo').textContent();
@@ -128,7 +128,7 @@ test.describe.serial('View Highlight Module', () => {
     
       // scroll to detail
       await page.locator('pre.detail').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(1000);
       await expect(page.locator('pre.detail')).toBeVisible();
     });
     
