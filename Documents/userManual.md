@@ -52,7 +52,7 @@
 ![Highlight Setting](UserManualImage/Highlight_setting_1.png)
 2. คลิก **+ สร้าง Highlight ใหม่**  
 ![Highlight Create](UserManualImage/Highlight_Create_1.png)
-!(UserManualImage/Highlight_Create_2.png)
+![Highlight Create](UserManualImage/Highlight_Create_2.png)
 3. กรอกข้อมูล เช่น ชื่อ คำอธิบาย และอัปโหลดรูปภาพ  
    - **ขนาดแนะนำสำหรับภาพปก:** ควรเป็น .png, .jpeg, .svg, .avif, .webp (ขนาดแนะนำ 1600 x 900)
    - **ขนาดแนะนำสำหรับอัลบั้มภาพ:** ควรเป็น .png, .jpeg, .svg, .avif, .webp (อัปโหลดได้หลายรูป)
@@ -63,8 +63,8 @@
 1. ไปที่ **Highlight Setting**
 2. ค้นหาไฮไลต์ที่ต้องการแก้ไข แล้วกดปุ่ม **แก้ไข**  
 ![Highlight Edit](UserManualImage/Highlight_Edit_1.png)
-!(UserManualImage/Highlight_Edit_2.png)
-!(UserManualImage/Highlight_Edit_3.png)
+![Highlight Edit](UserManualImage/Highlight_Edit_2.png)
+![Highlight Edit](UserManualImage/Highlight_Edit_3.png)
 3. ปรับเปลี่ยนข้อมูล แล้วกด **อัปเดต**
 
 ### 4.3 การลบไฮไลต์
@@ -80,7 +80,7 @@
 ### 5.1 การสร้างแท็กใหม่
 1. ไปที่ **Highlight Setting**
 ![Highlight Setting](UserManualImage/Highlight_setting_1.png)
-!(UserManualImage/Highlight_setting_2.png)
+![Highlight Setting](UserManualImage/Highlight_setting_2.png)
 2. คลิก **+ สร้าง Tags ใหม่**  
 ![Tags Create](UserManualImage/Tags_Create.png)
 3. กรอกชื่อแท็ก แล้วกด **สร้าง**
